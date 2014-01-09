@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2014-01-08 18:02:17
+  procedure_id: 1
+  evaluation_form_id: MyString
+  evaluator_id: 1
+  resident_id: 1
+
+two:
+  date: 2014-01-08 18:02:17
+  procedure_id: 1
+  evaluation_form_id: MyString
+  evaluator_id: 1
+  resident_id: 1

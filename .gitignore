@@ -1,0 +1,17 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+tmp/*
+public/assets/
+.rvmrc
+/public/cache
+**/.DS_Store
+.DS_Store
+/config/application.yml

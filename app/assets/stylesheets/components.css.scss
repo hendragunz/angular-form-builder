@@ -1,0 +1,52 @@
+@import "variables";
+
+/*
+ * Forms
+ * --------------------------------------------------
+ */
+.simple_form {
+  input[type="submit"], .form-actions {
+    margin-top: 30px;
+  }
+
+  .input {
+  	margin-bottom: 10px;
+  }
+}
+
+/*
+ * Bootstrap override
+ * --------------------------------------------------
+ */
+.input.form-group.date label, label.date {
+	//clear: both;
+	width: 100%;
+}
+select.date {
+	float: left;
+	width: 33%;
+	margin-right: 5px;
+	margin-bottom: 15px;
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+}
+
+
+/*
+ * Links
+ * --------------------------------------------------
+ */
+.link-danger, .link-danger:visited {
+  color: $red;
+
+  &:hover {
+  	color: #d2322d;
+  }
+}
+
+// nested form
+.add-link {
+	margin-top: 15px;
+}

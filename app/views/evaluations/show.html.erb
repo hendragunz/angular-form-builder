@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @evaluation.date %>
+</p>
+
+<p>
+  <strong>Procedure:</strong>
+  <%= @evaluation.procedure_id %>
+</p>
+
+<p>
+  <strong>Evaluation form:</strong>
+  <%= @evaluation.evaluation_form_id %>
+</p>
+
+<p>
+  <strong>Evaluator:</strong>
+  <%= @evaluation.evaluator_id %>
+</p>
+
+<p>
+  <strong>Resident:</strong>
+  <%= @evaluation.resident_id %>
+</p>
+
+<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Back', evaluations_path %>

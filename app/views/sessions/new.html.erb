@@ -1,0 +1,5 @@
+<%= simple_form_for(:user, url: sessions_path, as: :post) do |f| %>
+  <%= f.input :username %>
+  <%= f.input :password %></br>
+  <%= f.submit "Login"  %>
+<% end %>

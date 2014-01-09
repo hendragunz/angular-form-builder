@@ -1,0 +1,39 @@
+<%= simple_nested_form_for([:admin, @evaluation_form]) do |f| %>
+  <%= f.error_notification %>
+
+	<%= f.input :name %>
+	<%= f.input :active %>
+	<%= f.input :introduction %>
+	<%= f.input :conclusion %>
+  
+  <br><h4>Questions</h4>
+	<%= f.fields_for :questions do |q| %>
+	  <span class="pull-right text-danger"><%= q.link_to_remove "Remove" %></span>
+	  <div class="form-group">
+	  	<%= q.label :en_name %>
+	  	<%= q.text_field :en_name, class: "form-control" %>
+	  </div>
+	  <div class="form-group">
+	  	<%= q.label :fr_name %>
+	  	<%= q.text_field :fr_name, class: "form-control" %>
+	  </div>
+	  <div class="form-group">
+	  	<%= q.label :en_hint %>
+	  	<%= q.text_field :en_hint, class: "form-control" %>
+	  </div>
+	  <div class="form-group">
+	  	<%= q.label :fr_hint %>
+	  	<%= q.text_field :fr_hint, class: "form-control" %>
+	  </div>
+	  <div class="form-group">
+	  	<%= q.label :question_type %>
+	  	<%= q.select :question_type, EvaluationFormQuestion::QuestionType.options, {include_blank: false}, {class: "form-control"} %>
+	  </div>
+	<% end %>
+	<%= f.link_to_add "Add Question", :questions, class: "btn btn-primary add-link" %>
+  
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-success' %>
+  </div>
+  
+<% end %>

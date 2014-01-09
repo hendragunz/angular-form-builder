@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t 'site_name' %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render 'header' %>
+  <div id="main-container" class="container">
+    <div class="row row-offcanvas row-offcanvas-left">
+		  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+		    <%= render 'sidebar' %>
+		  </div>
+
+		  <div class="col-xs-12 col-sm-9">
+		  	<p class="pull-right visible-xs">
+		      <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+		    </p>
+		    <%= render 'flash' %>
+		    <%= yield %>
+		  </div>
+		</div>
+  </div>
+</body>
+</html>
