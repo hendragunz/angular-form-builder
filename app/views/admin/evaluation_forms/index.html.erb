@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th colspan="1"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -19,7 +19,7 @@
         </td>
         <td class="tright">
           <%= link_to 'Edit', edit_admin_evaluation_form_path(evaluation_form) %> | 
-          <%= link_to 'Destroy', admin_evaluation_form_path(evaluation_form), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Destroy', admin_evaluation_form_path(evaluation_form), method: :delete, data: { confirm: 'Are you sure?' }, class: "#{evaluation_form.can_be_deleted? ? 'disabled' : ''}" %>
         </td>
       </tr>
     <% end %>
