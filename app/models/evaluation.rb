@@ -7,6 +7,8 @@ class Evaluation < ActiveRecord::Base
   belongs_to :procedure
   belongs_to :evaluation_form
 
+  has_many :questions, through: :evaluation_form
+
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
@@ -14,7 +16,7 @@ class Evaluation < ActiveRecord::Base
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :date, :procedure_id, :resident_id, :evaluation_form_id
+  validates_presence_of :date, :evaluation_form_id #, :resident_id, :procedure_id
 
 
   # CALLBACKS
@@ -25,7 +27,10 @@ class Evaluation < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   def can_be_deleted?
   	false
-  	#evaluations.empty?
+  end
+
+  def title
+  	"#{date.strftime("%m/%d/%Y %H:%M")} - #{procedure.try(:name)} - Dr. #{evaluator.try(:full_name)} "
   end
 
 end

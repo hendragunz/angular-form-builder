@@ -2,6 +2,11 @@
   <%= f.error_notification %>
 
 	<%= f.input :name %>
+	<div class="form-group">
+		 <div class="checkbox">
+	    <label><%= f.check_box :active %> Active</label>
+	  </div>
+	</div>
 	<%= f.input :active %>
 	<%= f.input :introduction %>
 	<%= f.input :conclusion %>
@@ -9,26 +14,20 @@
   <br><h4>Questions</h4>
 	<%= f.fields_for :questions do |q| %>
 	  <span class="pull-right text-danger"><%= q.link_to_remove "Remove" %></span>
-	  <div class="form-group">
-	  	<%= q.label :en_name %>
-	  	<%= q.text_field :en_name, class: "form-control" %>
-	  </div>
-	  <div class="form-group">
-	  	<%= q.label :fr_name %>
-	  	<%= q.text_field :fr_name, class: "form-control" %>
-	  </div>
-	  <div class="form-group">
-	  	<%= q.label :en_hint %>
-	  	<%= q.text_field :en_hint, class: "form-control" %>
-	  </div>
-	  <div class="form-group">
-	  	<%= q.label :fr_hint %>
-	  	<%= q.text_field :fr_hint, class: "form-control" %>
-	  </div>
-	  <div class="form-group">
-	  	<%= q.label :question_type %>
-	  	<%= q.select :question_type, EvaluationFormQuestion::QuestionType.options, {include_blank: false}, {class: "form-control"} %>
-	  </div>
+	  <%= q.input :en_name, as: :string %>
+	  <%= q.input :fr_name, as: :string %>
+	  <%= q.input :en_hint, as: :string %>
+	  <%= q.input :fr_hint, as: :string %>
+	  <%= q.input :question_type, collection: EvaluationFormQuestion::QuestionType.options_with_label, include_blank: false, html_input: {class: 'qtype'} %>
+	  <%= q.input :scale %>
+
+	  <script>
+		  $qtype = $('.qtype')
+		  if ($qtype.val() == 'rating') {
+		  	alert("rre");
+		    $('.evaluation_form_questions_scale').next().toggle();
+		  };
+		</script>
 	<% end %>
 	<%= f.link_to_add "Add Question", :questions, class: "btn btn-primary add-link" %>
   
@@ -37,3 +36,4 @@
   </div>
   
 <% end %>
+

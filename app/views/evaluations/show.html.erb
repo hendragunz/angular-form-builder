@@ -1,29 +1,32 @@
-<p id="notice"><%= notice %></p>
+<%= page_title("#{@evaluation.title}") do %>
+  <%= link_to 'Edit', edit_evaluation_path(@evaluation), class: 'pull-right btn btn-primary' %>
+<% end %>
 
 <p>
-  <strong>Date:</strong>
-  <%= @evaluation.date %>
+  <strong>Evaluation Date:</strong>
+  <%= l @evaluation.date, format: :long %>
+</p>
+
+<p>
+  <strong>Evaluation Form:</strong>
+  <%= @evaluation.evaluation_form.name %>
 </p>
 
 <p>
   <strong>Procedure:</strong>
-  <%= @evaluation.procedure_id %>
-</p>
-
-<p>
-  <strong>Evaluation form:</strong>
-  <%= @evaluation.evaluation_form_id %>
+  <%= @evaluation.procedure.try(:name) %>
 </p>
 
 <p>
   <strong>Evaluator:</strong>
-  <%= @evaluation.evaluator_id %>
+  <%= @evaluation.evaluator.try(:full_name) %>
 </p>
 
 <p>
   <strong>Resident:</strong>
-  <%= @evaluation.resident_id %>
+  <%= @evaluation.resident.try(:full_name) %>
 </p>
 
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
+<% @evaluation.questions.each do |question| %>
+  <li><%= question.en_name %></li>
+<% end %>

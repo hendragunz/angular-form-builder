@@ -35,7 +35,7 @@ class Admin::EvaluationFormsController < Admin::BaseController
   def update
     respond_to do |format|
       if @evaluation_form.update(safe_params)
-        format.html { redirect_to admin_evaluation_forms_url(@evaluation_form), notice: 'Evaluation form was successfully updated.' }
+        format.html { redirect_to admin_evaluation_form_path(@evaluation_form), notice: 'Evaluation form was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,6 +64,6 @@ class Admin::EvaluationFormsController < Admin::BaseController
 
     def safe_params
       params.require(:evaluation_form).permit(:name, :active, :scope, :introduction, :conclusion,
-      	                                      questions_attributes: [:en_name, :fr_name, :en_hint, :fr_hint, :question_type, :scale])
+      	                                      questions_attributes: [:id, :en_name, :fr_name, :en_hint, :fr_hint, :question_type, :scale, "_destroy"])
     end
 end

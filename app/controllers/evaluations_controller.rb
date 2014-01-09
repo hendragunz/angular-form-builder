@@ -1,30 +1,23 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  set_tab "evaluations"
 
-  # GET /evaluations
-  # GET /evaluations.json
   def index
     @evaluations = Evaluation.all
   end
 
-  # GET /evaluations/1
-  # GET /evaluations/1.json
   def show
   end
 
-  # GET /evaluations/new
   def new
     @evaluation = Evaluation.new
   end
 
-  # GET /evaluations/1/edit
   def edit
   end
 
-  # POST /evaluations
-  # POST /evaluations.json
   def create
-    @evaluation = Evaluation.new(evaluation_params)
+    @evaluation = Evaluation.new(safe_params)
 
     respond_to do |format|
       if @evaluation.save
@@ -37,11 +30,9 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /evaluations/1
-  # PATCH/PUT /evaluations/1.json
   def update
     respond_to do |format|
-      if @evaluation.update(evaluation_params)
+      if @evaluation.update(safe_params)
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
         format.json { head :no_content }
       else
@@ -51,8 +42,6 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  # DELETE /evaluations/1
-  # DELETE /evaluations/1.json
   def destroy
     @evaluation.destroy
     respond_to do |format|
@@ -62,13 +51,12 @@ class EvaluationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_evaluation
       @evaluation = Evaluation.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def evaluation_params
+    def safe_params
       params.require(:evaluation).permit(:date, :procedure_id, :evaluation_form_id, :evaluator_id, :resident_id)
     end
 end

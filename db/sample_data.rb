@@ -22,7 +22,7 @@ puts "creating evaluation form questions..."
     fr_name: Faker::Lorem.paragraph,
 		en_hint: Faker::Lorem.paragraph,
 		fr_hint: Faker::Lorem.paragraph,
-		question_type: ['mcq', 'boolean', 'long_text'].sample,
+		question_type: ['mcq', 'boolean', 'long_text', 'rating'].sample,
 		scale: (1..5).to_a.sample,
 		evaluation_form_id: EvaluationForm.all.pluck(:id)
 	)

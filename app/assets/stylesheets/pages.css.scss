@@ -1,9 +1,24 @@
 /*
- * Evaluation Form
+ * EvaluationForm
  * --------------------------------------------------
  */
 
  #evaluation_form_introduction,
  #evaluation_form_conclusion {
    height: 130px;
+ }
+
+/*
+ * Evaluation
+ * --------------------------------------------------
+ */
+
+ .evaluation_date  {
+ 	  label {
+ 	  	width: 100%;
+ 	  }
+ 	  select {
+ 	    max-width: 19%;
+ 	    display: inline-block;
+ 	  }
  }
