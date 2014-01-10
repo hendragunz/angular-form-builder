@@ -3,11 +3,11 @@
 
   <%= f.input :date, as: :datetime, discard_second: true, wrapper_html: {class: 'evaluation_date'} %>
   <%= f.input :procedure_id %>
-  <%#= f.input :evaluation_form_id, collection: EvaluationForm.active.order('name') %>
   <%= f.input :evaluation_form_id, as: :hidden %>
   <%= f.input :evaluator_id %>
   <%= f.input :resident_id %>
 
+  <%= simple_format(@evaluation.evaluation_form.introduction) %>
 
   <%= f.fields_for :answers, OpenStruct.new(@evaluation.answers) do |builder| %>
     <% @evaluation.evaluation_form.questions.each_with_index do |question, index| %>

@@ -28,6 +28,6 @@ puts "creating evaluation form questions..."
 		options: "Option 1, Option 2, Option 3, Option 4",
 		true_label: "Yes",
     false_label: "No",
-		evaluation_form_id: EvaluationForm.active.pluck(:id).sample
+		evaluation_form_id: (2..10).to_a.sample
 	)
 end

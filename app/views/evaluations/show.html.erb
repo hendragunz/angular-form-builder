@@ -32,10 +32,10 @@
     <div class="panel-heading">
       <h3 class="panel-title">#<%= index + 1 %> - <%= EvaluationFormQuestion.where(name: answer, evaluation_form_id: @evaluation.evaluation_form_id).first.en_label %>
         <%#= EvaluationFormQuestion.where(name: answer, evaluation_form_id: @evaluation.evaluation_form_id).first.inspect %></h3>
-      <%#= answer.inspect %>
+      <%= answer.inspect %>
     </div>
     <div class="panel-body">
-      <%= answer %>
+      <%= answer[1] %>
     </div>
   <% end %>
 <% end %>

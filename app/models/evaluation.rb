@@ -8,6 +8,8 @@ class Evaluation < ActiveRecord::Base
   belongs_to :evaluation_form
   has_many :questions, through: :evaluation_form
 
+  #belongs_to_hstore :answers, :question
+
 
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------

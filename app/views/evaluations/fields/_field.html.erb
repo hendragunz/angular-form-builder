@@ -1,7 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">#<%= index + 1 %> - <%= f.label question.name, "#{original_question.en_label}" %></h3>
-    <%= question.id %>
   </div>
   <div class="panel-body">
     <%= render "evaluations/fields/#{question.question_type}", f: f, question: question, original_question: original_question %>
