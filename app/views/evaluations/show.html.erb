@@ -27,6 +27,15 @@
   <%= @evaluation.resident.try(:full_name) %>
 </p>
 
-<% @evaluation.questions.each do |question| %>
-  <li><%= question.en_name %></li>
+<% @evaluation.answers.each_with_index do |answer, index| %>
+  <%= content_tag :div, answer, class: 'panel panel-default' do %>
+    <div class="panel-heading">
+      <h3 class="panel-title">#<%= index + 1 %> - <%= EvaluationFormQuestion.where(name: answer, evaluation_form_id: @evaluation.evaluation_form_id).first.en_label %>
+        <%#= EvaluationFormQuestion.where(name: answer, evaluation_form_id: @evaluation.evaluation_form_id).first.inspect %></h3>
+      <%#= answer.inspect %>
+    </div>
+    <div class="panel-body">
+      <%= answer %>
+    </div>
+  <% end %>
 <% end %>

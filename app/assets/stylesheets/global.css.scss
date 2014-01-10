@@ -9,8 +9,8 @@ body {
   }
 }
 
-.error {
-	color: #b94a48;
+.error, .field_with_errors {
+	color: $red;
 }
 
 .page-title {

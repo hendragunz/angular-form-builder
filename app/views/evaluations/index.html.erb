@@ -1,5 +1,9 @@
 <%= page_title("Evaluations") do %>
   <%= icon_button_link_to "New Evaluation", new_evaluation_path, icon: 'plus', white: 'true', level: 'primary', class: 'pull-right' %>
+  <%= form_tag new_evaluation_path, method: :get do %>
+    <%= select_tag :evaluation_form_id, options_from_collection_for_select(EvaluationForm.active, :id, :name) %>
+    <%= submit_tag "New Evaluation", name: nil, class: 'btn btn-primary' %>
+  <% end %>
 <% end %>
 
 <table class="table table-striped">

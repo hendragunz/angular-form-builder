@@ -7,19 +7,29 @@
 	    <label><%= f.check_box :active %> Active</label>
 	  </div>
 	</div>
-	<%= f.input :active %>
 	<%= f.input :introduction %>
 	<%= f.input :conclusion %>
   
   <br><h4>Questions</h4>
 	<%= f.fields_for :questions do |q| %>
 	  <span class="pull-right text-danger"><%= q.link_to_remove "Remove" %></span>
-	  <%= q.input :en_name, as: :string %>
-	  <%= q.input :fr_name, as: :string %>
+	  <%= q.input :name %>
+	  <%= q.input :en_label, as: :string %>
+	  <%= q.input :fr_label, as: :string %>
 	  <%= q.input :en_hint, as: :string %>
 	  <%= q.input :fr_hint, as: :string %>
+	  <div class="form-group">
+			 <div class="checkbox">
+		    <label><%= q.check_box :required %> Required</label>
+		  </div>
+		</div>
 	  <%= q.input :question_type, collection: EvaluationFormQuestion::QuestionType.options_with_label, include_blank: false, html_input: {class: 'qtype'} %>
+	  <%= q.input :options, as: :string, placeholder: 'comma separated values' %>
 	  <%= q.input :scale %>
+	  <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md6"><%= q.input :true_label, placeholder: "Yes" %></div>
+      <div class="col-xs-6 col-sm-6 col-md6"><%= q.input :false_label, placeholder: "No" %></div>
+	  </div>
 
 	  <script>
 		  $qtype = $('.qtype')
@@ -28,6 +38,7 @@
 		    $('.evaluation_form_questions_scale').next().toggle();
 		  };
 		</script>
+		<hr>
 	<% end %>
 	<%= f.link_to_add "Add Question", :questions, class: "btn btn-primary add-link" %>
   

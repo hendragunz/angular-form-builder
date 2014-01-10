@@ -6,6 +6,7 @@ class CreateEvaluations < ActiveRecord::Migration
       t.string   :evaluation_form_id
       t.integer  :evaluator_id
       t.integer  :resident_id
+      t.hstore   :answers
 
       t.timestamps
     end

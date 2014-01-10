@@ -18,12 +18,16 @@ puts "creating evaluation form questions..."
 60.times do |x|
 	count = x + 1
 	EvaluationFormQuestion.create!(
-		en_name: Faker::Lorem.paragraph,
-    fr_name: Faker::Lorem.paragraph,
+		name: "question_#{count}",
+		en_label: Faker::Lorem.paragraph,
+    fr_label: Faker::Lorem.paragraph,
 		en_hint: Faker::Lorem.paragraph,
 		fr_hint: Faker::Lorem.paragraph,
 		question_type: ['mcq', 'boolean', 'long_text', 'rating'].sample,
 		scale: (1..5).to_a.sample,
-		evaluation_form_id: EvaluationForm.all.pluck(:id)
+		options: "Option 1, Option 2, Option 3, Option 4",
+		true_label: "Yes",
+    false_label: "No",
+		evaluation_form_id: EvaluationForm.active.pluck(:id).sample
 	)
 end

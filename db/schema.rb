@@ -15,14 +15,17 @@ ActiveRecord::Schema.define(version: 20140108230217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "evaluation_form_questions", force: true do |t|
-    t.text     "en_name"
-    t.text     "fr_name"
+    t.string   "name"
+    t.text     "en_label"
+    t.text     "fr_label"
     t.text     "en_hint"
     t.text     "fr_hint"
     t.string   "question_type"
-    t.integer  "scale"
+    t.hstore   "properties"
+    t.boolean  "required",           default: true
     t.integer  "position",           default: 0
     t.integer  "evaluation_form_id"
     t.datetime "created_at"
@@ -46,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140108230217) do
     t.string   "evaluation_form_id"
     t.integer  "evaluator_id"
     t.integer  "resident_id"
+    t.hstore   "answers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

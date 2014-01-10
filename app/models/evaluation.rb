@@ -6,8 +6,13 @@ class Evaluation < ActiveRecord::Base
   belongs_to :resident, class_name: "User"
   belongs_to :procedure
   belongs_to :evaluation_form
-
   has_many :questions, through: :evaluation_form
+
+
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
+  # using hstore
+  store_accessor :answers
 
 
   # SCOPES
@@ -17,8 +22,9 @@ class Evaluation < ActiveRecord::Base
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
   validates_presence_of :date, :evaluation_form_id #, :resident_id, :procedure_id
-
-
+  #validate :validate_answers
+  
+  
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
 
@@ -31,6 +37,14 @@ class Evaluation < ActiveRecord::Base
 
   def title
   	"#{date.strftime("%m/%d/%Y %H:%M")} - #{procedure.try(:name)} - Dr. #{evaluator.try(:full_name)} "
+  end
+
+  def validate_answers
+    answers.each do |answer|
+      if answer.required? && answer[answer.name].blank?
+        errors.add answer.name, "can't be blank"
+      end
+    end
   end
 
 end

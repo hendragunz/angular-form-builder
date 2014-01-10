@@ -3,14 +3,14 @@ class EvaluationsController < ApplicationController
   set_tab "evaluations"
 
   def index
-    @evaluations = Evaluation.all
+    @evaluations = Evaluation.order('date DESC')
   end
 
   def show
   end
 
   def new
-    @evaluation = Evaluation.new
+    @evaluation = Evaluation.new(evaluation_form_id: params[:evaluation_form_id])
   end
 
   def edit
@@ -57,6 +57,9 @@ class EvaluationsController < ApplicationController
     end
 
     def safe_params
-      params.require(:evaluation).permit(:date, :procedure_id, :evaluation_form_id, :evaluator_id, :resident_id)
+      params.require(:evaluation).permit(:date, :procedure_id, :evaluation_form_id, :evaluator_id, :resident_id).tap do |whitelisted|
+        whitelisted[:answers] = params[:evaluation][:answers]
+      end
     end
+
 end

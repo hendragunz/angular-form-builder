@@ -22,19 +22,30 @@ class EvaluationFormQuestion < ActiveRecord::Base
   belongs_to :evaluation_form
 
 
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
+  # hstore
+  store_accessor :properties, :scale, :options, :true_label, :false_label
+
+
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
   
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :en_name, :question_type
+  validates_presence_of :name, :en_label, :question_type
+  validates_uniqueness_of :name, scope: :evaluation_form_id
   validates :question_type, inclusion: { in: QuestionType.options }
-  validates_presence_of :scale, if: Proc.new { |question| question.rating? }
+  # validates :scale, presence: true, numericality: { greater_than: 0 }, if: Proc.new { |question| question.rating? }
+  # validates :options, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.mcq? }
+  # validates :true_label, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.boolean? }
+  # validates :false_label, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.boolean? }
 
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
+  before_save :format_attributes
 
 
 	# INSTANCE METHODS
@@ -48,5 +59,11 @@ class EvaluationFormQuestion < ActiveRecord::Base
   def can_be_deleted?
   	true
   end
+
+  private
+
+    def format_attributes
+    	self.name = name.underscore
+    end
 
 end

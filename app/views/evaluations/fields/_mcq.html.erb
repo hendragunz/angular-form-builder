@@ -1,0 +1,10 @@
+<% original_question.options.split(', ').each_with_index do |option, index| %>
+	<div class="checkbox">
+		<label>
+      <%#= f.check_box index %> <%#= option %>
+      <%= f.check_box question.name, {}, index %> <%= option %>
+      <%#= f.check_box f, {}, index %>
+      <%#= f.check_box index %>
+		</label>
+	</div>
+<% end %>

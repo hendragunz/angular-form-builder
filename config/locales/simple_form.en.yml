@@ -22,8 +22,7 @@ en:
     #       email: 'E-mail to sign in.'
     #     edit:
     #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
+    hints:
+      defaults:
+        scale: "Integer. Maximum value (5 in case of 1..5 scale) "
 
