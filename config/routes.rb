@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :evaluations
-
-  namespace :admin do
-    resources :evaluation_forms
-  end
-
   # ============================================================
   # USER ROUTES
   # ============================================================
@@ -14,10 +8,8 @@ Rails.application.routes.draw do
   get "profile" => "registrations#edit", as: "profile"
   post "profile" => "registrations#update", as: "update_profile"
   resources :sessions, only: [:new, :create, :destroy]
-  
-  # ============================================================
-  # ADMIN ROUTES
-  # ============================================================
+
+
   # ============================================================
   # ADMIN ROUTES
   # ============================================================
@@ -27,9 +19,12 @@ Rails.application.routes.draw do
     resources :evaluation_forms
   end
 
+
   # ============================================================
   # MAIN ROUTES
   # ============================================================
+  resources :evaluations
+  resources :reports, only: :index
   root "dashboard#show"
 
 end
