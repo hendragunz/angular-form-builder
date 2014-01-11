@@ -3,16 +3,17 @@ class EvaluationFormQuestion < ActiveRecord::Base
   # CONSTANTS
   # ------------------------------------------------------------------------------------------------------
   module QuestionType
-    MCQ        = 'mcq'
-    LONG_TEXT  = 'long_text'
-    RATING     = 'rating' 	  	
-    BOOLEAN    = 'boolean'
+    MCQ          = 'mcq'
+    SINGLE_LINE  = 'single_line'
+    PARAGRAPH    = 'paragraph'
+    RATING       = 'rating' 	  	
+    BOOLEAN      = 'boolean'
 
     def self.options
-      [ RATING, MCQ, LONG_TEXT, BOOLEAN ]
+      [ RATING, MCQ, SINGLE_LINE, PARAGRAPH, BOOLEAN ]
     end
     def self.options_with_label
-      [ ['MCQ', MCQ], ['Long Text', LONG_TEXT], ['Rating', RATING], ['Yes/No', BOOLEAN] ]
+      [ ['MCQ', MCQ], ['Single Line Text', SINGLE_LINE], ['Paragraph Text', PARAGRAPH], ['Rating', RATING], ['Yes/No', BOOLEAN] ]
     end
   end
 
@@ -50,7 +51,7 @@ class EvaluationFormQuestion < ActiveRecord::Base
 
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
-  [QuestionType::MCQ, QuestionType::LONG_TEXT, QuestionType::RATING, QuestionType::BOOLEAN].each do |method|
+  [QuestionType::MCQ, QuestionType::SINGLE_LINE, QuestionType::PARAGRAPH, QuestionType::RATING, QuestionType::BOOLEAN].each do |method|
 	   define_method "#{method}?" do
 	      self.question_type == method
 	   end

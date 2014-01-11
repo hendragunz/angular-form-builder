@@ -98,13 +98,13 @@ oscore.questions.create!(
 oscore.questions.create!(
   name: "Positive aspect",
   en_label: "Give at least 1 specific aspect of procedure done well",
-  question_type: "long_text",
+  question_type: "paragraph",
   position: 9
 )
 
 oscore.questions.create!(
   name: "Suggestion",
   en_label: "Give at least 1 specific suggestion for improvement",
-  question_type: "long_text",
+  question_type: "paragraph",
   position: 10
 )

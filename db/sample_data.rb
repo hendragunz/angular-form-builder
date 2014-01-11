@@ -23,7 +23,7 @@ puts "creating evaluation form questions..."
     fr_label: Faker::Lorem.paragraph,
 		en_hint: Faker::Lorem.paragraph,
 		fr_hint: Faker::Lorem.paragraph,
-		question_type: ['mcq', 'boolean', 'long_text', 'rating'].sample,
+		question_type: ['mcq', 'boolean', 'single_line', 'paragraph', 'rating'].sample,
 		scale: (1..5).to_a.sample,
 		options: "Option 1, Option 2, Option 3, Option 4",
 		true_label: "Yes",
