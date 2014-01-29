@@ -3,7 +3,7 @@
 **Geting started**
 
 ```
-clone and rename databse.yml.sample
+clone and rename database.yml.sample
 $ rake bs
 $ rails s
 ```
