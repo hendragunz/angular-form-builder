@@ -1,15 +1,15 @@
-<% original_question.options.split(', ').each_with_index do |option, index| %>
+<% original_question.options.each_with_index do |option, index| %>
 	<div class="checkbox">
 		<label>
       <%#= f.check_box index %> <%#= option %>
       <%#= f.check_box question.name, {}, index %> 
-      <%= f.check_box f, {}, index %> <%= option %>
+      <%= f.check_box f, {}, index %> <%= option.name %>
       <%#= f.check_box index %>
 		</label>
 	</div>
 <% end %>
 
-<%= original_question.options.split(', ').to_a.inspect %>
+<%#= original_question.options.to_a.inspect %>
 <%#= f.select question.name, original_question.options.split(', ').to_a, {}, {multiple: true} %>
 
 <%#= collection_check_boxes(:post, :author_ids, original_question.options.split(', ').to_a.each_with_index, :id, :name_with_initial) %>

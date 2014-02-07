@@ -21,12 +21,13 @@ class EvaluationFormQuestion < ActiveRecord::Base
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :evaluation_form
+  has_many :options
 
 
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   # hstore
-  store_accessor :properties, :scale, :options, :true_label, :false_label
+  store_accessor :properties, :scale, :true_label, :false_label
 
 
   # SCOPES
