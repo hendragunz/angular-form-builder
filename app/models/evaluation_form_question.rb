@@ -27,7 +27,7 @@ class EvaluationFormQuestion < ActiveRecord::Base
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   # hstore
-  store_accessor :properties, :scale, :true_label, :false_label
+  store_accessor :properties, :scale, :options, :true_label, :false_label
 
 
   # SCOPES
