@@ -24,8 +24,12 @@
 		  </div>
 		</div>
 	  <%= q.input :question_type, collection: EvaluationFormQuestion::QuestionType.options_with_label, include_blank: false, html_input: {class: 'qtype'} %>
-	  <%= q.input :options, as: :string, placeholder: 'comma separated values' %>
-	  <%= q.input :scale %>
+	  <%#= q.input :options, as: :string, placeholder: 'comma separated values' %>
+    <%= q.fields_for :question_options do |o| %>
+      <%= o.input :name, as: :string, :input_html => {:style => "width:50%"} ,placeholder: 'values' %> <span class="pull-right text-danger" style="margin-right: 333px;margin-top: -40px;"><%= o.link_to_remove "Remove" %></span>
+    <% end %>
+    <%= q.link_to_add "Add Options", :question_options, class: "btn add-link" %>
+    <%= q.input :scale %>
 	  <div class="row">
       <div class="col-xs-6 col-sm-6 col-md6"><%= q.input :true_label, placeholder: "Yes" %></div>
       <div class="col-xs-6 col-sm-6 col-md6"><%= q.input :false_label, placeholder: "No" %></div>

@@ -64,6 +64,6 @@ class Admin::EvaluationFormsController < Admin::BaseController
 
     def safe_params
       params.require(:evaluation_form).permit(:name, :active, :scope, :introduction, :conclusion,
-      	                                      questions_attributes: [:id, :name, :en_label, :fr_label, :en_hint, :fr_hint, :question_type, :scale, :options, :true_label, :false_label, "_destroy"])
+      	                                      questions_attributes: [:id, :name, :en_label, :fr_label, :en_hint, :fr_hint, :question_type, :scale, :options, :true_label, :false_label, "_destroy", question_options_attributes: [:name]])
     end
 end

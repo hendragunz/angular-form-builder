@@ -22,6 +22,7 @@ class EvaluationFormQuestion < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   belongs_to :evaluation_form
   has_many :question_options, class_name: "Option"
+  accepts_nested_attributes_for :question_options
 
 
   # ATTRIBUTES
