@@ -21,7 +21,7 @@ class EvaluationFormQuestion < ActiveRecord::Base
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :evaluation_form
-  has_many :options
+  has_many :question_options, class_name: "Option"
 
 
   # ATTRIBUTES

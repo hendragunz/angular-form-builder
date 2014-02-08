@@ -30,7 +30,7 @@ puts "creating evaluation form questions..."
 		evaluation_form_id: (2..10).to_a.sample
 	)
 
-  question.options.create!(  [
+  question.question_options.create!(  [
                                  { name: "Option 1" },
                                  { name: "Option 2" },
                                  { name: "Option 3" },
