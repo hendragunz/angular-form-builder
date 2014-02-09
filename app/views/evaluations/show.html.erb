@@ -1,36 +1,17 @@
-<%= page_title("#{@evaluation.title}") do %>
+<%= page_title("#{@evaluation.evaluation_form.name}") do %>
   <%= link_to 'Edit', edit_evaluation_path(@evaluation), class: 'pull-right btn btn-primary' %>
 <% end %>
 
 <p>
-  <strong>Evaluation Date:</strong>
-  <%= l @evaluation.date, format: :long %>
+  <strong>Filled out on:</strong>
+  <%= l @evaluation.created_at, format: :long %>
 </p>
 
-<p>
-  <strong>Evaluation Form:</strong>
-  <%= @evaluation.evaluation_form.name %>
-</p>
-
-<p>
-  <strong>Procedure:</strong>
-  <%= @evaluation.procedure.try(:name) %>
-</p>
-
-<p>
-  <strong>Evaluator:</strong>
-  <%= @evaluation.evaluator.try(:full_name) %>
-</p>
-
-<p>
-  <strong>Resident:</strong>
-  <%= @evaluation.resident.try(:full_name) %>
-</p>
 
 <% @evaluation.answers.each_with_index do |answer, index| %>
   <%= content_tag :div, answer, class: 'panel panel-default' do %>
     <div class="panel-heading">
-      <h3 class="panel-title">#<%= index + 1 %> - <%= EvaluationFormQuestion.where(name: answer, evaluation_form_id: @evaluation.evaluation_form_id).first.en_label %>
+      <h3 class="panel-title">#<%= index + 1 %> - <%#= EvaluationFormQuestion.where(name: answer, evaluation_form_id: @evaluation.evaluation_form_id).first.en_label %>
         <%#= EvaluationFormQuestion.where(name: answer, evaluation_form_id: @evaluation.evaluation_form_id).first.inspect %></h3>
       <%= answer.inspect %>
     </div>

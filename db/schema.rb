@@ -61,8 +61,33 @@ ActiveRecord::Schema.define(version: 20140207104916) do
     t.datetime "updated_at"
   end
 
+  create_table "oscores", force: true do |t|
+    t.datetime "date"
+    t.integer  "procedure_id"
+    t.integer  "evaluator_id"
+    t.integer  "resident_id"
+    t.integer  "pre_procedural_plan"
+    t.integer  "case_preparation"
+    t.integer  "knowledge_of_procedural_steps"
+    t.integer  "technical_performance"
+    t.integer  "visuospatial_skills"
+    t.integer  "post_procedural_plan"
+    t.integer  "efficacity_and_flow"
+    t.integer  "communication"
+    t.boolean  "ability_to_perform_procedure_independently"
+    t.text     "positive_feedback"
+    t.text     "improvement_feedback"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "procedures", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sessions", force: true do |t|
-    t.string   "session_id", null: false
     t.text     "data"
     t.string   "username"
     t.integer  "user_id"
@@ -70,14 +95,16 @@ ActiveRecord::Schema.define(version: 20140207104916) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "password"
+    t.boolean  "resident",         default: false
+    t.boolean  "physician",        default: false
+    t.string   "crypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,8 +1,8 @@
-<%= page_title("Evaluations") do %>
-  <%= icon_button_link_to "New Evaluation", new_evaluation_path, icon: 'plus', white: 'true', level: 'primary', class: 'pull-right' %>
+<%= page_title("Entries") do %>
+  <%= icon_button_link_to "New Entry", new_evaluation_path, icon: 'plus', white: 'true', level: 'primary', class: 'pull-right' %>
   <%= form_tag new_evaluation_path, method: :get do %>
     <%= select_tag :evaluation_form_id, options_from_collection_for_select(EvaluationForm.active, :id, :name) %>
-    <%= submit_tag "New Evaluation", name: nil, class: 'btn btn-primary' %>
+    <%= submit_tag "New Entry", name: nil, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
 
@@ -10,8 +10,6 @@
   <thead>
     <tr>
       <th>Date</th>
-      <th>Evaluator</th>
-      <th>Resident</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -19,9 +17,7 @@
   <tbody>
     <% @evaluations.each do |evaluation| %>
       <tr>
-        <td><%= link_to "#{l evaluation.date, format: :long} - #{evaluation.procedure.try(:name)} ", evaluation %></td>
-        <td><%= evaluation.evaluator.try(:full_name) %></td>
-        <td><%= evaluation.resident.try(:full_name) %></td>
+        <td><%= link_to "#{l evaluation.created_at, format: :long}", evaluation %></td>
         <td class="tright">
           <%= link_to 'Edit', edit_evaluation_path(evaluation) %> |
           <%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %>

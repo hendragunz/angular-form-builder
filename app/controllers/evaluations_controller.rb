@@ -57,7 +57,7 @@ class EvaluationsController < ApplicationController
     end
 
     def safe_params
-      params.require(:evaluation).permit(:date, :procedure_id, :evaluation_form_id, :evaluator_id, :resident_id).tap do |whitelisted|
+      params.require(:evaluation).permit(:date, :evaluation_form_id).tap do |whitelisted|
         whitelisted[:answers] = params[:evaluation][:answers]
       end
     end

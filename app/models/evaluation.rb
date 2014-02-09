@@ -1,10 +1,7 @@
 class Evaluation < ActiveRecord::Base
-	
+
 	# ASSOCIATIONS
-  # ------------------------------------------------------------------------------------------------------  
-  belongs_to :evaluator, class_name: "User"
-  belongs_to :resident, class_name: "User"
-  belongs_to :procedure
+  # ------------------------------------------------------------------------------------------------------
   belongs_to :evaluation_form
   has_many :questions, through: :evaluation_form
 
@@ -23,10 +20,10 @@ class Evaluation < ActiveRecord::Base
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :date, :evaluation_form_id #, :resident_id, :procedure_id
+  validates_presence_of :evaluation_form_id #, :resident_id, :procedure_id
   #validate :validate_answers
-  
-  
+
+
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
 
@@ -35,10 +32,6 @@ class Evaluation < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   def can_be_deleted?
   	false
-  end
-
-  def title
-  	"#{date.strftime("%m/%d/%Y %H:%M")} - #{procedure.try(:name)} - Dr. #{evaluator.try(:full_name)} "
   end
 
   def validate_answers

@@ -1,11 +1,7 @@
 <%= simple_form_for(@evaluation) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :date, as: :datetime, discard_second: true, wrapper_html: {class: 'evaluation_date'} %>
-  <%= f.input :procedure_id %>
   <%= f.input :evaluation_form_id, as: :hidden %>
-  <%= f.input :evaluator_id %>
-  <%= f.input :resident_id %>
 
   <%= simple_format(@evaluation.evaluation_form.introduction) %>
 
