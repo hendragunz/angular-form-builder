@@ -17,20 +17,16 @@ ActiveRecord::Schema.define(version: 20140207104916) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "evaluations", force: true do |t|
-    t.datetime "date"
-    t.integer  "procedure_id"
-    t.string   "evaluation_form_id"
-    t.integer  "evaluator_id"
-    t.integer  "resident_id"
-    t.hstore   "answers"
+  create_table "field_options", force: true do |t|
+    t.integer  "form_field_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "field_options", force: true do |t|
-    t.integer  "form_field_id"
-    t.string   "name"
+  create_table "form_entries", force: true do |t|
+    t.string   "form_id"
+    t.hstore   "answers"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140207104916) do
     t.text     "conclusion"
     t.integer  "max_entries_allowed"
     t.datetime "end_date"
+    t.integer  "entries_count",       default: 0
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"

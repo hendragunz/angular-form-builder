@@ -1,8 +1,8 @@
-<% original_question.question_options.each_with_index do |option, index| %>
+<% original_question.field_options.each_with_index do |option, index| %>
 	<div class="checkbox">
 		<label>
       <%#= f.check_box index %> <%#= option %>
-      <%#= f.check_box question.name, {}, index %> 
+      <%#= f.check_box question.name, {}, index %>
       <%= f.check_box f, {}, index %> <%= option.name %>
       <%#= f.check_box index %>
 		</label>

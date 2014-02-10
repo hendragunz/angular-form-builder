@@ -8,7 +8,8 @@ class CreateForms < ActiveRecord::Migration
       t.text     :conclusion
       t.integer  :max_entries_allowed
       t.datetime :end_date
-      t.integer  :creator_id 
+      t.integer  :entries_count, default: 0
+      t.integer  :creator_id
 
       t.timestamps
     end

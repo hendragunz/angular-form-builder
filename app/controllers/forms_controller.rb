@@ -7,7 +7,7 @@ class FormsController < ApplicationController
   end
 
   def show
-  	@form = Form.includes(:fields).find(params[:id])
+  	@form = Form.find(params[:id])
   end
 
   def new
@@ -56,8 +56,12 @@ class FormsController < ApplicationController
     end
   end
 
+  def preview
+    @form = Form.includes(:fields).find(params[:id])
+  end
+
   private
-    
+
     def set_form
       @form = Form.find(params[:id])
     end

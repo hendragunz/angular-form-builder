@@ -1,9 +1,9 @@
-class Evaluation < ActiveRecord::Base
+class FormEntry < ActiveRecord::Base
 
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :form
-  has_many :questions, through: :evaluation_form
+  has_many :questions, through: :form
 
   #belongs_to_hstore :answers, :question
 

@@ -4,10 +4,10 @@ class Form < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   has_many :fields, class_name: "FormField", dependent: :destroy
   accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
-  
+
   belongs_to :creator, class_name: "User"
 
-  has_many :entries, dependent: :destroy
+  has_many :entries, class_name: "FormEntry", dependent: :destroy
 
 
   # SCOPES

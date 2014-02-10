@@ -18,7 +18,7 @@
           <%= status_tag("#{form.active? ? 'Active' : 'Inactive'}", class: "label-env label-#{form.active? ? 'default' : 'warning'}") %>
         </td>
         <td class="tright">
-          <%= link_to 'Edit', edit_form_path(form) %> | 
+          <%= link_to 'Edit', edit_form_path(form) %> |
           <%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' }, class: "#{form.can_be_deleted? ? 'disabled' : ''}" %>
         </td>
       </tr>

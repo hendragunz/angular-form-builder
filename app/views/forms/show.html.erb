@@ -1,30 +1,25 @@
 <%= page_title("#{@form.name}") do %>
   <%= status_tag("#{@form.active? ? 'Active' : 'Inactive'}", class: "label-env label-#{@form.active? ? 'default' : 'warning'}") %>
   <%= link_to 'Edit', edit_form_path(@form), class: "pull-right btn btn-primary" %>
+  <%= link_to 'Preview', preview_form_path(@form), class: "pull-right btn btn-default" %>
 <% end %>
 
-<% @form.fields.order('position').each do |field| %>
-  <div>
-  	<h3>#<%= field.position + 1 %> - <%= field.name %> <%= status_tag("required", level: 'info') if field.required? %></h3>
+<% if @form.entries.any? %>
+  <table class="table table-striped">
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+    </tr>
 
-  	<div class="row">
-		  <div class="col-xs-12 col-sm-6 col-md-6">
-        <h5>ENGLISH</h5>
-		  	<p><b>Name: </b> <%= field.en_label %></p>
-		  	<p><b>Hint: </b> <%= field.en_hint %></p>
-		  </div>
-		  <div class="col-xs-12 col-sm-6 col-md-6">
-        <h5>FRENCH</h5>
-  	    <p><b>Name: </b> <%= field.fr_label %></p>
-  	    <p><b>Hint: </b> <%= field.fr_hint %></p>
-		  </div>
-		</div>
-    <p><b>Type: </b> <%= field.field_type %></p>
-	  <% if field.rating? %>
-	    <p><b>Scale: </b> <%= field.scale %></p>
-	  <% elsif field.mcq? %>
-	    <p><b>Options: </b> <%= field.field_options.map(&:name) %></p>
-	  <% end %>
-  </div>
-  <hr>
+    <% @form.entries.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.created_at, form_entry_path(@form, entry) %></td>
+        <td><%#= link_to "Edit", edit_form_entry_path(@form, entry) %></td>
+        <td><%#= link_to "Delete", form_entry_path(entry.form, entry), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="alert alert-warning">No entries found.</p>
 <% end %>

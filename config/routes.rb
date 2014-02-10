@@ -23,7 +23,13 @@ Rails.application.routes.draw do
   # ============================================================
   # MAIN ROUTES
   # ============================================================
-  resources :forms
+  resources :forms do
+    member do
+      get 'preview'
+      resources :form_entries, path: 'entries'
+    end
+  end
+
   resources :evaluations
   resources :reports, only: :index
   root "dashboard#show"
