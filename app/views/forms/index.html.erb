@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
+      <th>Entries</th>
     </tr>
   </thead>
 
@@ -17,6 +17,7 @@
           <%= link_to form.name, form_path(form) %>
           <%= status_tag("#{form.active? ? 'Active' : 'Inactive'}", class: "label-env label-#{form.active? ? 'default' : 'warning'}") %>
         </td>
+        <td><%= form.entries_count %></td>
         <td class="tright">
           <%= link_to 'Edit', edit_form_path(form) %> |
           <%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' }, class: "#{form.can_be_deleted? ? 'disabled' : ''}" %>

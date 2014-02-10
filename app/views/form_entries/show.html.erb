@@ -1,1 +1,3 @@
 <%= page_title("#{@form.name}") %>
+
+<pre><%= JSON.pretty_generate JSON.parse(@entry.to_json) %></pre>

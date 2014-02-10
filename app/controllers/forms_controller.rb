@@ -56,7 +56,7 @@ class FormsController < ApplicationController
     end
   end
 
-  def preview
+  def summary
     @form = Form.includes(:fields).find(params[:id])
   end
 

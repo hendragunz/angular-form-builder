@@ -7,6 +7,7 @@ class FormEntriesController < ApplicationController
   end
 
   def show
+    @entry = FormEntry.find(params[:id])
   end
 
   def new
@@ -63,7 +64,7 @@ class FormEntriesController < ApplicationController
     end
 
     def safe_params
-      params.require(:form_entry).permit(:date, :form_id).tap do |whitelisted|
+      params.require(:form_entry).permit(:date, :form_id, :answers, :answers_attributes,).tap do |whitelisted|
         whitelisted[:answers] = params[:form_entry][:answers]
       end
     end

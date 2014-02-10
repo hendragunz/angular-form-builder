@@ -1,7 +1,8 @@
 <%= page_title("#{@form.name}") do %>
   <%= status_tag("#{@form.active? ? 'Active' : 'Inactive'}", class: "label-env label-#{@form.active? ? 'default' : 'warning'}") %>
   <%= link_to 'Edit', edit_form_path(@form), class: "pull-right btn btn-primary" %>
-  <%= link_to 'Preview', preview_form_path(@form), class: "pull-right btn btn-default" %>
+  <%= link_to 'Preview', new_form_entry_path(@form), class: "pull-right btn btn-default" %>
+  <%= link_to 'Summary', summary_form_path(@form), class: "pull-right btn btn-default" %>
 <% end %>
 
 <% if @form.entries.any? %>

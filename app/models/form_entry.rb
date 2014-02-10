@@ -2,7 +2,7 @@ class FormEntry < ActiveRecord::Base
 
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
-  belongs_to :form
+  belongs_to :form, counter_cache: :entries_count
   has_many :questions, through: :form
 
   #belongs_to_hstore :answers, :question

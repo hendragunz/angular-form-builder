@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # ============================================================
   resources :forms do
     member do
-      get 'preview'
+      get 'summary'
       resources :form_entries, path: 'entries'
     end
   end
