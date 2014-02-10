@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # ============================================================
   # MAIN ROUTES
   # ============================================================
+  resources :forms
   resources :evaluations
   resources :reports, only: :index
   root "dashboard#show"

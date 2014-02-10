@@ -9,9 +9,9 @@
 	</div>
 	<%= f.input :introduction %>
 	<%= f.input :conclusion %>
-  
-  <br><h4>Questions</h4>
-	<%= f.fields_for :questions do |q| %>
+
+  <br><h4>Fields</h4>
+	<%= f.fields_for :fields do |q| %>
 	  <span class="pull-right text-danger"><%= q.link_to_remove "Remove" %></span>
 	  <%= q.input :name %>
 	  <%= q.input :en_label, as: :string %>
@@ -26,7 +26,7 @@
 	  <%= q.input :question_type, collection: EvaluationFormQuestion::QuestionType.options_with_label, include_blank: false, html_input: {class: 'qtype'} %>
 	  <%#= q.input :options, as: :string, placeholder: 'comma separated values' %>
     <%= q.fields_for :question_options do |o| %>
-      <%= o.input :name, as: :string, :input_html => {:style => "width:50%"} ,placeholder: 'values' %> <span class="pull-right text-danger" style="margin-right: 333px;margin-top: -40px;"><%= o.link_to_remove "Remove" %></span>
+      <%= o.input :name, as: :string, input_html: {style: "width:50%"} ,placeholder: 'values' %> <span class="pull-right text-danger" style="margin-right: 333px;margin-top: -40px;"><%= o.link_to_remove "Remove" %></span>
     <% end %>
     <%= q.link_to_add "Add Options", :question_options, class: "btn add-link" %>
     <%= q.input :scale %>
@@ -35,20 +35,13 @@
       <div class="col-xs-6 col-sm-6 col-md6"><%= q.input :false_label, placeholder: "No" %></div>
 	  </div>
 
-	  <script>
-		  $qtype = $('.qtype')
-		  if ($qtype.val() == 'rating') {
-		  	alert("rre");
-		    $('.evaluation_form_questions_scale').next().toggle();
-		  };
-		</script>
 		<hr>
 	<% end %>
-	<%= f.link_to_add "Add Question", :questions, class: "btn btn-primary add-link" %>
-  
+	<%= f.link_to_add "Add Field", :questions, class: "btn btn-primary add-link" %>
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-success' %>
   </div>
-  
+
 <% end %>
 

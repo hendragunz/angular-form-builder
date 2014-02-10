@@ -1,12 +1,12 @@
-class EvaluationFormQuestion < ActiveRecord::Base
-  
+class FormField < ActiveRecord::Base
+
   # CONSTANTS
   # ------------------------------------------------------------------------------------------------------
-  module QuestionType
+  module FieldType
     MCQ          = 'mcq'
     SINGLE_LINE  = 'single_line'
     PARAGRAPH    = 'paragraph'
-    RATING       = 'rating' 	  	
+    RATING       = 'rating'
     BOOLEAN      = 'boolean'
 
     def self.options
@@ -20,9 +20,9 @@ class EvaluationFormQuestion < ActiveRecord::Base
 
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
-  belongs_to :evaluation_form
-  has_many :question_options, class_name: "Option"
-  accepts_nested_attributes_for :question_options
+  belongs_to :form
+  has_many :field_options, dependent: :destroy
+  accepts_nested_attributes_for :field_options
 
 
   # ATTRIBUTES
@@ -33,13 +33,13 @@ class EvaluationFormQuestion < ActiveRecord::Base
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
-  
+
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :name, :en_label, :question_type
-  validates_uniqueness_of :name, scope: :evaluation_form_id
-  validates :question_type, inclusion: { in: QuestionType.options }
+  validates_presence_of :name, :en_label, :field_type
+  validates_uniqueness_of :name, scope: :form_id
+  validates :field_type, inclusion: { in: FieldType.options }
   # validates :scale, presence: true, numericality: { greater_than: 0 }, if: Proc.new { |question| question.rating? }
   # validates :options, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.mcq? }
   # validates :true_label, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.boolean? }
@@ -53,9 +53,9 @@ class EvaluationFormQuestion < ActiveRecord::Base
 
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
-  [QuestionType::MCQ, QuestionType::SINGLE_LINE, QuestionType::PARAGRAPH, QuestionType::RATING, QuestionType::BOOLEAN].each do |method|
+  [FieldType::MCQ, FieldType::SINGLE_LINE, FieldType::PARAGRAPH, FieldType::RATING, FieldType::BOOLEAN].each do |method|
 	   define_method "#{method}?" do
-	      self.question_type == method
+	      self.field_type == method
 	   end
   end
 

@@ -10,7 +10,7 @@ class EvaluationsController < ApplicationController
   end
 
   def new
-    @evaluation = Evaluation.new(evaluation_form_id: params[:evaluation_form_id])
+    @evaluation = Evaluation.new(form_id: params[:form_id])
   end
 
   def edit
@@ -57,7 +57,7 @@ class EvaluationsController < ApplicationController
     end
 
     def safe_params
-      params.require(:evaluation).permit(:date, :evaluation_form_id).tap do |whitelisted|
+      params.require(:evaluation).permit(:date, :form_id).tap do |whitelisted|
         whitelisted[:answers] = params[:evaluation][:answers]
       end
     end

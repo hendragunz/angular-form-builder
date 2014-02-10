@@ -17,32 +17,6 @@ ActiveRecord::Schema.define(version: 20140207104916) do
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "evaluation_form_questions", force: true do |t|
-    t.string   "name"
-    t.text     "en_label"
-    t.text     "fr_label"
-    t.text     "en_hint"
-    t.text     "fr_hint"
-    t.string   "question_type"
-    t.hstore   "properties"
-    t.boolean  "required",           default: true
-    t.integer  "position",           default: 0
-    t.integer  "evaluation_form_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "evaluation_forms", force: true do |t|
-    t.string   "name"
-    t.boolean  "active",       default: true
-    t.text     "scope"
-    t.text     "introduction"
-    t.text     "conclusion"
-    t.integer  "creator_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "evaluations", force: true do |t|
     t.datetime "date"
     t.integer  "procedure_id"
@@ -54,40 +28,43 @@ ActiveRecord::Schema.define(version: 20140207104916) do
     t.datetime "updated_at"
   end
 
-  create_table "options", force: true do |t|
-    t.integer  "evaluation_form_question_id"
+  create_table "field_options", force: true do |t|
+    t.integer  "form_field_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "oscores", force: true do |t|
-    t.datetime "date"
-    t.integer  "procedure_id"
-    t.integer  "evaluator_id"
-    t.integer  "resident_id"
-    t.integer  "pre_procedural_plan"
-    t.integer  "case_preparation"
-    t.integer  "knowledge_of_procedural_steps"
-    t.integer  "technical_performance"
-    t.integer  "visuospatial_skills"
-    t.integer  "post_procedural_plan"
-    t.integer  "efficacity_and_flow"
-    t.integer  "communication"
-    t.boolean  "ability_to_perform_procedure_independently"
-    t.text     "positive_feedback"
-    t.text     "improvement_feedback"
+  create_table "form_fields", force: true do |t|
+    t.string   "name"
+    t.text     "en_label"
+    t.text     "fr_label"
+    t.text     "en_hint"
+    t.text     "fr_hint"
+    t.string   "field_type"
+    t.hstore   "properties"
+    t.boolean  "required",   default: true
+    t.integer  "position",   default: 0
+    t.integer  "form_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "procedures", force: true do |t|
+  create_table "forms", force: true do |t|
     t.string   "name"
+    t.boolean  "active",              default: true
+    t.text     "scope"
+    t.text     "introduction"
+    t.text     "conclusion"
+    t.integer  "max_entries_allowed"
+    t.datetime "end_date"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
     t.text     "data"
     t.string   "username"
     t.integer  "user_id"
@@ -95,16 +72,14 @@ ActiveRecord::Schema.define(version: 20140207104916) do
     t.datetime "updated_at"
   end
 
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.boolean  "resident",         default: false
-    t.boolean  "physician",        default: false
-    t.string   "crypted_password"
-    t.string   "salt"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

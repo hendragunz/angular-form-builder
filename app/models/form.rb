@@ -1,13 +1,13 @@
-class EvaluationForm < ActiveRecord::Base
+class Form < ActiveRecord::Base
 
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
-  has_many :questions, class_name: "EvaluationFormQuestion", dependent: :destroy
-  accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
+  has_many :fields, class_name: "FormField", dependent: :destroy
+  accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
   
   belongs_to :creator, class_name: "User"
 
-  has_many :evaluations, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
 
   # SCOPES
@@ -29,7 +29,7 @@ class EvaluationForm < ActiveRecord::Base
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
   def can_be_deleted?
-  	evaluations.empty?
+  	#entries.empty?
   end
 
 end

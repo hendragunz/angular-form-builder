@@ -1,0 +1,27 @@
+<%= page_title("Forms") do %>
+  <%= link_to 'New form', new_form_path, class: 'pull-right btn btn-primary' %>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forms.each do |form| %>
+      <tr>
+        <td>
+          <%= link_to form.name, form_path(form) %>
+          <%= status_tag("#{form.active? ? 'Active' : 'Inactive'}", class: "label-env label-#{form.active? ? 'default' : 'warning'}") %>
+        </td>
+        <td class="tright">
+          <%= link_to 'Edit', edit_form_path(form) %> | 
+          <%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' }, class: "#{form.can_be_deleted? ? 'disabled' : ''}" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

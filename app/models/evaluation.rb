@@ -2,7 +2,7 @@ class Evaluation < ActiveRecord::Base
 
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
-  belongs_to :evaluation_form
+  belongs_to :form
   has_many :questions, through: :evaluation_form
 
   #belongs_to_hstore :answers, :question
@@ -20,7 +20,7 @@ class Evaluation < ActiveRecord::Base
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :evaluation_form_id #, :resident_id, :procedure_id
+  validates_presence_of :form_id #, :resident_id, :procedure_id
   #validate :validate_answers
 
 

@@ -1,0 +1,52 @@
+<%= simple_nested_form_for(@form) do |f| %>
+  <%= f.error_notification %>
+
+	<%= f.input :name %>
+	<div class="form-group">
+		 <div class="checkbox">
+	    <label><%= f.check_box :active %> Active</label>
+	  </div>
+	</div>
+	<%= f.input :introduction %>
+	<%= f.input :conclusion %>
+	<%= f.input :max_entries_allowed %>
+	<%= f.input :end_date %>
+
+  <br>
+  <h4>Fields</h4>
+	<%= f.fields_for :fields do |ff| %>
+	  <span class="pull-right text-danger"><%= ff.link_to_remove "Remove" %></span>
+	  <%= ff.input :name %>
+	  <%= ff.input :en_label, as: :string %>
+	  <%= ff.input :fr_label, as: :string %>
+	  <%= ff.input :en_hint, as: :string %>
+	  <%= ff.input :fr_hint, as: :string %>
+	  <div class="form-group">
+			 <div class="checkbox">
+		    <label><%= ff.check_box :required %> Required</label>
+		  </div>
+		</div>
+		<%= ff.input :field_type, collection: FormField::FieldType.options_with_label, include_blank: false, html_input: {class: 'qtype'} %>
+
+    <%= ff.fields_for :field_options do |fo| %>
+      <%= fo.input :name, as: :string, input_html: {style: "width:50%"}, placeholder: 'Value' %>
+      <span class="pull-right text-danger" style="margin-right: 333px;margin-top: -40px;"><%= fo.link_to_remove "Remove" %></span>
+    <% end %>
+    <%= ff.link_to_add "Add options", :field_options, class: "btn add-link" %>
+
+    <%= ff.input :scale %>
+	  <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md6"><%= ff.input :true_label, placeholder: "Yes" %></div>
+      <div class="col-xs-6 col-sm-6 col-md6"><%= ff.input :false_label, placeholder: "No" %></div>
+	  </div>
+
+		<hr>
+	<% end %>
+	<%= f.link_to_add "Add Field", :fields, class: "btn btn-primary add-link" %>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-success' %>
+  </div>
+
+<% end %>
+
