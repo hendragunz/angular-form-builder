@@ -68,7 +68,7 @@ class FormsController < ApplicationController
 
     def safe_params
       params.require(:form).permit(:name, :active, :scope, :introduction, :conclusion, :max_entries_allowed, :end_date,
-      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :scale, :options, :true_label, :false_label, "_destroy",
-                                   field_options_attributes: [:name, "_destroy"] ])
+      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :scale, :options, :true_label, :false_label, :_destroy,
+                                   field_options_attributes: [:id, :name, :_destroy] ])
     end
 end

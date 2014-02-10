@@ -15,7 +15,7 @@
   <br>
   <h4>Fields</h4>
 	<%= f.fields_for :fields do |ff| %>
-	  <span class="pull-right text-danger"><%= ff.link_to_remove "Remove" %></span>
+	  <span class="pull-right text-danger"><%= ff.link_to_remove "Remove", confirm: 'Are you sure that you want to remove this field?' %></span>
 	  <%= ff.input :name %>
 	  <%= ff.input :en_label, as: :string %>
 	  <%= ff.input :fr_label, as: :string %>
@@ -30,7 +30,7 @@
 
     <%= ff.fields_for :field_options do |fo| %>
       <%= fo.input :name, as: :string, input_html: {style: "width:50%"}, placeholder: 'Value' %>
-      <span class="pull-right text-danger" style="margin-right: 333px;margin-top: -40px;"><%= fo.link_to_remove "Remove" %></span>
+      <span class="pull-right text-danger" style="margin-right: 333px;margin-top: -40px;"><%= fo.link_to_remove "Remove", confirm: 'Are you sure that you want to remove this field option?'  %></span>
     <% end %>
     <%= ff.link_to_add "Add options", :field_options, class: "btn add-link" %>
 
