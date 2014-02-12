@@ -1,7 +1,7 @@
 <%= page_title("#{@form.name}") do %>
   <%= status_tag("#{@form.active? ? 'Active' : 'Inactive'}", class: "label-env label-#{@form.active? ? 'default' : 'warning'}") %>
   <%= link_to 'Edit', edit_form_path(@form), class: "pull-right btn btn-primary" %>
-  <%= link_to 'Preview', new_form_entry_path(@form), class: "pull-right btn btn-default" %>
+  <%= link_to 'Preview', new_form_form_entry_path(@form), class: "pull-right btn btn-default" %>
   <%= link_to 'Summary', summary_form_path(@form), class: "pull-right btn btn-default" %>
 <% end %>
 
@@ -15,9 +15,9 @@
 
     <% @form.entries.each do |entry| %>
       <tr>
-        <td><%= link_to entry.created_at, form_entry_path(@form, entry) %></td>
-        <td><%#= link_to "Edit", edit_form_entry_path(@form, entry) %></td>
-        <td><%#= link_to "Delete", form_entry_path(entry.form, entry), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to entry.created_at, form_form_entry_path(@form, entry) %></td>
+        <td><%= link_to "Edit", edit_form_form_entry_path(@form, entry) %></td>
+        <td><%= link_to "Delete", form_form_entry_path(entry.form, entry), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </table>

@@ -1,6 +1,6 @@
 <%= page_title("#{@form.name}") %>
 
-<%= simple_form_for(@entry) do |f| %>
+<%= simple_form_for([@form, @entry]) do |f| %>
   <%= f.error_notification %>
 
   <%= simple_format(@form.introduction) %>

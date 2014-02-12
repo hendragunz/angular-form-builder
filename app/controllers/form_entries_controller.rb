@@ -36,9 +36,10 @@ class FormEntriesController < ApplicationController
   end
 
   def update
+    @entry = @form.entries.find(params[:id])
     respond_to do |format|
       if @entry.update(safe_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+        format.html { redirect_to form_form_entry_path(@form, @entry), notice: 'Entry was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -52,7 +53,7 @@ class FormEntriesController < ApplicationController
     @entry.destroy
 
     respond_to do |format|
-      format.html { redirect_to entries_url }
+      format.html { redirect_to form_path(@form), notice: 'Entry was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -60,7 +61,7 @@ class FormEntriesController < ApplicationController
   private
 
     def set_form
-      @form = Form.find(params[:id])
+      @form = Form.find(params[:form_id])
     end
 
     def safe_params

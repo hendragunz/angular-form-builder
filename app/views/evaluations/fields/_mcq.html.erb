@@ -3,7 +3,7 @@
 		<label>
       <%#= f.check_box index %> <%#= option %>
       <%#= f.check_box question.name, {}, index %>
-      <%= f.check_box f, {}, index %> <%= option.name %>
+      <%= f.check_box question.name+"_"+index.to_s, {}, option.name %> <%= option.name %>
       <%#= f.check_box index %>
 		</label>
 	</div>
