@@ -3,7 +3,7 @@
     <h3 class="panel-title">#<%= index + 1 %> - <%= f.label question.name, "#{original_question.en_label}" %></h3>
   </div>
   <div class="panel-body">
-    <%= render "evaluations/fields/#{question.field_type}", f: f, question: question, original_question: original_question %>
+    <%= render "form_fields/fields/#{question.field_type}", f: f, question: question, original_question: original_question %>
     <% if original_question.en_hint.present? %>
       <span class="help-block"><%= original_question.en_hint %></span>
     <% end %>

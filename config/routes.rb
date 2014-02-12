@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   scope module: 'admin', path: 'adm1nistr8tion', as: 'admin' do
     #root to: 'dashboard#show', as: :dashboard
     resources :users, only: [:index, :show]
-    resources :evaluation_forms
   end
 
 
@@ -28,7 +27,6 @@ Rails.application.routes.draw do
     resources :form_entries, path: 'entries'
   end
 
-  resources :evaluations
   resources :reports, only: :index
   root "dashboard#show"
 

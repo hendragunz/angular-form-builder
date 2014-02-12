@@ -13,7 +13,6 @@
     	<%# if current_user %>
     	  <%= tabs_tag builder: BootstrapSidebarNavBuilder, open_tabs: { class: "nav navbar-nav" } do |tab| %>
           <li><%= tab.forms "Forms", forms_path %></li>
-          <li><%#= tab.entries "Entries", evaluations_path %></li>
           <li><%= tab.reports "Reports", reports_path %></li>
         <% end %>
     	<%# end %>
