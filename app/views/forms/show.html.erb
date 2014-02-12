@@ -13,7 +13,7 @@
       <th></th>
     </tr>
 
-    <% @form.entries.each do |entry| %>
+    <% @form.entries.order('created_at DESC').each do |entry| %>
       <tr>
         <td><%= link_to entry.created_at, form_form_entry_path(@form, entry) %></td>
         <td><%= link_to "Edit", edit_form_form_entry_path(@form, entry) %></td>
