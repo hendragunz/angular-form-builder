@@ -30,6 +30,7 @@ class Form < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   def can_be_deleted?
   	#entries.empty?
+    true  #we are using dependent destroy so form fields and entries will be automatically deleted
   end
 
 end

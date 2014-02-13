@@ -1,5 +1,5 @@
-<% original_question.scale.to_i.times do |x| %>
+<% question.scale.to_i.times do |x| %>
 	<label class="radio-inline">
-    <%= f.radio_button question.name, x + 1 %> <%= x + 1 %>
+    <%= f.radio_button question.id.to_s, x + 1 %> <%= x + 1 %>
   </label>
 <% end %>

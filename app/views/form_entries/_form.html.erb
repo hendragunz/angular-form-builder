@@ -8,7 +8,7 @@
   <%= f.fields_for :answers, OpenStruct.new(@entry.answers) do |builder| %>
     <% @entry.form.fields.each_with_index do |question, index| %>
       <% original_question = FormField.where(form_id: @entry.form_id, name: question.name).first %>
-      <%= render "form_fields/fields/field", question: question, f: builder, original_question: original_question, index: index %>
+      <%= render "form_fields/fields/field", question: question, f: builder, index: index %>
     <% end %>
   <% end %>
 

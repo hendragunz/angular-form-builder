@@ -28,7 +28,7 @@ class FormField < ActiveRecord::Base
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   # hstore
-  store_accessor :properties, :scale, :options, :true_label, :false_label
+  store_accessor :properties, :scale, :true_label, :false_label
 
 
   # SCOPES
@@ -49,6 +49,7 @@ class FormField < ActiveRecord::Base
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
   before_save :format_attributes
+  before_destroy :check_for_entries
 
 
 	# INSTANCE METHODS
@@ -67,6 +68,14 @@ class FormField < ActiveRecord::Base
 
     def format_attributes
     	self.name = name.underscore
+    end
+
+    def check_for_entries
+      @entries = FormEntry.find_by_form_id(self.form_id)
+      if @entries
+        @entries.answers = @entries.answers.reject{ |k| k.split('_').first == self.id.to_s }
+        @entries.save
+      end
     end
 
 end
