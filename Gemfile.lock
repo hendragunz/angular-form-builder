@@ -75,6 +75,7 @@ GEM
     execjs (2.0.2)
     faker (1.0.1)
       i18n (~> 0.4)
+    google_visualr (2.2.0)
     hike (1.2.3)
     hirb (0.7.1)
     i18n (0.6.9)
@@ -188,6 +189,7 @@ DEPENDENCIES
   debugger
   exception_notification
   faker (= 1.0.1)
+  google_visualr
   hirb
   jbuilder (~> 1.2)
   jquery-rails

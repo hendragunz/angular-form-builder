@@ -60,6 +60,11 @@ class FormsController < ApplicationController
     @form = Form.includes(:fields).find(params[:id])
   end
 
+  def report
+    @form = Form.find(params[:id])
+    @entries = @form.entries
+  end
+
   private
 
     def set_form

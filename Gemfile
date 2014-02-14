@@ -42,6 +42,7 @@ gem 'tabs_on_rails', "~> 2.1.1"
 gem 'rails_bootstrap_helper', github: "hoangnghiem/rails_bootstrap_helper", branch: "bs3"
 gem 'nested_form'
 gem 'belongs_to_hstore'
+gem "google_visualr"
 
 group :development, :test do
   gem 'faker', '1.0.1'

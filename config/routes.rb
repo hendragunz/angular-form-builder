@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   # ============================================================
   resources :forms do
     get 'summary', on: :member
+    get 'report', on: :member
     resources :form_entries, path: 'entries'
   end
 
