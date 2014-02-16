@@ -7,22 +7,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "#{t 'site_name'}", current_user ? dashboard_path : root_path, class: 'navbar-brand' %>
+      <%= link_to "#{t 'site_name'}", current_user ? forms_path : root_path, class: 'navbar-brand' %>
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-    	<%# if current_user %>
-    	  <%= tabs_tag builder: BootstrapSidebarNavBuilder, open_tabs: { class: "nav navbar-nav" } do |tab| %>
+      <%= tabs_tag builder: BootstrapSidebarNavBuilder, open_tabs: { class: "nav navbar-nav" } do |tab| %>
+    	  <% if current_user %>
           <li><%= tab.forms "Forms", forms_path %></li>
           <li><%= tab.reports "Reports", reports_path %></li>
-        <% end %>
-    	<%# end %>
+      <% else %>
+        <li><%= tab.features "Features", "" %></li>
+        <li><%= tab.contact "Contact", "" %></li>
+      <% end %>
+    	<% end %>
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          Welcome
-          <!-- <li><%#= link_to (current_user.first_name.present? ? current_user.first_name : 'My Profile'), profile_path %></li> -->
+          <li><%= link_to (current_user.first_name.present? ? current_user.first_name : 'My Profile'), profile_path %></li>
+          <% if current_account.is_owner?(current_user) %>
+            <li><%= link_to "Administration", admin_users_path %></li>
+          <% end %>
           <li><%= link_to("#{t 'logout'}", logout_path, method: :delete) %></li>
         <% else %>
+          <li><%= link_to "#{t 'sign_up'}", signup_path %></li>
           <li><%= link_to "#{t 'sign_in'}", login_path %></li>
         <% end %>
       </ul>

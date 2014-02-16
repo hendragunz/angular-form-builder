@@ -1,0 +1,13 @@
+<%= simple_form_for(@user, url: registrations_path, html: {class: "form-signin"}) do |f| %>
+  <h2 class="form-signin-heading"><%= t 'sign_up' %></h2>
+
+  <%= f.error_notification %>
+
+  <%= f.input :email, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'email_address'}", autofocus: true %>
+  <%= f.input :first_name, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'first_name'}" %>
+  <%= f.input :last_name, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'last_name'}" %>
+  <%= f.input :password, hint: false, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'registrations.password'}" %>
+  <%= f.input :password_confirmation, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'password_confirmation'}" %>
+
+  <p><%= f.button :submit, "#{t 'registrations.submit'}", class: "btn btn-lg btn-primary btn-block" %></p>
+<% end %>

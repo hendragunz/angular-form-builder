@@ -1,5 +1,14 @@
-<%= simple_form_for(:user, url: sessions_path, as: :post) do |f| %>
-  <%= f.input :username %>
-  <%= f.input :password %></br>
-  <%= f.submit "Login"  %>
+<%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-signin"}) do |f| %>
+  <h2 class="form-signin-heading"><%= t 'sessions.new' %></h2>
+  <%= render 'flash' %>
+  <%= f.error_notification %>
+
+  <%= f.input :email, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'email_address'}", autofocus: true %>
+  <%= f.input :password, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'password'}" %>
+
+  <label class="checkbox">
+    <%= check_box_tag :remember_me %> <%= t 'remember_me' %><span class="pull-right"><%= link_to "#{t 'passwords.forgot'}", new_password_path %></span>
+  </label>
+
+  <p><%= f.button :submit, "#{t 'sessions.submit', default: 'Sign in'}", class: "btn btn-lg btn-primary btn-block" %>
 <% end %>

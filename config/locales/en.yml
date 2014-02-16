@@ -1,4 +1,45 @@
 en:
-  site_name: "Formtastic"
-  sign_in: "Sign in"
-  logout: "Sign out"
+  site_name: Formtastic
+  sign_in: Sign in
+  sign_up: Sign up
+  logout: Sign out
+  password: Password
+  password_confirmation: Password confirmation
+  remember_me: Remember me
+  email_address: Email address
+  please_sign_in: Please sign in
+  first_name: First Name
+  last_name: Last Name
+  activate: Activate
+  deactivate: Deactivate
+  cancel: Cancel
+  or: or
+  please_wait: Please wait...
+  account:
+    members: Account members
+  passwords:
+    forgot: Forgot password?
+    submit: Send instructions
+    instructions_sent: Instructions sent. Please check your inbox
+    password_updated_please_sign_in: Password was successfully updated. Please sign in
+    update: Change password
+  registrations:
+    edit: Edit profile
+    profile_updated: Profile was successfully updated
+    submit: Sign up
+    password: Password (min. 6 characters)
+    update: Update profile
+  sessions:
+    new: Please sign in
+    error: Invalid username/password
+    submit: Sign in
+  users:
+    new: Add user
+    random_password_will_be_sent: A random password will be sent to the user once created
+  user_mailer:
+    welcome:
+      subject: "Welcome to %{site_name}!"
+    new_account_member:
+      subject: "You're invited"
+    reset_password_email:
+      subject: Password reset instructions

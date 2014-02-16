@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def submit_or_cancel(form, submit_name = "", cancel_name="#{t 'cancel', default: 'Cancel'}")
+    unless submit_name.blank?
+      form.submit(submit_name, class: 'btn btn-primary', data: {disable_with: "#{t 'please_wait'}"}) + " #{t 'or'} " + link_to(cancel_name, 'javascript:history.go(-1);', class: 'cancel')
+    else
+      form.submit(class: 'btn btn-primary', data: {disable_with: "#{t 'please_wait'}"}) + " #{t 'or'} " + link_to(cancel_name, 'javascript:history.go(-1);', class: 'cancel')
+    end
+  end
+
 	def page_title(title, &block)
     page_actions = block_given? ? capture(&block) : ''
     content_tag(:div, class: "page-title") do
@@ -12,6 +20,19 @@ module ApplicationHelper
     content_tag(:div, class: "page-section") do
       content_tag(:h3, (title + page_actions).html_safe)
     end
+  end
+
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    css_class = column == sort_column ? "current #{sort_direction}" : nil
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    options = {sort: column, direction: direction}
+    options.merge!(params.slice(:search, :day))
+    link_to title, options, {class: css_class}
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
   def icon_tag(icon)
@@ -41,7 +62,7 @@ module ApplicationHelper
       data_table.set_cell(index, 1, value)
       index = index + 1
     end
-    opts = { :width => 400, :height => 240, :title => field.name+' '+'Results', :hAxis => { :title => 'Options', :titleTextStyle => {:color => 'red'}} }
+    opts = { width: 400, height: 240, title: field.name+' '+'Results', hAxis: { title: 'Options', titleTextStyle: {color: 'red'}} }
     @chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
 
@@ -82,8 +103,8 @@ module ApplicationHelper
       data_table.set_cell(index, 1, value)
       index = index + 1
     end
-    opts = { :width => 400, :height => 240, :title => field.name+' '+'Results', :hAxis => { :title => 'Options', :titleTextStyle => {:color => 'red'}} }
+    opts = { width: 400, height: 240, title: field.name+' '+'Results', hAxis: { title: 'Options', titleTextStyle: {color: 'red'}} }
     @chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
-  
+
 end

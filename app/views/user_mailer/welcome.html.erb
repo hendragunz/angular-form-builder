@@ -1,0 +1,14 @@
+<%= content_for :email_title do %>
+  Bienvenue!
+<% end %>
+<%= content_for :email_body do %>
+	<p><%= @user.first_name %>, <%= t 'emails.welcome.intro', default: "Thank you for joining #{t 'site_name'}" %>.</p>
+
+	<p><%= t 'emails.welcome.action', default: 'You can access your account anytime' %>.</p>
+
+	<p><%= t 'emails.signature', default: 'Have a great day!' %></p>
+
+	<p style="margin-top:45px;">
+		<%= link_to "#{t 'sign_in', default: 'Sign in'}", login_url, style: "background-color:#1b8ecd; border-radius:5px; width:160px; text-align:center; color:#fff; font-family:Helvetica, sans-serif; text-decoration:none; text-shadow:0px 1px 2px #47684d; font-size:20px; padding:20px;" %>
+  </p>
+<% end %>

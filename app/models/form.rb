@@ -6,7 +6,6 @@ class Form < ActiveRecord::Base
   accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
 
   belongs_to :creator, class_name: "User"
-
   has_many :entries, class_name: "FormEntry", dependent: :destroy
 
 
@@ -30,7 +29,14 @@ class Form < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   def can_be_deleted?
   	#entries.empty?
-    true  #we are using dependent destroy so form fields and entries will be automatically deleted
+    true
+  end
+
+  def self.allowed(user, subject)
+    rules = []
+    return rules unless subject.instance_of?(Form)
+    rules << :manage if user && (user.account.is_owner?(user) || user == subject.creator)
+    rules
   end
 
 end

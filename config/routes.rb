@@ -5,9 +5,23 @@ Rails.application.routes.draw do
   # ============================================================
   delete "logout" => "sessions#destroy", as: "logout"
   get "login" => "sessions#new", as: "login"
+  get "signup" => "registrations#new", as: "signup"
   get "profile" => "registrations#edit", as: "profile"
   post "profile" => "registrations#update", as: "update_profile"
+  get "paswords/:token/edit" => "passwords#edit", as: "change_password"
+  resource :password, only: [:new, :create, :edit, :update]
+  resources :registrations, except: [:index, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
+
+
+  # ============================================================
+  # PUBLIC ROUTES
+  # ============================================================
+  scope module: 'public', path: '', as: 'public' do
+    get "pages/home", as: :home
+    get "pages/features", as: :features
+    get "pages/contact", as: :contact
+  end
 
 
   # ============================================================
@@ -15,7 +29,9 @@ Rails.application.routes.draw do
   # ============================================================
   scope module: 'admin', path: 'adm1nistr8tion', as: 'admin' do
     #root to: 'dashboard#show', as: :dashboard
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :new, :create] do
+      post 'toggle_status', on: :member
+    end
   end
 
 
@@ -29,6 +45,7 @@ Rails.application.routes.draw do
   end
 
   resources :reports, only: :index
-  root "dashboard#show"
+
+  root "forms#index"
 
 end

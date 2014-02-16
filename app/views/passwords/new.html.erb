@@ -1,0 +1,9 @@
+<%= content_for :body_class do %>password-reset<% end %>
+
+<%= simple_form_for(:password, url: password_path, method: :post, html: {class: "form-signin"}) do |f| %>
+  <h2 class="form-signin-heading">Reset password</h2>
+
+  <%= f.error_notification %>
+  <%= f.input :email, label: false, input_html: {class: 'form-control'}, placeholder: "#{t 'email_address'}", autofocus: true %>
+  <p><%= f.button :submit, "#{t 'passwords.submit'}", class: "btn btn-lg btn-primary btn-block" %></p>
+<% end %>

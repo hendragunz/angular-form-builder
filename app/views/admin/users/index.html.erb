@@ -1,0 +1,22 @@
+<%= page_title("#{t 'account.members'}") do %>
+  <%= link_to "#{t 'users.new'}", new_admin_user_path, class: 'pull-right btn btn-primary' %>
+<% end %>
+
+<% if @users.any? %>
+  <table class="table table-striped">
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Forms</td>
+      <td>Member since</td>
+      <td></td>
+    </tr>
+
+    <% @users.each do |user| %>
+      <%= render 'user', user: user %>
+    <% end %>
+  </table>
+
+  <p><%= paginate(@users) %></p>
+<% else %>
+<% end %>

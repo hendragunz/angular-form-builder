@@ -3,17 +3,36 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  #before_filter :sign_in
+  include Authz
 
-  helper_method :current_user
+  before_filter :require_login
+  before_filter :load_account
 
-  def current_user
-    @current_user ||= session[:ldap_username] && session[:ldap_user]
+  helper_method :current_account, :abilities, :can?
+
+  def current_account
+    @current_account
   end
 
   private
-    
-    def sign_in
-      redirect_to new_session_path, notice: 'Please login to access this page.' unless current_user
+    # Permissions as per the six gem
+    def abilities
+      @abilities ||= Six.new
     end
+
+    def can?(user, action, subject)
+      # simple delegate method for controller & view
+      abilities.allowed?(user, action, subject)
+    end
+
+    def not_authenticated
+      redirect_to login_url, alert: "#{t 'please_sign_in'}"
+    end
+
+    def load_account
+      if current_user && @current_account.nil?
+        @current_account = current_user.account
+      end
+    end
+
 end

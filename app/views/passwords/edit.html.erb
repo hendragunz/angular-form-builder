@@ -1,0 +1,11 @@
+<%= simple_form_for(@user, url: password_path, method: :put, html: {class: 'form-signin'}) do |f| %>
+  <h2 class="form-signin-heading">Reset password</h2>
+  <%= f.error_notification %>
+
+  <p>Email: <b><%= @user.email %></b></p>
+  <%= f.input :password, hint: false, placeholder: "#{t 'registrations.password'}", label: false %>
+  <%= f.input :password_confirmation, placeholder: "#{t 'password_confirmation'}", label: false %>
+  <%= hidden_field_tag :token, @token %>
+
+  <%= f.button :submit, "#{t 'passwords.update'}", class: "btn btn-primary btn-block" %>
+<% end %>

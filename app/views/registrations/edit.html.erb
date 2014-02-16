@@ -1,0 +1,13 @@
+<%= page_title("#{t 'registrations.edit'}") %>
+
+<%= simple_form_for(@user, url: update_profile_path, method: :post) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :email %>
+  <%= f.input :first_name, input_html: {class: 'form-control'} %>
+  <%= f.input :last_name, input_html: {class: 'form-control'} %>
+  <%= f.input :password, required: false, input_html: {class: 'form-control'} %>
+  <%= f.input :password_confirmation, input_html: {class: 'form-control'} %>
+
+  <%= f.button :submit, "#{t 'registrations.update'}", class: "btn btn-primary" %>
+<% end %>

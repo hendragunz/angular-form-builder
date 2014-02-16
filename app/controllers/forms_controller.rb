@@ -1,9 +1,10 @@
 class FormsController < ApplicationController
+  add_abilities_for(Form)
   before_action :set_form, only: [:edit, :update, :destroy]
   set_tab "forms"
 
   def index
-    @forms = Form.order('name')
+    @forms = current_user.forms.order('name')
   end
 
   def show
@@ -19,7 +20,7 @@ class FormsController < ApplicationController
 
   def create
     @form = Form.new(safe_params)
-    #@form.creator_id = current_user.id
+    @form.user_id = current_user.id
 
     respond_to do |format|
       if @form.save
@@ -69,6 +70,7 @@ class FormsController < ApplicationController
 
     def set_form
       @form = Form.find(params[:id])
+      check_authz_for(@form)
     end
 
     def safe_params

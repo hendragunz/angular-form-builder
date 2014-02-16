@@ -1,5 +1,22 @@
 puts "SAMPLE DATA"
 
+puts "creating users..."
+
+3.times do |x|
+	count = x + 1
+  user = User.create!(
+           email: "user#{count}@email.com",
+           first_name: Faker::Name.first_name,
+           last_name: Faker::Name.last_name,
+           password: "123123"
+          )
+  account = Account.create!(owner_id: user.id)
+  user.account_id = account.id
+  user.save!
+  #sample_data_for(user)
+end
+
+
 puts "creating forms..."
 
 10.times do |x|
@@ -11,9 +28,11 @@ puts "creating forms..."
 		introduction: Faker::Lorem.paragraphs(2).join(' '),
 		conclusion: Faker::Lorem.paragraphs(2).join(' '),
 		max_entries_allowed: [nil, 100].sample,
-	  end_date: Date.today + 3.months
+	  end_date: Date.today + 3.months,
+	  user_id: User.all.map(&:id).sample
 	)
 end
+
 
 puts "creating form fields..."
 
