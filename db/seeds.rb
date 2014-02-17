@@ -5,7 +5,7 @@ puts "creating Oscore form."
 oscore = Form.create!(
 		name: "Oscore",
 		active: true,
-    account_id: 1,
+    user_id: 1,
 		scope: "",
 		introduction: "Scale:\n
 1. 'I had to do' - i.e. requires complete hands on guidance, did not do, or not given the opportunity to do\n

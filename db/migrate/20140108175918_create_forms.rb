@@ -5,7 +5,7 @@ class CreateForms < ActiveRecord::Migration
       t.boolean  :active, default: true
       t.text     :scope
       t.text     :introduction
-      t.text     :conclusion
+      t.text     :confirmation_message
       t.integer  :max_entries_allowed
       t.datetime :end_date
       t.integer  :entries_count, default: 0

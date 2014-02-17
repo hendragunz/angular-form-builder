@@ -26,7 +26,7 @@ puts "creating forms..."
 		active: [true, false].sample,
 		scope: "",
 		introduction: Faker::Lorem.paragraphs(2).join(' '),
-		conclusion: Faker::Lorem.paragraphs(2).join(' '),
+		confirmation_message: Faker::Lorem.paragraphs(2).join(' '),
 		max_entries_allowed: [nil, 100].sample,
 	  end_date: Date.today + 3.months,
 	  user_id: User.all.map(&:id).sample
