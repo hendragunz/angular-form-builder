@@ -46,6 +46,10 @@ Rails.application.routes.draw do
 
   resources :reports, only: :index
 
+  get "form/:id", to: "public/forms#show", as: :public_form
+  post "form/:id", to: "public/forms#create", as: :create_public_form
+  get "form/:id/completed", to: "public/forms#completed", as: :completed_public_form
+
   root "forms#index"
 
 end

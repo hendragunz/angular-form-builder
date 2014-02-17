@@ -23,12 +23,13 @@ puts "creating forms..."
 	count = x + 1
 	Form.create!(
 		name: "#{('a'..'z').to_a.sample.capitalize} score #{count}",
-		active: [true, false].sample,
-		scope: "",
+		send_email_confirmation: [true, false].sample,
+		unique_ip_only: [true, false].sample,
 		introduction: Faker::Lorem.paragraphs(2).join(' '),
 		confirmation_message: Faker::Lorem.paragraphs(2).join(' '),
 		max_entries_allowed: [nil, 100].sample,
-	  end_date: Date.today + 3.months,
+	  start_date: [nil, Date.today + 1.months].sample,
+	  end_date: [nil, Date.today + 3.months].sample,
 	  user_id: User.all.map(&:id).sample
 	)
 end

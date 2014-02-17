@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Public Link</th>
       <th>Entries</th>
     </tr>
   </thead>
@@ -13,10 +14,8 @@
   <tbody>
     <% @forms.each do |form| %>
       <tr>
-        <td>
-          <%= link_to form.name, form_path(form) %>
-          <%= status_tag("#{form.active? ? 'Active' : 'Inactive'}", class: "label-env label-#{form.active? ? 'default' : 'warning'}") %>
-        </td>
+        <td><%= link_to form.name, form_path(form.slug) %></td>
+        <td><%= link_to form.slug, public_form_path(form) %></td>
         <td><%= form.entries_count %></td>
         <td class="tright">
           <%= link_to 'Edit', edit_form_path(form) %> |

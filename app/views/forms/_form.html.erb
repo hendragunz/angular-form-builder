@@ -2,15 +2,22 @@
   <%= f.error_notification %>
 
 	<%= f.input :name %>
-	<div class="form-group">
-		 <div class="checkbox">
-	    <label><%= f.check_box :active %> Active</label>
-	  </div>
-	</div>
 	<%= f.input :introduction %>
 	<%= f.input :confirmation_message %>
 	<%= f.input :max_entries_allowed %>
 	<%= f.input :end_date %>
+	<%= f.input :start_date %>
+	<div class="form-group">
+		 <div class="checkbox">
+	    <label><%= f.check_box :unique_ip_only %> Allow Only One Entry Per IP</label>
+	  </div>
+	</div>
+	<div class="form-group">
+		 <div class="checkbox">
+	    <label><%= f.check_box :send_email_confirmation %> Send Confirmation Email to User</label>
+	  </div>
+	</div>
+
 
   <br>
   <h4>Fields</h4>

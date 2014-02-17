@@ -1,4 +1,4 @@
-class Public::PagesController < Admin::BaseController
+class Public::PagesController < Public::BaseController
   def home
   end
 

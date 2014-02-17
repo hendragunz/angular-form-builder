@@ -30,10 +30,6 @@ class FormEntry < ActiveRecord::Base
 
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
-  def can_be_deleted?
-  	false
-  end
-
   def validate_answers
     answers.each do |answer|
       if answer.required? && answer[answer.name].blank?

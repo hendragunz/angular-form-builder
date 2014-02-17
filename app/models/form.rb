@@ -23,10 +23,15 @@ class Form < ActiveRecord::Base
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
+  before_create :set_slug
 
 
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
+  def to_param
+    slug
+  end
+
   def can_be_deleted?
   	#entries.empty?
     true
@@ -38,5 +43,22 @@ class Form < ActiveRecord::Base
     rules << :manage if user && (user.account.is_owner?(user) || user == subject.creator)
     rules
   end
+
+  def is_inactive?
+    (start_date.present? && start_date < Time.now) && (end_date.present? && end_date > Time.now)
+  end
+
+  def has_reached_max_entries?
+    entries.length >= max_entries_allowed if max_entries_allowed.present?
+  end
+
+  private
+
+    def set_slug
+      return if slug.present?
+      begin
+        self.slug = SecureRandom.hex(4)
+      end while self.class.exists?(slug: self.slug)
+    end
 
 end

@@ -61,7 +61,7 @@ class FormEntriesController < ApplicationController
   private
 
     def set_form
-      @form = Form.find(params[:form_id])
+      @form = Form.find_by_slug(params[:form_id])
     end
 
     def safe_params
