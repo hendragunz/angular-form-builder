@@ -1,6 +1,6 @@
 class FormsController < ApplicationController
   add_abilities_for(Form)
-  before_action :set_form, only: [:edit, :update, :destroy]
+  before_action :set_form, only: [:show, :edit, :update, :destroy]
   set_tab "forms"
 
   def index
@@ -8,7 +8,6 @@ class FormsController < ApplicationController
   end
 
   def show
-  	@form = Form.find(params[:id])
   end
 
   def new
