@@ -10,6 +10,7 @@ class Public::FormsController < Public::BaseController
 
   def create
     @entry = @form.entries.new(safe_params)
+    @entry.track_user(request)
 
     respond_to do |format|
       if @entry.save

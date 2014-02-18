@@ -1,5 +1,8 @@
 <% if @form.is_inactive? or @form.has_reached_max_entries? %>
   Sorry, but this form is no longer accepting submissions.
+<% elsif @form.has_not_unique_ip(request, @current_user) %>
+  There was a problem with your submission.
+  Sorry, but this form is limited to one submission per user.
 <% else %>
   <%= page_title("#{@form.name}") %>
 
@@ -8,8 +11,5 @@
 
 	  <%= render 'form_entries/fields', f: f, form: @form, entry: @entry %>
 
-	  <div class="form-actions">
-	    <%= f.button :submit, "Submit", class: 'btn btn-success' %>
-	  </div>
   <% end %>
 <% end %>

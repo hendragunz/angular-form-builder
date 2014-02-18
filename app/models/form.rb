@@ -52,6 +52,15 @@ class Form < ActiveRecord::Base
     entries.length >= max_entries_allowed if max_entries_allowed.present?
   end
 
+  def has_not_unique_ip(request, user)
+    if self.unique_ip_only and !user.account.is_owner?(user)
+      FormEntry.where(form_id: self.id).each do |entry|
+        return true if entry.user_info[:remote_ip] == request.remote_ip
+      end
+    end
+    false
+  end
+
   def tiny_url
     
   end

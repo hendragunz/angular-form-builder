@@ -7,5 +7,8 @@ ready = ->
   $(".is-clickable").click ->
     Turbolinks.visit($(this).data('url'))
 
+  $("select[id$='field_type']").change ->
+  return
+
 $(document).ready(ready)
 $(document).on('page:load', ready)
