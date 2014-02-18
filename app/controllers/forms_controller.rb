@@ -57,7 +57,7 @@ class FormsController < ApplicationController
   end
 
   def summary
-    @form = Form.includes(:fields).find(params[:id])
+    @form = Form.includes(:fields).find_by_slug(params[:id])
   end
 
   def report
@@ -73,7 +73,8 @@ class FormsController < ApplicationController
     end
 
     def safe_params
-      params.require(:form).permit(:name, :active, :scope, :introduction, :confirmation_message, :max_entries_allowed, :end_date,
+      params.require(:form).permit(:name, :introduction, :confirmation_message, :max_entries_allowed, :start_date, :end_date, :unique_ip_only, :send_email_confirmation,
+                                   :show_questions_one_by_one,
       	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :scale, :true_label, :false_label, :_destroy,
                                    field_options_attributes: [:id, :name, :_destroy] ])
     end

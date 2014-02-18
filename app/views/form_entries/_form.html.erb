@@ -1,5 +1,5 @@
 <%= simple_form_for([@form, @entry]) do |f| %>
   <%= f.error_notification %>
 
-  <%= render 'fields', form: @form, entry: @entry %>
+  <%= render 'fields', f: f, form: @form, entry: @entry %>
 <% end %>

@@ -3,6 +3,7 @@ class CreateFormEntries < ActiveRecord::Migration
     create_table :form_entries do |t|
       t.integer  :form_id
       t.hstore   :answers
+      t.text     :user_info
 
       t.timestamps
     end

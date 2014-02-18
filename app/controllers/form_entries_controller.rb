@@ -23,6 +23,7 @@ class FormEntriesController < ApplicationController
   def create
     @entry = FormEntry.new(safe_params)
     @entry.form_id = @form.id
+    @entry.track_user(request)
 
     respond_to do |format|
       if @entry.save
@@ -37,6 +38,7 @@ class FormEntriesController < ApplicationController
 
   def update
     @entry = @form.entries.find(params[:id])
+
     respond_to do |format|
       if @entry.update(safe_params)
         format.html { redirect_to form_form_entry_path(@form, @entry), notice: 'Entry was successfully updated.' }

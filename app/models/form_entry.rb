@@ -13,6 +13,9 @@ class FormEntry < ActiveRecord::Base
   # using hstore
   store_accessor :answers
 
+  # using rails store
+  store :user_info, accessors: [ :remote_ip, :browser, :version, :platform ]
+
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
@@ -36,6 +39,14 @@ class FormEntry < ActiveRecord::Base
         errors.add answer.name, "can't be blank"
       end
     end
+  end
+
+  def track_user(request)
+    user_agent = UserAgent.parse(request.user_agent)
+    self.remote_ip = request.remote_ip
+    self.browser = user_agent.browser
+    self.version = user_agent.version
+    self.platform = user_agent.platform
   end
 
 end

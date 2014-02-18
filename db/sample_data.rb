@@ -30,6 +30,8 @@ puts "creating forms..."
 		max_entries_allowed: [nil, 100].sample,
 	  start_date: [nil, Date.today + 1.months].sample,
 	  end_date: [nil, Date.today + 3.months].sample,
+	  show_questions_one_by_one: [true, false].sample,
+	  send_email_confirmation: [true, false].sample,
 	  user_id: User.all.map(&:id).sample
 	)
 end

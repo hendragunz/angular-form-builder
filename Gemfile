@@ -45,6 +45,7 @@ gem 'sorcery'
 #gem 'figaro'
 gem 'six'
 gem 'kaminari-bootstrap'
+gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
 
 group :development, :test do

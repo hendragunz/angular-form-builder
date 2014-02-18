@@ -52,6 +52,10 @@ class Form < ActiveRecord::Base
     entries.length >= max_entries_allowed if max_entries_allowed.present?
   end
 
+  def tiny_url
+    
+  end
+
   private
 
     def set_slug
