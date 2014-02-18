@@ -53,7 +53,7 @@ class Form < ActiveRecord::Base
   end
 
   def has_not_unique_ip(request, user)
-    if self.unique_ip_only and !user.account.is_owner?(user)
+    if self.unique_ip_only and (!user.account.is_owner?(user) or user.id != user_id)
       FormEntry.where(form_id: self.id).each do |entry|
         return true if entry.user_info[:remote_ip] == request.remote_ip
       end
@@ -62,7 +62,6 @@ class Form < ActiveRecord::Base
   end
 
   def tiny_url
-    
   end
 
   private
