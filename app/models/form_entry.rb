@@ -24,7 +24,7 @@ class FormEntry < ActiveRecord::Base
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
   validates_presence_of :form_id #, :resident_id, :procedure_id
-  #validate :validate_answers
+  validate :validate_answers
 
 
   # CALLBACKS
@@ -34,9 +34,15 @@ class FormEntry < ActiveRecord::Base
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
   def validate_answers
-    answers.each do |answer|
-      if answer.required? && answer[answer.name].blank?
-        errors.add answer.name, "can't be blank"
+    self.form.fields.each do |field|
+      if field.required and field.field_type == "mcq"
+        mcq_value_exist = 0
+        field .field_options.each do |option|
+          mcq_value_exist = 1 if answers[field.id.to_s+"_"+option.id.to_s] != "0"
+        end
+        errors.add field.name, "Can't be blank" if mcq_value_exist == 0
+      elsif field.required and answers[field.id.to_s].blank?
+        errors.add field.name, "Can't be blank"
       end
     end
   end
@@ -47,6 +53,9 @@ class FormEntry < ActiveRecord::Base
     self.browser = user_agent.browser
     self.version = user_agent.version
     self.platform = user_agent.platform
+
+  def can_be_deleted?
+    false
   end
 
 end

@@ -11,11 +11,15 @@
       <th>Date</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
 
+    <% index = 0 %>
     <% @form.entries.order('created_at DESC').each do |entry| %>
+      <% index = index + 1 %>
       <tr>
-        <td><%= link_to entry.created_at, form_form_entry_path(@form, entry) %></td>
+        <td><%= link_to entry.created_at, form_form_entry_path(@form, entry, index: index) %></td>
+        <td><%= link_to "Entry #"+index.to_s, form_form_entry_path(@form, entry) %></td>
         <td><%= link_to "Edit", edit_form_form_entry_path(@form, entry) %></td>
         <td><%= link_to "Delete", form_form_entry_path(entry.form, entry), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

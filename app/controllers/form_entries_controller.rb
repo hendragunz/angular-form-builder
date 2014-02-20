@@ -8,6 +8,7 @@ class FormEntriesController < ApplicationController
 
   def show
     @entry = FormEntry.find(params[:id])
+    @number = params[:index]
   end
 
   def new
