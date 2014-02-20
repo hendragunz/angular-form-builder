@@ -65,6 +65,10 @@ class FormsController < ApplicationController
     @entries = @form.entries
   end
 
+  def get_form_fields
+    render partial: "forms/fields/"+params[:type]
+  end
+
   private
 
     def set_form
