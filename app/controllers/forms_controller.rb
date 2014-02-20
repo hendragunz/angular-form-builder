@@ -61,7 +61,7 @@ class FormsController < ApplicationController
   end
 
   def report
-    @form = Form.find(params[:id])
+    @form = Form.find_by_slug(params[:id])
     @entries = @form.entries
   end
 
