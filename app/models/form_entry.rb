@@ -53,6 +53,7 @@ class FormEntry < ActiveRecord::Base
     self.browser = user_agent.browser
     self.version = user_agent.version
     self.platform = user_agent.platform
+  end
 
   def can_be_deleted?
     false
