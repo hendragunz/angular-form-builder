@@ -1,0 +1,53 @@
+<div class="sidebar-nav">
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href="#fields" data-toggle="tab">Fields</a></li>
+	  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+	  <li><a href="#style" data-toggle="tab">Style</a></li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+	  <div class="tab-pane active" id="fields">
+      <ul style="margin-top:20px;">
+			  <li><%= link_to "Single Line Text", new_form_form_field_path(@form), remote: true %></li>
+			  <%#= f.link_to_add "Add Field", :fields, data: {target: "#form-content" }, class: "btn btn-primary add-link" %>
+			  <li><%= link_to "Paragraph Text", "" %></li>
+			  <li><%= link_to "Calendar", "" %></li>
+			  <li><%= link_to "Date", "" %></li>
+			  <li><%= link_to "Time", "" %></li>
+      </ul>
+	  </div>
+
+	  <div class="tab-pane" id="settings">settings</div>
+	  <div class="tab-pane" id="style">
+	  	<h5 style="margin-top:20px;">Themes</h5>
+      <ul class="form-swatches">
+        <li>Blue</li>
+        <li>Green</li>
+        <li>Red</li>
+        <li>Grey</li>
+      </ul>
+    <h5 style="margin-top:20px;">Custom Theme</h5>
+    <p>Add color swatch with live preview for the following sections</p>
+    <ul>
+      <li>Page Background</li>
+      <li>Header</li>
+      <li>Form Title</li>
+      <li>Form Introduction</li>
+      <li>Form Background</li>
+      <li>Section Title</li>
+      <li>Section Description</li>
+      <li>Field Background</li>
+      <li>Field Active</li>
+      <li>Buttons</li>
+    </ul>
+
+    <h5>Typography</h5>
+    <p>Integrate with Google fonts</p>
+
+    <h5>Logo</h5>
+    <p>Allow user to drag & drop logo</p>
+    <p>Logo goes to Header</p>
+	  </div>
+	</div>
+</div>

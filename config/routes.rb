@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get 'summary', on: :member
     get 'report', on: :member
     resources :form_entries, path: 'entries'
+    resources :form_fields
   end
 
   resources :reports, only: :index

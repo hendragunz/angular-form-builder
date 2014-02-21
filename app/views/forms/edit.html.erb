@@ -1,3 +1,17 @@
 <%= page_title("Editing Form") %>
 
-<%= render 'form' %>
+<div id="form-content">
+  <%= simple_nested_form_for(@form) do |f| %>
+     <%= content_for :sidebar do %><%= render 'sidebar', f: f %><% end %>
+
+	  <%= f.error_notification %>
+
+	  <h4>Fields</h4>
+		<%= f.fields_for :fields %>
+		<%= f.link_to_add "Add Field", :fields, data: {target: "#form-content" }, class: "btn btn-primary add-link" %>
+
+	  <div class="form-actions">
+	    <%= f.button :submit, class: 'btn btn-success' %>
+	  </div>
+	<% end %>
+</div>
