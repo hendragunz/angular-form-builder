@@ -1,0 +1,11 @@
+<%= simple_nested_form_for Form.new, :url => forms_path, :authenticity_token => false do |f| %>
+    <%= f.fields_for FormField.new,:url=> "", :authenticity_token => false do |ff| %>
+        <%= ff.fields_for :field_options, :child_index => Time.now.to_f do |fo| %>
+            <%= fo.input :name, as: :string, input_html: {style: "width:50%"}, placeholder: 'Value' %>
+            <fieldset>
+                <span class="pull-right text-danger" style="margin-right: 333px;margin-top: -40px;"><%= fo.link_to_remove "Remove", confirm: 'Are you sure that you want to remove this field option?'  %></span>
+            </fieldset>
+        <% end %>
+        <%= ff.link_to_add "Add options", :field_options, class: "btn add-link" %>
+    <% end %>
+<% end %>
