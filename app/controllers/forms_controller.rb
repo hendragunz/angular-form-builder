@@ -1,6 +1,7 @@
 class FormsController < ApplicationController
   add_abilities_for(Form)
   before_action :set_form, only: [:show, :edit, :update, :destroy]
+  before_action :create_hstore_data, only: [:create, :update]
   set_tab "forms"
 
   def index
@@ -79,7 +80,26 @@ class FormsController < ApplicationController
     def safe_params
       params.require(:form).permit(:name, :introduction, :confirmation_message, :max_entries_allowed, :start_date, :end_date, :unique_ip_only, :send_email_confirmation,
                                    :show_questions_one_by_one,
-      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :scale, :true_label, :false_label, :_destroy,
-                                   field_options_attributes: [:id, :name, :_destroy] ])
+      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :field_image, :data, :_destroy])
+    end
+
+    def create_hstore_data
+      if params[:form][:fields_attributes].present?
+        params[:form][:fields_attributes].each do |field_data|
+          field = field_data.second
+          field[:data]= "{option1: 'a', option2: 'b'}" if field['field_type'] == 'mcq'
+          field[:data]= "{format: 'words', min: '0', max: '50'}" if field['field_type'] == 'single_line'
+          field[:data]= "{format: 'character', min: '0', max: '20'}" if field['field_type'] == 'paragraph'
+          field[:data]= "{rate: '5', type: 'star'}" if field['field_type'] == 'rating'
+          field[:data]= "{true_label: '', false_label: ''}" if field['field_type'] == 'boolean'
+          field[:data]= "{format: 'value', min: '0', max: '10'}" if field['field_type'] == 'number'
+          field[:data]= "{choice1: 'a', choice2: 'b'}" if field['field_type'] == 'checkbox'
+          field[:data]= "{select1: 'a', select2: 'b'}" if field['field_type'] == 'dropdown'
+          field[:data]= "{button_text: 'next'}" if field['field_type'] == 'page_break'
+          field[:data]= "{format: 'extended'}" if field['field_type'] == 'name'
+          field[:data]= "{format: 'character', min: '0', max: '20', currency: '$'}" if field['field_type'] == 'price'
+          field[:data]= "{row1: 'statement 1', row2:'statement 2', column1:'agree', column2: 'disagree'}" if field['field_type'] == 'likert'
+        end
+      end
     end
 end

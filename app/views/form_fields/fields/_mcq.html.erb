@@ -1,7 +1,8 @@
-<% question.field_options.each_with_index do |option, index| %>
+<% options = eval(question.properties['data']) %>
+<% options.each do |option, value| %>
 	<div class="checkbox">
 		<label>
-      <%= f.check_box question.id.to_s+"_"+option.id.to_s, {}, option.name %> <%= option.name %>
+      <%= f.check_box question.id.to_s+"_"+option.to_s, {}, option %> <%= value %>
 		</label>
 	</div>
 <% end %>

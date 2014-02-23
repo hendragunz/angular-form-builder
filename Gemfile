@@ -47,6 +47,7 @@ gem 'six'
 gem 'kaminari-bootstrap'
 gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
+gem 'paperclip'
 
 group :development, :test do
   gem 'faker', '1.0.1'

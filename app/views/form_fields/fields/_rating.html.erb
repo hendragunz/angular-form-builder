@@ -1,4 +1,5 @@
-<% question.scale.to_i.times do |x| %>
+<% scale = eval(question.properties['data']) %>
+<% scale['rate'].to_i.times do |x| %>
 	<label class="radio-inline">
     <%= f.radio_button question.id.to_s, x + 1 %> <%= x + 1 %>
   </label>

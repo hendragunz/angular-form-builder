@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215162230) do
+ActiveRecord::Schema.define(version: 20140223131511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,6 @@ ActiveRecord::Schema.define(version: 20140215162230) do
     t.integer  "owner_id"
     t.integer  "plan_id"
     t.integer  "trial_days_left", default: 14
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "field_options", force: true do |t|
-    t.integer  "form_field_id"
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,11 +41,18 @@ ActiveRecord::Schema.define(version: 20140215162230) do
     t.text     "fr_hint"
     t.string   "field_type"
     t.hstore   "properties"
-    t.boolean  "required",   default: true
-    t.integer  "position",   default: 0
+    t.boolean  "required",                 default: true
+    t.integer  "position",                 default: 0
     t.integer  "form_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "size"
+    t.integer  "page",                     default: 1,    null: false
+    t.string   "show_to"
+    t.string   "field_image_file_name"
+    t.string   "field_image_content_type"
+    t.integer  "field_image_file_size"
+    t.datetime "field_image_updated_at"
   end
 
   create_table "forms", force: true do |t|
