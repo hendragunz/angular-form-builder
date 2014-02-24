@@ -39,8 +39,11 @@ Rails.application.routes.draw do
   # MAIN ROUTES
   # ============================================================
   resources :forms do
-    get 'summary', on: :member
-    get 'report', on: :member
+    member do
+      get 'summary'
+      get 'report'
+      get 'notifications'
+    end
     resources :form_entries, path: 'entries'
   end
 

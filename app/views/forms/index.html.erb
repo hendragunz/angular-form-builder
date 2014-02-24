@@ -18,6 +18,7 @@
         <td><%= link_to form.slug, public_form_path(form) %></td>
         <td><%= form.entries_count %></td>
         <td class="tright">
+          <%= link_to "Notifications", notifications_form_path(form) %> |
           <%= link_to 'Edit', edit_form_path(form) %> |
           <%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' }, class: "#{form.can_be_deleted? ? 'disabled' : ''}" %>
         </td>

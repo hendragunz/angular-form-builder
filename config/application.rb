@@ -25,5 +25,7 @@ module Reval
       g.javascripts    false
       g.helper         false
     end
+
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end
 end
