@@ -1,4 +1,4 @@
-class FormEntriesController < ApplicationController
+class FormEntriesController < BaseController
   before_action :set_form #, only: [:index, :show, :edit, :update, :destroy]
   set_tab "entries"
 

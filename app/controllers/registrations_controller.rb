@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class RegistrationsController < BaseController
   before_filter :require_login, only: [:edit, :update]
   layout "public", only: [:new, :create]
 

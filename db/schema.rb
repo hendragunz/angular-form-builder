@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224154316) do
+ActiveRecord::Schema.define(version: 20140224215011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(version: 20140224154316) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "api_keys", force: true do |t|
-    t.string   "access_token"
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "api_keys", ["access_token", "user_id"], name: "index_api_keys_on_access_token_and_user_id", using: :btree
 
   create_table "field_options", force: true do |t|
     t.integer  "form_field_id"
@@ -101,8 +91,10 @@ ActiveRecord::Schema.define(version: 20140224154316) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "access_token"
   end
 
+  add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 

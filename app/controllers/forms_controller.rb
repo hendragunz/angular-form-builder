@@ -1,4 +1,4 @@
-class FormsController < ApplicationController
+class FormsController < BaseController
   add_abilities_for(Form)
   before_action :set_form, only: [:show, :edit, :update, :destroy, :notifications, :report]
   set_tab "forms"

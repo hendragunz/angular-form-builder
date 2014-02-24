@@ -1,8 +1,9 @@
+require 'api_constraints'
+
 Rails.application.routes.draw do
 
-  # ============================================================
   # USER ROUTES
-  # ============================================================
+  # ------------------------------------------------------------------------------------------------------
   delete "logout" => "sessions#destroy", as: "logout"
   get "login" => "sessions#new", as: "login"
   get "signup" => "registrations#new", as: "signup"
@@ -14,9 +15,17 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
 
-  # ============================================================
+  # API ROUTES
+  # ------------------------------------------------------------------------------------------------------
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      resources :forms
+    end
+  end
+
+
   # PUBLIC ROUTES
-  # ============================================================
+  # ------------------------------------------------------------------------------------------------------
   scope module: 'public', path: '', as: 'public' do
     get "pages/home", as: :home
     get "pages/features", as: :features
@@ -24,9 +33,8 @@ Rails.application.routes.draw do
   end
 
 
-  # ============================================================
   # ADMIN ROUTES
-  # ============================================================
+  # ------------------------------------------------------------------------------------------------------
   scope module: 'admin', path: 'adm1nistr8tion', as: 'admin' do
     #root to: 'dashboard#show', as: :dashboard
     resources :users, only: [:index, :new, :create] do
@@ -35,9 +43,8 @@ Rails.application.routes.draw do
   end
 
 
-  # ============================================================
   # MAIN ROUTES
-  # ============================================================
+  # ------------------------------------------------------------------------------------------------------
   resources :forms do
     member do
       get 'summary'
