@@ -43,6 +43,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.5)
+    angularjs-rails (1.2.13)
     arel (5.0.0)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
@@ -129,6 +130,8 @@ GEM
       rack (~> 1.2)
     pg (0.17.1)
     polyglot (0.3.3)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-mini-profiler (0.9.0)
       rack (>= 1.1.3)
@@ -215,6 +218,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   better_errors
   capistrano
   capistrano-nc
@@ -231,6 +235,7 @@ DEPENDENCIES
   nested_form
   net-ldap
   pg
+  quiet_assets
   rack-mini-profiler
   rails (= 4.1.0.beta1)
   rails_bootstrap_helper!

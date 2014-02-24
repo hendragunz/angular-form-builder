@@ -9,12 +9,12 @@
 	<div class="tab-content">
 	  <div class="tab-pane active" id="fields">
       <ul style="margin-top:20px;">
-			  <li><%= link_to "Single Line Text", new_form_form_field_path(@form), remote: true %></li>
-			  <%#= f.link_to_add "Add Field", :fields, data: {target: "#form-content" }, class: "btn btn-primary add-link" %>
-			  <li><%= link_to "Paragraph Text", "" %></li>
-			  <li><%= link_to "Calendar", "" %></li>
-			  <li><%= link_to "Date", "" %></li>
-			  <li><%= link_to "Time", "" %></li>
+        <li><%= link_to "Single Line Text", '', 'ng-click' => "alert('test')" %></li>
+			  <li><%= link_to "Single Line Text", '', 'ng-click' => "addField('single_line')" %></li>
+			  <li><%= link_to "Paragraph Text", "", 'ng-click' => "addField('paragraph')"  %></li>
+			  <li><%= link_to "Boolean", "", 'ng-click' => "addField('boolean')"  %></li>
+			  <li><%= link_to "MCQ", "", 'ng-click' => "addField('mcq')"  %></li>
+			  <li><%= link_to "Rating", "", 'ng-click' => "addField('rating')"  %></li>
       </ul>
 	  </div>
 

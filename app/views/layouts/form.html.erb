@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= t 'site_name' %></title>
@@ -11,20 +11,20 @@
 </head>
 <body>
   <%= render 'header' %>
-  <div class="container main-container">
+  <div class="container main-container" ng-controller="FormBuilderCtrl" ng-init=" fields = <%= @form.fields.to_json %>; ">
     <div class="row row-offcanvas row-offcanvas-left">
-		  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-		    <%= render 'sidebar' %>
-		  </div>
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+        <%= render 'sidebar' %>
+      </div>
 
-		  <div class="col-xs-12 col-sm-9">
-		  	<p class="pull-right visible-xs">
-		      <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-		    </p>
-		    <%= render 'flash' %>
-		    <%= yield %>
-		  </div>
-		</div>
+      <div class="col-xs-12 col-sm-9">
+        <p class="pull-right visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
+        <%= render 'flash' %>
+        <%= yield %>
+      </div>
+    </div>
   </div>
   <script src='https://www.google.com/jsapi'></script>
 </body>

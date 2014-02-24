@@ -47,12 +47,14 @@ gem 'six'
 gem 'kaminari-bootstrap'
 gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
+gem 'angularjs-rails'
 
 group :development, :test do
   gem 'faker', '1.0.1'
   gem 'hirb'
   gem 'debugger'
   gem 'letter_opener'
+  gem 'quiet_assets'
 end
 
 group :development do
