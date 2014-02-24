@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   belongs_to :account
   has_many :forms, dependent: :destroy
+  has_many :api_keys, dependent: :destroy
 
 
   # SCOPES
@@ -25,6 +26,7 @@ class User < ActiveRecord::Base
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
   before_create :format_fields
+  after_create :generate_api_key
 
 
 	# INSTANCE METHODS
@@ -47,5 +49,11 @@ class User < ActiveRecord::Base
     self.active = !active
     save!
   end
+
+  private
+
+    def generate_api_key
+      api_keys.create(access_token: SecureRandom.hex, name: 'default')
+    end
 
 end
