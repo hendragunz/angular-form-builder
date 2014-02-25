@@ -46,37 +46,36 @@
       </div>
 
       <p class="help-block" ng-if="field.en_hint != ''"> {{ field.en_hint }} </p>
-
-      <!-- field options -->
-      <div class='hide form-field-config-container'>
-        <hr>
-        <%= f.fields_for 'fields_attributes[{{field.id}}]', FormField.new, id: nil do |ff| %>
-          <%= ff.input :field_type, collection: FormField::FieldType.options_with_label, include_blank: false, input_html: { id: nil, class: 'qtype', 'ng-model' => "field.field_type"} %>
-          <%= ff.input :name, input_html: { 'ng-model' => "field.name" } %>
-          <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
-          <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
-          <div class="checkbox">
-            <label><%= ff.check_box :required, { 'ng-model' => "field.required", id: nil } %> Required</label>
-          </div>
-          <div class="row">
-            <div class="col-xs-6">
-              <%= ff.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.properties.true_label", id: nil } %>
-            </div>
-            <div class="col-xs-6">
-              <%= ff.input :false_label, placeholder: "No", input_html: { 'ng-model' => "field.properties.false_label", id: nil } %>
-            </div>
-          </div>
-          <h5>Field Options</h5>
-          <div class='clearfix' ng-repeat="field_option in field.field_options">
-            <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
-              <%= fo.input :name, as: :string, label: false, input_html: { style: "width:30%", class: 'pull-left', 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
-              <%= link_to '(Del)', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-delete pull-left' %>
-            <% end %>
-            <br />
-          </div>
-          <%= link_to "Add Option", '', 'ng-click' => "addFieldOption(field)" %>
-        <% end %>
-      </div>
     </div> <!-- end panel body -->
+
+    <!-- field options -->
+    <div class='panel-footer hide form-field-config-container'>
+      <%= f.fields_for 'fields_attributes[{{field.id}}]', FormField.new, id: nil do |ff| %>
+        <%#= ff.input :field_type, collection: FormField::FieldType.options_with_label, include_blank: false, input_html: { id: nil, class: 'qtype', 'ng-model' => "field.field_type"} %>
+        <%#= ff.input :name, input_html: { 'ng-model' => "field.name" } %>
+        <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
+        <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
+        <div class="checkbox">
+          <label><%= ff.check_box :required, { 'ng-model' => "field.required", id: nil } %> Required</label>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= ff.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.properties.true_label", id: nil } %>
+          </div>
+          <div class="col-xs-6">
+            <%= ff.input :false_label, placeholder: "No", input_html: { 'ng-model' => "field.properties.false_label", id: nil } %>
+          </div>
+        </div>
+        <h5>Field Options</h5>
+        <div class='clearfix' ng-repeat="field_option in field.field_options">
+          <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
+            <%= fo.input :name, as: :string, label: false, input_html: { style: "width:30%", class: 'pull-left', 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
+            <%= link_to '(Del)', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-delete pull-left' %>
+          <% end %>
+          <br />
+        </div>
+        <%= link_to "Add Option", '', 'ng-click' => "addFieldOption(field)" %>
+      <% end %>
+    </div> <!-- end panel footer -->
   </div> <!-- end panel -->
 </div> <!-- end fields -->
