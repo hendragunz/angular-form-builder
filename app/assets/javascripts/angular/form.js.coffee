@@ -1,7 +1,7 @@
 @FormBuilderCtrl = ["$scope", ($scope) ->
   $scope.fields
   $scope.field_types = {
-    msq:          'msq'
+    mcq:          'mcq'
     paragraph:    'text'
     single_line:  'single_line'
     rating:       'rating'
@@ -14,7 +14,7 @@
       persisted: false
       id: $scope.unique_id()
       name: 'name_' + $scope.unique_id()
-      en_label: 'Field Name'
+      en_label: 'Field Label'
       en_hint: 'Here is an example hint'
       field_type: field_type
       required: false
@@ -45,7 +45,7 @@
   $scope.unique_id = ()->
     (new Date()).getTime()
 
-  # toggle sho / hide form field configuration
+  # toggle show / hide form field configuration
   $scope.toggleFormFieldConfig = (field)->
     $container = $('#form-field-' + field.id)
     $field_container = $container.find('.form-field-config-container')
