@@ -59,4 +59,26 @@ class FormEntry < ActiveRecord::Base
     false
   end
 
+  def self.to_csv(options = {})
+    headers = %w{ID Answers IP Date}
+    header_indexes = Hash[headers.map.with_index{|*x| x}]
+
+    CSV.generate(options) do |csv|
+      csv << headers
+      all.each do |entry|
+        data = {}
+        data["ID"]      = entry.id
+        data["Answers"] = entry.answers
+        data["IP"] = entry.remote_ip
+        data["Date"]    = entry.created_at
+
+        row = []
+        header_indexes.each do |field, index|
+          row << data[field] || ''
+        end
+        csv << row
+      end
+    end
+  end
+
 end

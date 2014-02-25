@@ -1,5 +1,6 @@
 <%= page_title("#{@form.name}") do %>
   <%= link_to "Download to Excel", "", class: "pull-right btn btn-default" %>
+  <%= link_to "Download to CSV", form_form_entries_path(@form, format: "csv"), class: "pull-right btn btn-default" %>
   <%= link_to 'Edit', edit_form_path(@form), class: "pull-right btn btn-primary" %>
 <% end %>
 
