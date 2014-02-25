@@ -3,11 +3,11 @@
   <div class="panel panel-default form-field" id="form-field-{{ field.id }}">
     <div class="panel-heading" ng-click="toggleFormFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
-      {{ field.en_label || field.fr_label }}
-      <%= link_to '', "ng-click" => "removeField(field)", class: 'pull-right link-delete', title: "Click to delete this field" do %>
+        {{ field.en_label || field.fr_label }}
+        <%= link_to '', "ng-click" => "removeField(field)", class: 'pull-right link-delete', title: "Click to delete this field" do %>
           <i class='fa fa-trash-o'></i>
         <% end %>
-    </h3>
+      </h3>
     </div>
     <div class="panel-body">
       <!-- single line -->
@@ -50,6 +50,7 @@
 
     <!-- field options -->
     <div class='panel-footer hide form-field-config-container'>
+      <h6>FIELD SETTINGS</h6>
       <%= f.fields_for 'fields_attributes[{{field.id}}]', FormField.new, id: nil do |ff| %>
         <%#= ff.input :field_type, collection: FormField::FieldType.options_with_label, include_blank: false, input_html: { id: nil, class: 'qtype', 'ng-model' => "field.field_type"} %>
         <%#= ff.input :name, input_html: { 'ng-model' => "field.name" } %>
@@ -66,13 +67,17 @@
             <%= ff.input :false_label, placeholder: "No", input_html: { 'ng-model' => "field.properties.false_label", id: nil } %>
           </div>
         </div>
-        <h5>Field Options</h5>
-        <div class='clearfix' ng-repeat="field_option in field.field_options">
+
+        <h6>FIELD OPTIONS</h6>
+        <div class="row" ng-repeat="field_option in field.field_options">
           <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
-            <%= fo.input :name, as: :string, label: false, input_html: { style: "width:30%", class: 'pull-left', 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
-            <%= link_to '(Del)', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-delete pull-left' %>
+            <div class="col-xs-11">
+              <%= fo.input :name, as: :string, label: false, input_html: { 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
+            </div>
+            <div class="col-xs-1">
+              <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-delete' %>
+            </div>
           <% end %>
-          <br />
         </div>
         <%= link_to "Add Option", '', 'ng-click' => "addFieldOption(field)" %>
       <% end %>
