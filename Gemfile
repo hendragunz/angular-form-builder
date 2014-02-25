@@ -39,7 +39,7 @@ gem 'net-ldap', require: 'net/ldap'
 #gem 'compass-rails', "~> 2.0.0", github: "Compass/compass-rails"
 #gem 'compass-rails'
 gem 'tabs_on_rails', "~> 2.1.1"
-gem 'rails_bootstrap_helper', github: "hoangnghiem/rails_bootstrap_helper", branch: "bs3"
+gem 'rails_bootstrap_helper', github: "olimart/rails_bootstrap_helper", branch: "bs3.1"
 gem 'nested_form'
 gem 'sorcery'
 #gem 'figaro'
