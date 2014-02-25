@@ -15,7 +15,7 @@ class FormsController < ApplicationController
   end
 
   def edit
-    render layout: 'form'
+    render layout: 'form_builder'
   end
 
   def create

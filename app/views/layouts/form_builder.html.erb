@@ -14,7 +14,7 @@
   <div class="container main-container" ng-controller="FormBuilderCtrl" ng-init=" fields = <%= @form.fields.to_json(include: [:field_options]) %>; ">
     <div class="row row-offcanvas row-offcanvas-left">
       <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-        <%= render 'sidebar' %>
+        <%= yield :sidebar %>
       </div>
 
       <div class="col-xs-12 col-sm-9">

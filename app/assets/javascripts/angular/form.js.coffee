@@ -9,7 +9,7 @@
   }
 
   # method to add more field
-  $scope.addField = (field_type)->
+  $scope.addField = (field_type) ->
     field = {
       persisted: false
       id: $scope.unique_id()
@@ -32,28 +32,28 @@
     $scope.fields.push( field )
 
   # method to remove field
-  $scope.removeField = (field)->
+  $scope.removeField = (field) ->
     $scope.fields.splice( $scope.fields.indexOf(field), 1 );
 
-  $scope.addFieldOption = (field)->
+  $scope.addFieldOption = (field) ->
     field.field_options.push({name: 'New Option', id: $scope.unique_id(), persisted: false})
 
   $scope.removeFieldOption = (field, field_option)->
     field.field_options.splice( field.field_options.indexOf(field_option), 1 )
 
   # will return unique_id
-  $scope.unique_id = ()->
+  $scope.unique_id = () ->
     (new Date()).getTime()
 
   # toggle show / hide form field configuration
-  $scope.toggleFormFieldConfig = (field)->
+  $scope.toggleFieldConfig = (field) ->
     $container = $('#form-field-' + field.id)
-    $field_container = $container.find('.form-field-config-container')
+    $field_container = $container.find('.field-config-container')
     console.log $field_container
     $field_container.toggleClass('hide')
     return false
 
-  angular.element(document).ready ()->
+  angular.element(document).ready () ->
     console.log $scope.fields
 
 ]
