@@ -1,0 +1,49 @@
+<div ng-repeat="field in fields">
+
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">
+      <abbr title="required" ng-if="field.required == true">*</abbr>
+      {{ field.en_label || field.fr_label }}
+    </label>
+    <div class="col-sm-10">
+      <!-- single line -->
+      <input type="text" class="form-control" ng-if="field.field_type == 'single_line'" name="{{ field.name }}">
+
+      <!-- paragraph -->
+      <textarea class="form-control" rows="3" ng-if="field.field_type == 'paragraph'" name="{{ field.name }}"></textarea>
+
+      <!-- boolean -->
+      <div class="radio" ng-if="field.field_type == 'boolean'">
+        <label>
+          <input type="radio" name="{{ field.name }}" value="true" checked>
+          {{ field.properties.true_label }}
+        </label>
+      </div>
+      <div class="radio" ng-if="field.field_type == 'boolean'">
+        <label>
+          <input type="radio" name="{{ field.name }}" value="true" checked>
+          {{ field.properties.false_label }}
+        </label>
+      </div>
+
+      <!-- MCQ -->
+      <div class="checkbox"  ng-repeat="opt in field.field_options" ng-if="field.field_type == 'mcq'">
+        <label>
+          <input type="checkbox"> {{ opt.name }}
+        </label>
+      </div>
+
+
+      <!-- Rating -->
+      <div class="radio" ng-repeat="opt in field.field_options" ng-if="field.field_type == 'rating'">
+        <label>
+          <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
+          {{ opt.name }}
+        </label>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>

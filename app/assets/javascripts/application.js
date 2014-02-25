@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require jquery_nested_form
 
@@ -20,3 +19,4 @@
 //= require angular
 //= require angular/my_app
 //= require angular/form
+

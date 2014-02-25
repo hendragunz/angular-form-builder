@@ -10,8 +10,8 @@
 
   # method to add more field
   $scope.addField = (field_type)->
-    console.log 'run!!!'
     field = {
+      persisted: false
       id: $scope.unique_id()
       name: 'name_' + $scope.unique_id()
       en_label: 'name-x'
@@ -23,11 +23,19 @@
         true_label: 'Yes'
         false_label: 'No'
       }
+      field_options: [
+        {name: 'Option 1'}
+        {name: 'Option 2'}
+        {name: 'Option 3'}
+      ]
     }
     $scope.fields.push( field )
 
   # will return unique_id
   $scope.unique_id = ()->
     (new Date()).getTime()
+
+  angular.element(document).ready ()->
+    console.log $scope.fields
 
 ]
