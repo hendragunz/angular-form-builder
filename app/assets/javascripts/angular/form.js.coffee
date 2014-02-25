@@ -31,6 +31,10 @@
     }
     $scope.fields.push( field )
 
+  # method to remove field
+  $scope.removeField = (field)->
+    $scope.fields.splice( $scope.fields.indexOf(field), 1 );
+
   # will return unique_id
   $scope.unique_id = ()->
     (new Date()).getTime()
