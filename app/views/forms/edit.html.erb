@@ -6,10 +6,7 @@
     <%= f.error_notification %>
 
     <h4>Fields</h4>
-    <%= render 'fields' %>
-    <%#= f.fields_for :fields %>
-    <%#= f.link_to_add "Add Field", :fields, data: {target: "#form-content" }, class: "btn btn-primary add-link" %>
-
+    <%= render 'fields', f: f, form: @form %>
     <div class="form-actions">
       <%= f.button :submit, class: 'btn btn-success' %>
     </div>

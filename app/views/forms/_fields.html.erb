@@ -1,8 +1,8 @@
 <div ng-repeat="field in fields">
 
-  <div class="form-group">
+  <div class="form-group" id="form-field-{{ field.id }}">
     <label for="inputEmail3" class="col-sm-2 control-label">
-      <abbr title="required" ng-if="field.required == true">*</abbr>
+      <abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
       {{ field.en_label || field.fr_label }}
     </label>
     <div class="col-sm-10">
@@ -15,13 +15,13 @@
       <!-- boolean -->
       <div class="radio" ng-if="field.field_type == 'boolean'">
         <label>
-          <input type="radio" name="{{ field.name }}" value="true" checked>
+          <input type="radio" name="{{ field.name }}" value="1" checked>
           {{ field.properties.true_label }}
         </label>
       </div>
       <div class="radio" ng-if="field.field_type == 'boolean'">
         <label>
-          <input type="radio" name="{{ field.name }}" value="true" checked>
+          <input type="radio" name="{{ field.name }}" value="0" checked>
           {{ field.properties.false_label }}
         </label>
       </div>
@@ -41,8 +41,40 @@
           {{ opt.name }}
         </label>
       </div>
+      <span class="hint" ng-if="field.en_hint != ''"> {{ field.en_hint }} </span>
 
-      <div><%= link_to '(remove)', '', "ng-click" => "removeField(field)" %></div>
+      <div>
+        <%= link_to '', "ng-click" => "removeField(field)", class: 'link-delete', title: "Click to delete this field" do %>
+          <i class='fa fa-trash-o'></i>
+        <% end %>
+        |
+        <%= link_to '', "ng-click" => "toggleFormFieldConfig(field)", title: "Click to show detail of this field" do %>
+          <i class='fa fa-caret-square-o-right'></i>
+        <% end %>
+      </div>
+
+      <div class='hide form-field-config-container'>
+        <%= f.fields_for 'fields_attributes[{{field.id}}]', FormField.new, id: nil do |ff| %>
+          <%= ff.input :field_type, collection: FormField::FieldType.options_with_label, include_blank: false, input_html: { id: nil, class: 'qtype', 'ng-model' => "field.field_type"} %>
+          <%= ff.input :name, input_html: { 'ng-model' => "field.name" } %>
+          <%= ff.input :en_label, as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
+          <%= ff.input :en_hint, as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
+           <div class="checkbox">
+            <label><%= ff.check_box :required, { 'ng-model' => "field.required", id: nil } %> Required</label>
+          </div>
+          <%= ff.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.properties.true_label", id: nil } %>
+          <%= ff.input :false_label, placeholder: "No", input_html: { 'ng-model' => "field.properties.false_label", id: nil } %>
+          <h4>Field Options</h4>
+          <div class='clearfix' ng-repeat="field_option in field.field_options">
+            <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
+              <%= fo.input :name, as: :string, label: false, input_html: { style: "width:30%", class: 'pull-left', 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
+              <%= link_to '(Del)', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-delete pull-left' %>
+            <% end %>
+            <br />
+          </div>
+          <%= link_to "Add Option", '', 'ng-click' => "addFieldOption(field)" %>
+        <% end %>
+      </div>
 
 
     </div>

@@ -12,5 +12,19 @@
  *
  *= require_tree .
  *= require bootstrap
+ *= require font-awesome
  *= require_self
  */
+
+
+a {
+  &.link-delete {
+    color: red;
+  }
+}
+
+.field-config-container {
+  padding: 10px;
+  border: 1px solid #ddd;
+
+}

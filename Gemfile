@@ -40,6 +40,7 @@ gem 'net-ldap', require: 'net/ldap'
 #gem 'compass-rails'
 gem 'tabs_on_rails', "~> 2.1.1"
 gem 'rails_bootstrap_helper', github: "hoangnghiem/rails_bootstrap_helper", branch: "bs3"
+gem "font-awesome-rails"
 gem 'nested_form'
 gem 'sorcery'
 #gem 'figaro'
