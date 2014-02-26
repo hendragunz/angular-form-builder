@@ -83,6 +83,15 @@
   $scope.underscorizeFieldName = (field) ->
     field.name = String(field.name).toLowerCase().replace(' ', '_')
 
+  # w
+  $scope.needField = (field, field_needed) ->
+    switch field_needed
+      when 'field_options'
+        return ['rating', 'dropdown'].indexOf(field.field_type) >= 0
+      when 'boolean_label'
+        return ['boolean'].indexOf(field.field_type) >= 0
+
+
   angular.element(document).ready () ->
     console.log $scope.fields
     # console.log $scope.form
