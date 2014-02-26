@@ -11,9 +11,52 @@
     </div>
 
     <div class="panel-body">
-      <% FormField::FieldType.options.each do  |f_type| %>
-        <%= render "/forms/field_types/#{f_type}" %>
-      <% end %>
+      <!-- single line -->
+      <input type="text" class="form-control" ng-if="field.field_type == 'single_line'" name="{{ field.name }}">
+
+      <!-- paragraph -->
+      <textarea class="form-control" rows="3" ng-if="field.field_type == 'paragraph'" name="{{ field.name }}"></textarea>
+
+      <!-- boolean -->
+      <div class="radio" ng-if="field.field_type == 'boolean'">
+        <label>
+          <input type="radio" name="{{ field.name }}" value="1" checked>
+          {{ field.properties.true_label }}
+        </label>
+      </div>
+      <div class="radio" ng-if="field.field_type == 'boolean'">
+        <label>
+          <input type="radio" name="{{ field.name }}" value="0" checked>
+          {{ field.properties.false_label }}
+        </label>
+      </div>
+
+      <!-- MCQ -->
+      <div class="checkbox" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'mcq') && ((opt.deleted == undefined) || (opt.deleted == false))">
+        <label>
+          <input type="checkbox"> {{ opt.name }}
+        </label>
+      </div>
+
+      <!-- rating -->
+      <div class="radio-inline" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating') && ((opt.deleted == undefined) || (opt.deleted == false))">
+        <label>
+          <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
+          {{ opt.name }}
+        </label>
+      </div>
+
+      <!-- dropdown -->
+      <!-- <select class="form-control" ng-show="(field.field_type = 'dropdown')">
+        <option> {{ opt.name }} </option>
+      </select> -->
+
+      <!-- price -->
+      <div class="input-group price" ng-show="(field.field_type == 'price')">
+        <input type="text" class="form-control span3">
+        <span class="input-group-addon"> {{ field.properties.currency || '$' }}</span>
+      </div>
+
       <p class="help-block" ng-if="field.en_hint != ''"> {{ field.en_hint }} </p>
     </div>
     <!-- end panel body -->
@@ -26,7 +69,7 @@
         <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
-        <%= ff.input :name, input_html: { 'ng-model' => "field.name", 'ng-blur' => "underscorizeFieldName(field)" } %>
+        <%= ff.hidden_field :name, input_html: { 'ng-model' => "field.name", 'ng-blur' => "underscorizeFieldName(field)" } %>
         <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
         <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
         <div class="checkbox">
@@ -49,7 +92,7 @@
               <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
               <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-1" style='text-align:left;'>
               <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>
             </div>
           <% end %>

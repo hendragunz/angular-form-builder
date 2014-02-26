@@ -88,3 +88,11 @@
     # console.log $scope.form
 
 ]
+
+@FormStyleCtrl = ["$scope", ($scope, $http) ->
+  # $http.get("/default_form_templates.json"
+  # ).success( (data) ->
+  #   $scope.themes = data.themes
+  # ).error (status) ->
+  #   alert "An error occured"
+]

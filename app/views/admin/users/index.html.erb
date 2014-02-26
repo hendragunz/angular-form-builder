@@ -4,17 +4,21 @@
 
 <% if @users.any? %>
   <table class="table table-striped">
-    <tr>
-      <td>Name</td>
-      <td>Email</td>
-      <td>Forms</td>
-      <td>Member since</td>
-      <td></td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Forms</th>
+        <th>Member since</th>
+        <th></th>
+      </tr>
+    </thead>
 
-    <% @users.each do |user| %>
-      <%= render 'user', user: user %>
-    <% end %>
+    <tbody>
+      <% @users.each do |user| %>
+        <%= render 'user', user: user %>
+      <% end %>
+    </tbody>
   </table>
 
   <p><%= paginate(@users) %></p>

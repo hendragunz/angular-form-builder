@@ -42,8 +42,8 @@
       <%= f.input :name, input_html: {"ng-model"=>"form.name"} %>
       <hr>
       <%= f.input :max_entries_allowed %>
-      <%= f.input :end_date %>
       <%= f.input :start_date %>
+      <%= f.input :end_date %>
       <hr>
       <div class="form-group">
          <div class="checkbox">
@@ -62,33 +62,31 @@
       </div>
     </div>
 
-	  <div class="tab-pane" id="form-style">
-	  	<h5>Themes</h5>
+	  <div class="tab-pane" id="form-style" ng-controller="FormStyleCtrl">
+	  	<h5>STANDARD THEMES</h5>
       <ul class="form-swatches">
         <li>Blue</li>
         <li>Green</li>
         <li>Red</li>
         <li>Grey</li>
       </ul>
-    <h5 style="margin-top:20px;">Custom Theme</h5>
+    <h5 style="margin-top:20px;">CUSTOM THEME</h5>
     <p>Add color swatch with live preview for the following sections</p>
     <ul>
-      <li>Page Background</li>
-      <li>Header</li>
+      <li>Page background</li>
       <li>Form Title</li>
       <li>Form Introduction</li>
-      <li>Form Background</li>
+      <li>Field Header background</li>
+      <li>Field background</li>
       <li>Section Title</li>
       <li>Section Description</li>
-      <li>Field Background</li>
-      <li>Field Active</li>
       <li>Buttons</li>
     </ul>
 
-    <h5>Typography</h5>
+    <h5>TYPOGRAPHY</h5>
     <p>Integrate with Google fonts</p>
 
-    <h5>Logo</h5>
+    <h5>LOGO</h5>
     <p>Allow user to drag & drop logo</p>
     <p>Logo goes to Header</p>
 	  </div>

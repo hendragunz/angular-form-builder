@@ -1,18 +1,22 @@
 <%= simple_nested_form_for(@form, html: { class: 'form-horizontal' }) do |f| %>
-  <div class="page-title">
-  	<h1>{{ form.name }}</h1>
-  </div>
-
   <%= content_for :sidebar do %>
     <%= render 'sidebar', f: f %>
   <% end %>
   <%= f.error_notification %>
 
-  <div>{{ form.introduction }}</div>
-  {{ form.confirmation_message }}
 
-  <h4>Fields</h4>
-  <%= render 'fields', f: f, form: @form %>
+  <div id="form-container">
+    <div class="page-title">
+      <h1>{{ form_name || 'Form' }}</h1>
+    </div>
+
+    <div class="form-intro">
+      {{ form_introduction || 'Introduce the purpose of your form and how you intend to use collected data. Hover to the form settings to replace this message.' }}
+    </div>
+    {{ form_confirmation_message }}
+
+    <%= render 'fields', f: f %>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-success' %>
   </div>
