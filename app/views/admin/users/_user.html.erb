@@ -3,5 +3,5 @@
   <td><%= user.email %></td>
   <td><%= user.forms.length %></td>
   <td><%= distance_of_time_in_words_to_now(user.created_at) %></td>
-  <td><%= icon_button_link_to "#{user.active? ? t('deactivate') : t('activate')}", toggle_status_admin_user_path(user), method: :post, remote: true, level: "#{user.active? ? 'danger' : 'success'}", size: 'sm', icon: "#{user.active? ? 'remove' : 'play'}", white: true %></td>
+  <td><%= icon_button_link_to "#{user.active? ? t('deactivate') : t('activate')}", toggle_status_admin_user_path(user), method: :post, remote: true, level: "#{user.active? ? 'danger' : 'success'}", size: 'xs', icon: "#{user.active? ? 'remove' : 'play'}", white: true %></td>
 <% end %>

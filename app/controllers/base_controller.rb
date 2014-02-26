@@ -11,6 +11,7 @@ class BaseController < ApplicationController
   end
 
   private
+
     # Permissions as per the six gem
     def abilities
       @abilities ||= Six.new

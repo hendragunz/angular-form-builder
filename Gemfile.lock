@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/olimart/rails_bootstrap_helper.git
-  revision: 25c8db24297805af8a265ad623cb5cb924df8d55
+  revision: 83f3bac387cc079f44192f98aa04cdc2bd4d0b35
   branch: bs3.1
   specs:
     rails_bootstrap_helper (1.0.0)
