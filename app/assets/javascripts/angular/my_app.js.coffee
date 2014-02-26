@@ -1,1 +1,1 @@
-myApp = angular.module('myApp', [])
+myApp = angular.module('FormBuilder', [])
