@@ -6,6 +6,8 @@
     single_line:  'single_line'
     rating:       'rating'
     boolean:      'boolean'
+    price:        'price'
+    dropdown:     'dropdown'
   }
 
   # method to add more field
@@ -29,8 +31,8 @@
       ]
     }
 
-    # just add field options if field type is rating | mcq
-    if (field.field_type == 'rating') || (field.field_type == 'mcq')
+    # prepopulate field options if field type is mcq | dropdown
+    if (field.field_type == 'mcq') || (field.field_type == 'dropdown')
       field.field_options = [
         {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
         {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}

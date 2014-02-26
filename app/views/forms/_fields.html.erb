@@ -31,18 +31,29 @@
       </div>
 
       <!-- MCQ -->
-      <div class="checkbox"  ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'mcq') && ((opt.deleted == undefined) || (opt.deleted == false))">
+      <div class="checkbox" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'mcq') && ((opt.deleted == undefined) || (opt.deleted == false))">
         <label>
           <input type="checkbox"> {{ opt.name }}
         </label>
       </div>
 
-      <!-- Rating -->
-      <div class="radio" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating')  && ((opt.deleted == undefined) || (opt.deleted == false))">
+      <!-- rating -->
+      <div class="radio" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating') && ((opt.deleted == undefined) || (opt.deleted == false))">
         <label>
           <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
           {{ opt.name }}
         </label>
+      </div>
+
+      <!-- dropdown -->
+      <!-- <select class="form-control" ng-show="(field.field_type = 'dropdown')">
+        <option> {{ opt.name }} </option>
+      </select> -->
+
+      <!-- price -->
+      <div class="input-group price" ng-show="(field.field_type == 'price')">
+        <input type="text" class="form-control span3">
+        <span class="input-group-addon"> {{ field.properties.currency || '$' }}</span>
       </div>
 
       <p class="help-block" ng-if="field.en_hint != ''"> {{ field.en_hint }} </p>
@@ -54,9 +65,9 @@
       <%= f.fields_for 'fields_attributes[{{field.id}}]' do |ff| %>
         <%= ff.hidden_field :id, value: "{{ field.id }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
-        <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
+        <%= ff.input :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
-        <%= ff.input :name, input_html: { 'ng-model' => "field.name" } %>
+        <%= ff.hidden_field :name, input_html: { 'ng-model' => "field.name" } %>
         <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
         <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
         <div class="checkbox">
