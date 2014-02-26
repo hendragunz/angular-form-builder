@@ -34,8 +34,6 @@ class FormsController < BaseController
   end
 
   def update
-    ap params
-
     respond_to do |format|
       if @form.update(safe_params)
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }
