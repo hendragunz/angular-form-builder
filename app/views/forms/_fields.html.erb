@@ -65,9 +65,9 @@
       <%= f.fields_for 'fields_attributes[{{field.id}}]' do |ff| %>
         <%= ff.hidden_field :id, value: "{{ field.id }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
-        <%= ff.input :field_type, value: "{{ field.field_type }}" %>
+        <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
-        <%= ff.hidden_field :name, input_html: { 'ng-model' => "field.name" } %>
+        <%= ff.input :name, input_html: { 'ng-model' => "field.name", 'ng-blur' => "underscorizeFieldName(field)" } %>
         <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
         <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
         <div class="checkbox">

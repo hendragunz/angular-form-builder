@@ -1,4 +1,5 @@
 @FormBuilderCtrl = ["$scope", ($scope) ->
+  $scope.form
   $scope.fields
   $scope.field_types = {
     mcq:          'mcq'
@@ -71,7 +72,11 @@
     $field_container.toggleClass('hide')
     return false
 
+  $scope.underscorizeFieldName = (field) ->
+    field.name = String(field.name).toLowerCase().replace(' ', '_')
+
   angular.element(document).ready () ->
     console.log $scope.fields
+    console.log $scope.form
 
 ]

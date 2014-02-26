@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: form_entries
+#
+#  id         :integer          not null, primary key
+#  form_id    :integer
+#  answers    :hstore
+#  user_info  :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class FormEntry < ActiveRecord::Base
 
 	# ASSOCIATIONS

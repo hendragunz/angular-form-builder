@@ -45,6 +45,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.5)
     angularjs-rails (1.2.13)
+    annotate (2.6.2)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (5.0.0)
     atomic (1.1.14)
     awesome_print (1.2.0)
@@ -223,6 +226,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  annotate
   awesome_print
   better_errors
   capistrano

@@ -36,10 +36,10 @@
 
 	  <div class="tab-pane" id="form-settings">
       <h5>FORM SETTINGS</h5>
-      <%= f.input :introduction, input_html: {value: @form.introduction, "ng-model"=>"form_introduction"} %>
+      <%= f.input :introduction, input_html: {value: @form.introduction, "ng-model"=>"form.introduction"} %>
       <%= f.input :confirmation_message %>
       <hr>
-      <%= f.input :name, input_html: {"ng-model"=>"form_name"} %>
+      <%= f.input :name, input_html: {"ng-model"=>"form.name"} %>
       <hr>
       <%= f.input :max_entries_allowed %>
       <%= f.input :end_date %>

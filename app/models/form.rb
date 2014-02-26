@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: forms
+#
+#  id                        :integer          not null, primary key
+#  name                      :string(255)
+#  slug                      :string(255)      not null
+#  introduction              :text
+#  confirmation_message      :text
+#  max_entries_allowed       :integer
+#  unique_ip_only            :boolean          default(FALSE)
+#  send_email_confirmation   :boolean          default(FALSE)
+#  show_questions_one_by_one :boolean          default(FALSE)
+#  start_date                :datetime
+#  end_date                  :datetime
+#  entries_count             :integer          default(0)
+#  user_id                   :integer
+#  created_at                :datetime
+#  updated_at                :datetime
+#
+
 class Form < ActiveRecord::Base
 
 	# ASSOCIATIONS

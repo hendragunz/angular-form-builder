@@ -34,12 +34,14 @@ class FormsController < BaseController
   end
 
   def update
+    ap params
+
     respond_to do |format|
       if @form.update(safe_params)
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: 'edit', layout: 'form_builder' }
         format.json { render json: @form.errors, status: :unprocessable_entity }
       end
     end

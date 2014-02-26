@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: field_options
+#
+#  id            :integer          not null, primary key
+#  form_field_id :integer
+#  name          :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class FieldOption < ActiveRecord::Base
 
   # ASSOCIATIONS

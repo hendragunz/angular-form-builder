@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: form_fields
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  en_label   :text
+#  fr_label   :text
+#  en_hint    :text
+#  fr_hint    :text
+#  field_type :string(255)
+#  properties :hstore
+#  required   :boolean          default(TRUE)
+#  position   :integer          default(0)
+#  form_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class FormField < ActiveRecord::Base
 
   # CONSTANTS

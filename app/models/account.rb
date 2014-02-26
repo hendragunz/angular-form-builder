@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id              :integer          not null, primary key
+#  owner_id        :integer
+#  plan_id         :integer
+#  trial_days_left :integer          default(14)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class Account < ActiveRecord::Base
 
   # ASSOCIATIONS
