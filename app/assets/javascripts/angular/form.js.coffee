@@ -1,4 +1,4 @@
-@FormBuilderCtrl = ["$scope", ($scope) ->
+@FormBuilderCtrl = ["$scope", "$timeout", ($scope, $timeout) ->
   $scope.form
   $scope.fields
   $scope.field_types = {
@@ -10,6 +10,15 @@
     price:        'price'
     dropdown:     'dropdown'
   }
+
+  $scope.sortableOptions =
+    update: (e, ui) ->
+      $timeout (->
+        angular.forEach $scope.fields, (field, index)->
+          field.position = index
+          console.log field
+      ), 100
+    axis: 'y'
 
   # method to add more field
   $scope.addField = (field_type) ->
@@ -76,6 +85,6 @@
 
   angular.element(document).ready () ->
     console.log $scope.fields
-    console.log $scope.form
+    # console.log $scope.form
 
 ]
