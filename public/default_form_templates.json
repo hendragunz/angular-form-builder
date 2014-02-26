@@ -1,0 +1,34 @@
+"themes": [
+  {
+    "name": "blue",
+    "page_background": "666666",
+    "form_title_color": "333333",
+    "field_header_background": "f2f2f2",
+    "field_background": "e6e6e6",
+    "logo": "/url"
+  },
+  {
+    "name": "green",
+    "page_background": "f0ad4e",
+    "form_title_color": "333333",
+    "field_header_background": "ffffff",
+    "field_background": "333333",
+    "logo": ""
+  },
+  {
+    "name": "orange",
+    "page_background": "ffffff",
+    "form_title_color": "563d7c",
+    "field_header_background": "f2f2f2",
+    "field_background": "e6e6e6",
+    "logo": "/url"
+  },
+  {
+    "name": "yellow",
+    "page_background": "f0ad4e",
+    "form_title_color": "563d7c",
+    "field_header_background": "f2f2f2",
+    "field_background": "e6e6e6",
+    "logo": ""
+  }
+]

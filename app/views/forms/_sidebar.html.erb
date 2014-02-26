@@ -42,8 +42,8 @@
       <%= f.input :name, input_html: {"ng-model"=>"form_name"} %>
       <hr>
       <%= f.input :max_entries_allowed %>
-      <%= f.input :end_date %>
       <%= f.input :start_date %>
+      <%= f.input :end_date %>
       <hr>
       <div class="form-group">
          <div class="checkbox">
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-	  <div class="tab-pane" id="form-style">
+	  <div class="tab-pane" id="form-style" ng-controller="FormStyleCtrl">
 	  	<h5>Themes</h5>
       <ul class="form-swatches">
         <li>Blue</li>
@@ -73,15 +73,13 @@
     <h5 style="margin-top:20px;">Custom Theme</h5>
     <p>Add color swatch with live preview for the following sections</p>
     <ul>
-      <li>Page Background</li>
-      <li>Header</li>
+      <li>Page background</li>
       <li>Form Title</li>
       <li>Form Introduction</li>
-      <li>Form Background</li>
+      <li>Field Header background</li>
+      <li>Field background</li>
       <li>Section Title</li>
       <li>Section Description</li>
-      <li>Field Background</li>
-      <li>Field Active</li>
       <li>Buttons</li>
     </ul>
 

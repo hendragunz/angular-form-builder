@@ -38,7 +38,7 @@
       </div>
 
       <!-- rating -->
-      <div class="radio" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating') && ((opt.deleted == undefined) || (opt.deleted == false))">
+      <div class="radio-inline" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating') && ((opt.deleted == undefined) || (opt.deleted == false))">
         <label>
           <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
           {{ opt.name }}
@@ -65,7 +65,7 @@
       <%= f.fields_for 'fields_attributes[{{field.id}}]' do |ff| %>
         <%= ff.hidden_field :id, value: "{{ field.id }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
-        <%= ff.input :field_type, value: "{{ field.field_type }}" %>
+        <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
         <%= ff.hidden_field :name, input_html: { 'ng-model' => "field.name" } %>
         <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
@@ -90,7 +90,7 @@
               <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
               <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-1" style='text-align:left;'>
               <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>
             </div>
           <% end %>
