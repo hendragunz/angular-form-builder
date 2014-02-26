@@ -31,14 +31,14 @@
       </div>
 
       <!-- MCQ -->
-      <div class="checkbox"  ng-repeat="opt in field.field_options" ng-if="field.field_type == 'mcq'">
+      <div class="checkbox"  ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'mcq') && ((opt.deleted == undefined) || (opt.deleted == false))">
         <label>
           <input type="checkbox"> {{ opt.name }}
         </label>
       </div>
 
       <!-- Rating -->
-      <div class="radio" ng-repeat="opt in field.field_options" ng-if="field.field_type == 'rating'">
+      <div class="radio" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating')  && ((opt.deleted == undefined) || (opt.deleted == false))">
         <label>
           <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
           {{ opt.name }}
@@ -72,10 +72,12 @@
         </div>
 
         <h6>FIELD OPTIONS</h6>
-        <div class="row" ng-repeat="field_option in field.field_options">
+        <div ng-repeat="field_option in field.field_options" class="row {{ field_option.deleted ? 'hide' : '' }}">
           <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
             <div class="col-xs-11">
               <%= fo.input :name, as: :string, label: false, input_html: { 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
+              <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
+              <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
             </div>
             <div class="col-xs-1">
               <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>

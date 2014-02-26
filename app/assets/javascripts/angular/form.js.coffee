@@ -25,9 +25,18 @@
         false_label: ''
       }
       field_options: [
-        # {name: 'Option 1', id: $scope.unique_id()}
+        # {name: 'Option 1', id: $scope.unique_id(), persisted: false}
       ]
     }
+
+    # just add field options if field type is rating | mcq
+    if (field.field_type == 'rating') || (field.field_type == 'mcq')
+      field.field_options = [
+        {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
+        {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}
+        {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
+      ]
+
     $scope.fields.push( field )
 
   # method to remove field
@@ -38,10 +47,15 @@
       $scope.fields.splice( $scope.fields.indexOf(field), 1 );
 
   $scope.addFieldOption = (field) ->
-    field.field_options.push({name: 'New Option', id: $scope.unique_id(), persisted: false})
+    field.field_options.push({name: 'New Option', id: $scope.unique_id(), persisted: false, deleted: false})
 
   $scope.removeFieldOption = (field, field_option)->
-    field.field_options.splice( field.field_options.indexOf(field_option), 1 )
+    console.log field_option
+    if field_option.persisted
+      field_option.deleted = true
+    else
+      field.field_options.splice( field.field_options.indexOf(field_option), 1 )
+    console.log field_option
 
   # will return unique_id
   $scope.unique_id = () ->

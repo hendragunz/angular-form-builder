@@ -64,9 +64,9 @@ class FormField < ActiveRecord::Base
   	true
   end
 
-  def as_json(options)
+  def as_json(options = {})
     # this example ignores the user's options
-    super.merge(:persisted => persisted?)
+    super(options).merge(:persisted => persisted?, :field_options => field_options.map{|x| x.as_json})
   end
 
   private

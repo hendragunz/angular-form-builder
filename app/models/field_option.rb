@@ -6,6 +6,14 @@ class FieldOption < ActiveRecord::Base
 
   before_destroy :check_for_entries
 
+  # add persisted => true
+  # when call method to_json
+  #
+  def as_json(options = {})
+    # this example ignores the user's options
+    super(options).merge(:persisted => persisted?)
+  end
+
   private
 
   def check_for_entries
