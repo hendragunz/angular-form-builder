@@ -46,6 +46,7 @@ GEM
     angularjs-rails (1.2.13)
     arel (5.0.0)
     atomic (1.1.14)
+    awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -221,6 +222,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  awesome_print
   better_errors
   capistrano
   capistrano-nc

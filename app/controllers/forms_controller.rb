@@ -34,6 +34,8 @@ class FormsController < ApplicationController
   end
 
   def update
+    ap params
+    debugger
     respond_to do |format|
       if @form.update(safe_params)
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }
@@ -76,7 +78,7 @@ class FormsController < ApplicationController
     def safe_params
       params.require(:form).permit(:name, :introduction, :confirmation_message, :max_entries_allowed, :start_date, :end_date, :unique_ip_only, :send_email_confirmation,
                                    :show_questions_one_by_one,
-      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :scale, :true_label, :false_label, :_destroy,
+      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :scale, :true_label, :false_label, :_destroy, :position,
                                    field_options_attributes: [:id, :name, :_destroy] ])
     end
 end

@@ -2,7 +2,7 @@
   $scope.fields
   $scope.field_types = {
     mcq:          'mcq'
-    paragraph:    'text'
+    paragraph:    'paragraph'
     single_line:  'single_line'
     rating:       'rating'
     boolean:      'boolean'
@@ -12,21 +12,20 @@
   $scope.addField = (field_type) ->
     field = {
       persisted: false
+      deleted: false
       id: $scope.unique_id()
-      name: 'name_' + $scope.unique_id()
+      name: 'field_' + $scope.unique_id()
       en_label: 'Field Label'
-      en_hint: 'Here is an example hint'
+      en_hint: ''
       field_type: field_type
       required: false
       position: ($scope.fields.length + 1)
       properties: {
-        true_label: 'Yes'
-        false_label: 'No'
+        true_label: ''
+        false_label: ''
       }
       field_options: [
-        {name: 'Option 1', id: $scope.unique_id()}
-        {name: 'Option 2', id: $scope.unique_id()}
-        {name: 'Option 3', id: $scope.unique_id()}
+        # {name: 'Option 1', id: $scope.unique_id()}
       ]
     }
     $scope.fields.push( field )

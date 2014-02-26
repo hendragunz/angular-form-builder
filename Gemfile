@@ -56,6 +56,7 @@ group :development, :test do
   gem 'debugger'
   gem 'letter_opener'
   gem 'quiet_assets'
+  gem 'awesome_print'
 end
 
 group :development do

@@ -64,6 +64,11 @@ class FormField < ActiveRecord::Base
   	true
   end
 
+  def as_json(options)
+    # this example ignores the user's options
+    super.merge(:persisted => persisted?)
+  end
+
   private
 
     def format_attributes

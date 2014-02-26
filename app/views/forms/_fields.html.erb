@@ -51,9 +51,12 @@
     <!-- field options -->
     <div class='panel-footer hide field-config-container'>
       <h6>FIELD SETTINGS</h6>
-      <%= f.fields_for 'fields_attributes[{{field.id}}]', FormField.new, id: nil do |ff| %>
-        <%#= ff.input :field_type, collection: FormField::FieldType.options_with_label, include_blank: false, input_html: { id: nil, class: 'qtype', 'ng-model' => "field.field_type"} %>
-        <%#= ff.input :name, input_html: { 'ng-model' => "field.name" } %>
+      <%= f.fields_for 'fields_attributes[{{field.id}}]' do |ff| %>
+        <%= ff.hidden_field :id, value: "{{ field.id }}", 'ng-if' => "field.persisted == true" %>
+        <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
+        <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
+        <%= ff.hidden_field :position, value: "{{ field.position }}" %>
+        <%= ff.input :name, input_html: { 'ng-model' => "field.name" } %>
         <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
         <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
         <div class="checkbox">
