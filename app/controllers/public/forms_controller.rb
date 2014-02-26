@@ -1,5 +1,6 @@
 class Public::FormsController < Public::BaseController
 	before_filter :load_form
+  layout 'public_form'
 
   def show
   	if @form
