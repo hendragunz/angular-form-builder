@@ -1,0 +1,13 @@
+<!-- boolean -->
+<div class="radio" ng-if="field.field_type == 'boolean'">
+  <label>
+    <input type="radio" name="{{ field.name }}" value="1" checked>
+    {{ field.properties.true_label }}
+  </label>
+</div>
+<div class="radio" ng-if="field.field_type == 'boolean'">
+  <label>
+    <input type="radio" name="{{ field.name }}" value="0" checked>
+    {{ field.properties.false_label }}
+  </label>
+</div>

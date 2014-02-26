@@ -27,12 +27,14 @@ class FormField < ActiveRecord::Base
     PARAGRAPH    = 'paragraph'
     RATING       = 'rating'
     BOOLEAN      = 'boolean'
+    PRICE        = 'price'
 
     def self.options
-      [ RATING, MCQ, SINGLE_LINE, PARAGRAPH, BOOLEAN ]
+      [ RATING, MCQ, SINGLE_LINE, PARAGRAPH, BOOLEAN, PRICE ]
     end
+
     def self.options_with_label
-      [ ['MCQ', MCQ], ['Single Line Text', SINGLE_LINE], ['Paragraph Text', PARAGRAPH], ['Rating', RATING], ['Yes/No', BOOLEAN] ]
+      [ ['MCQ', MCQ], ['Single Line Text', SINGLE_LINE], ['Paragraph Text', PARAGRAPH], ['Rating', RATING], ['Yes/No', BOOLEAN], ['Price', PRICE] ]
     end
   end
 
