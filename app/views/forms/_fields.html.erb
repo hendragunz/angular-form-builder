@@ -9,6 +9,7 @@
         <% end %>
       </h3>
     </div>
+
     <div class="panel-body">
       <!-- single line -->
       <input type="text" class="form-control" ng-if="field.field_type == 'single_line'" name="{{ field.name }}">
@@ -56,8 +57,13 @@
         <span class="input-group-addon"> {{ field.properties.currency || '$' }}</span>
       </div>
 
+    <div class="panel-body">
+      <% FormField::FieldType.options.each do  |f_type| %>
+        <%= render "/forms/field_types/#{f_type}" %>
+      <% end %>
       <p class="help-block" ng-if="field.en_hint != ''"> {{ field.en_hint }} </p>
-    </div> <!-- end panel body -->
+    </div>
+    <!-- end panel body -->
 
     <!-- field options -->
     <div class='panel-footer hide field-config-container'>
@@ -67,7 +73,7 @@
         <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
-        <%= ff.hidden_field :name, input_html: { 'ng-model' => "field.name" } %>
+        <%= ff.input :name, input_html: { 'ng-model' => "field.name", 'ng-blur' => "underscorizeFieldName(field)" } %>
         <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
         <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
         <div class="checkbox">

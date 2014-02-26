@@ -11,3 +11,7 @@
 
   <%= f.button :submit, "#{t 'registrations.update'}", class: "btn btn-primary" %>
 <% end %>
+
+<%= page_section("API Key") %>
+
+<p><b>Access Token</b>: <%= @user.access_token %></p>

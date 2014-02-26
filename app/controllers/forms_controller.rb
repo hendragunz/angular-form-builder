@@ -1,6 +1,6 @@
-class FormsController < ApplicationController
+class FormsController < BaseController
   add_abilities_for(Form)
-  before_action :set_form, only: [:show, :edit, :update, :destroy]
+  before_action :set_form, only: [:show, :edit, :update, :destroy, :notifications, :report]
   set_tab "forms"
 
   def index
@@ -34,12 +34,14 @@ class FormsController < ApplicationController
   end
 
   def update
+    ap params
+
     respond_to do |format|
       if @form.update(safe_params)
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: 'edit', layout: 'form_builder' }
         format.json { render json: @form.errors, status: :unprocessable_entity }
       end
     end
@@ -62,8 +64,10 @@ class FormsController < ApplicationController
   end
 
   def report
-    @form = Form.find(params[:id])
     @entries = @form.entries
+  end
+
+  def notifications
   end
 
   private

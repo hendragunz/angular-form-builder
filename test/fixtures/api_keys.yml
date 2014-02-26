@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  access_token: b03fc02373a5e0ffd3b938a4c39528cc
+  name: default
+  user_id: 1
+
+two:
+  access_token: fd3b938a4c39528ccb03fc02373a5e0f
+  name: app1
+  user_id: 1

@@ -1,4 +1,5 @@
 @FormBuilderCtrl = ["$scope", ($scope) ->
+  $scope.form
   $scope.fields
   $scope.field_types = {
     mcq:          'mcq'
@@ -43,21 +44,21 @@
 
   # method to remove field
   $scope.removeField = (field) ->
-    if field.persisted
-      field.deleted = true
-    else
-      $scope.fields.splice( $scope.fields.indexOf(field), 1 );
+    if confirm("Are you sure you want to remove, existing data will be deleted as well")
+      if field.persisted
+        field.deleted = true
+      else
+        $scope.fields.splice( $scope.fields.indexOf(field), 1 );
 
   $scope.addFieldOption = (field) ->
     field.field_options.push({name: 'New Option', id: $scope.unique_id(), persisted: false, deleted: false})
 
   $scope.removeFieldOption = (field, field_option)->
-    console.log field_option
-    if field_option.persisted
-      field_option.deleted = true
-    else
-      field.field_options.splice( field.field_options.indexOf(field_option), 1 )
-    console.log field_option
+    if confirm("Are you sure you want to remove, existing data will be deleted as well")
+      if field_option.persisted
+        field_option.deleted = true
+      else
+        field.field_options.splice( field.field_options.indexOf(field_option), 1 )
 
   # will return unique_id
   $scope.unique_id = () ->
@@ -67,12 +68,15 @@
   $scope.toggleFieldConfig = (field) ->
     $container = $('#form-field-' + field.id)
     $field_container = $container.find('.field-config-container')
-    console.log $field_container
     $field_container.toggleClass('hide')
     return false
 
+  $scope.underscorizeFieldName = (field) ->
+    field.name = String(field.name).toLowerCase().replace(' ', '_')
+
   angular.element(document).ready () ->
     console.log $scope.fields
+    console.log $scope.form
 
 ]
 
