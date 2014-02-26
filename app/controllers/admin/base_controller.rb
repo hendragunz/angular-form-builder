@@ -1,4 +1,4 @@
-class Admin::BaseController < ApplicationController
+class Admin::BaseController < BaseController
   before_filter :verify_admin
 
   private

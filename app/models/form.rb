@@ -5,13 +5,13 @@ class Form < ActiveRecord::Base
   has_many :fields, class_name: "FormField", dependent: :destroy
   accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
 
-  belongs_to :creator, class_name: "User"
+  belongs_to :creator, class_name: "User", foreign_key: "user_id"
   has_many :entries, class_name: "FormEntry", dependent: :destroy
 
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
-  scope :active, -> { where(active: true) }
+  scope :active,   -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
 
@@ -40,7 +40,7 @@ class Form < ActiveRecord::Base
   def self.allowed(user, subject)
     rules = []
     return rules unless subject.instance_of?(Form)
-    rules << :manage if user && (user.account.is_owner?(user) || user == subject.creator)
+    rules << :manage if user && user == subject.creator
     rules
   end
 
