@@ -34,8 +34,6 @@ class FormsController < ApplicationController
   end
 
   def update
-    ap params
-    debugger
     respond_to do |format|
       if @form.update(safe_params)
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }

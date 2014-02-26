@@ -1,6 +1,6 @@
 <div ng-repeat="field in fields">
 
-  <div class="panel panel-default form-field" id="form-field-{{ field.id }}">
+  <div class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}">
     <div class="panel-heading" ng-click="toggleFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
         {{ field.en_label || field.fr_label }}

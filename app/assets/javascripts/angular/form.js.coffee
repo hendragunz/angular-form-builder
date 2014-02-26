@@ -32,7 +32,10 @@
 
   # method to remove field
   $scope.removeField = (field) ->
-    $scope.fields.splice( $scope.fields.indexOf(field), 1 );
+    if field.persisted
+      field.deleted = true
+    else
+      $scope.fields.splice( $scope.fields.indexOf(field), 1 );
 
   $scope.addFieldOption = (field) ->
     field.field_options.push({name: 'New Option', id: $scope.unique_id(), persisted: false})
