@@ -16,9 +16,9 @@ class Public::FormsController < Public::BaseController
     respond_to do |format|
       if @entry.save
         format.html { redirect_to completed_public_form_path(@form) }
-        format.json { render action: 'show', status: :created, location: @entry }
+        format.json { render action: 'completed', status: :created, location: @entry }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'show' }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
       end
     end

@@ -1,4 +1,4 @@
-@FormBuilderCtrl = ["$scope", ($scope) ->
+@FormBuilderCtrl = ["$scope", "$timeout", ($scope, $timeout) ->
   $scope.form
   $scope.fields
   $scope.field_types = {
@@ -10,6 +10,15 @@
     price:        'price'
     dropdown:     'dropdown'
   }
+
+  $scope.sortableOptions =
+    update: (e, ui) ->
+      $timeout (->
+        angular.forEach $scope.fields, (field, index)->
+          field.position = index
+          console.log field
+      ), 100
+    axis: 'y'
 
   # method to add more field
   $scope.addField = (field_type) ->
@@ -74,9 +83,18 @@
   $scope.underscorizeFieldName = (field) ->
     field.name = String(field.name).toLowerCase().replace(' ', '_')
 
+  # w
+  $scope.needField = (field, field_needed) ->
+    switch field_needed
+      when 'field_options'
+        return ['rating', 'dropdown'].indexOf(field.field_type) >= 0
+      when 'boolean_label'
+        return ['boolean'].indexOf(field.field_type) >= 0
+
+
   angular.element(document).ready () ->
     console.log $scope.fields
-    console.log $scope.form
+    # console.log $scope.form
 
 ]
 

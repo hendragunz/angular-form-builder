@@ -11,12 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.ui.sortable
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery_nested_form
 
 
 //= require angular
+//= require angular/modules/sortable
 //= require angular/my_app
 //= require angular/form
 

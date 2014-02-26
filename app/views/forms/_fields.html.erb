@@ -1,6 +1,6 @@
-<div ng-repeat="field in fields">
+<div ui-sortable="sortableOptions" ng-model="fields">
 
-  <div class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}">
+  <div ng-repeat="field in fields" class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}">
     <div class="panel-heading" ng-click="toggleFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
         {{ field.en_label || field.fr_label }}
@@ -69,13 +69,14 @@
         <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
-        <%= ff.hidden_field :name, input_html: { 'ng-model' => "field.name", 'ng-blur' => "underscorizeFieldName(field)" } %>
+        <%= ff.hidden_field :name, value: "{{ field.name }}" %>
         <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
         <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
         <div class="checkbox">
           <label><%= ff.check_box :required, { 'ng-model' => "field.required", id: nil } %> Required</label>
         </div>
-        <div class="row">
+
+        <div class="row" ng-if="needField(field, 'boolean_label')">
           <div class="col-xs-6">
             <%= ff.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.properties.true_label", id: nil } %>
           </div>
@@ -84,20 +85,23 @@
           </div>
         </div>
 
-        <h6>FIELD OPTIONS</h6>
-        <div ng-repeat="field_option in field.field_options" class="row {{ field_option.deleted ? 'hide' : '' }}">
-          <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
-            <div class="col-xs-11">
-              <%= fo.input :name, as: :string, label: false, input_html: { 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
-              <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
-              <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
-            </div>
-            <div class="col-xs-1" style='text-align:left;'>
-              <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>
-            </div>
-          <% end %>
-        </div>
-        <p><%= link_to "Add Option", '', 'ng-click' => "addFieldOption(field)" %></p>
+        <div  ng-if="needField(field, 'field_options')">
+          <h6>FIELD OPTIONS</h6>
+          <div ng-repeat="field_option in field.field_options" class="row {{ field_option.deleted ? 'hide' : '' }}">
+            <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
+              <div class="col-xs-11">
+                <%= fo.input :name, as: :string, label: false, input_html: { 'ng-model' => 'field_option.name' }, placeholder: 'Value' %>
+                <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
+                <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
+              </div>
+              <div class="col-xs-1" style='text-align:left;'>
+                <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>
+              </div>
+            <% end %>
+          </div>
+          <p><%= link_to "Add Option", '', 'ng-click' => "addFieldOption(field)" %></p>
+        </div><!-- end field options -->
+
       <% end %>
     </div> <!-- end panel footer -->
   </div> <!-- end panel -->

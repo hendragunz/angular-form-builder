@@ -11,9 +11,14 @@
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
-<body <% if content_for?(:body_class) %>class="<%= yield(:body_class) %>"<% end %>>
-  <div class="container main-container">
+<body class="public_form">
+  <div class="container form-container">
     <%= yield %>
   </div>
+  <footer>
+    <div class="container">
+      <p class="text-muted">Made with <%= link_to "#{t 'site_name'}", public_home_path %> <%= icon_tag("heart") %> Create free form / survey</p>
+    </div>
+  </footer>
 </body>
 </html>

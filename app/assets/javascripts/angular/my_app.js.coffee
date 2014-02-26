@@ -1,1 +1,1 @@
-myApp = angular.module('FormBuilder', [])
+myApp = angular.module('FormBuilder', ['ui.sortable'])
