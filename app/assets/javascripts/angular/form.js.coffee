@@ -81,9 +81,6 @@
     $field_container.toggleClass('hide')
     return false
 
-  $scope.underscorizeFieldName = (field) ->
-    field.name = String(field.name).toLowerCase().replace(' ', '_')
-
   # display field options based on field type
   $scope.needField = (field, field_needed) ->
     switch field_needed

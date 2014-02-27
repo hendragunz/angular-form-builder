@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="FormBuilder">
+<html>
 <head>
   <%= render '/layouts/shared/head' %>
 </head>
 <body>
   <%= render 'header' %>
-  <div class="container main-container" ng-controller="FormBuilderCtrl" ng-init="form = <%= @form.to_json %>; fields = <%= @form.fields.to_json(include: [:field_options]) %>; ">
+  <div ng-app class="container main-container" ng-controller="FormBuilderCtrl" ng-init="form = <%= @form.to_json %>; fields = <%= @form.fields.to_json(include: [:field_options]) %>;">
     <div class="row row-offcanvas row-offcanvas-left">
       <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
         <%= yield :sidebar %>
