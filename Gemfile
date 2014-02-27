@@ -21,6 +21,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -35,11 +36,11 @@ gem 'sdoc',          group: :doc, require: false
 gem 'spring',        group: :development
 
 gem 'simple_form'
-gem 'net-ldap', require: 'net/ldap'
 #gem 'compass-rails', "~> 2.0.0", github: "Compass/compass-rails"
 #gem 'compass-rails'
 gem 'tabs_on_rails', "~> 2.1.1"
-gem 'rails_bootstrap_helper', github: "hoangnghiem/rails_bootstrap_helper", branch: "bs3"
+gem 'font-awesome-rails'
+gem 'rails_bootstrap_helper', github: "olimart/rails_bootstrap_helper", branch: "bs3.1"
 gem 'nested_form'
 gem 'sorcery'
 #gem 'figaro'
@@ -48,12 +49,16 @@ gem 'kaminari-bootstrap'
 gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
 gem 'paperclip'
+gem 'angularjs-rails', '~> 1.2.13'
 
 group :development, :test do
   gem 'faker', '1.0.1'
   gem 'hirb'
   gem 'debugger'
   gem 'letter_opener'
+  gem 'quiet_assets'
+  gem 'awesome_print'
+  gem 'annotate'
 end
 
 group :development do

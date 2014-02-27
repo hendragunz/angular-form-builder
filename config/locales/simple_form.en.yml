@@ -13,10 +13,9 @@ en:
     # Labels and hints examples
     labels:
       defaults:
-        en_name: English Name
-        fr_name: French Name
-        en_hint: English Hint
-        fr_hint: French Hint
+        field_name: Field Name
+        field_label: Label
+        field_hint: Hint
     #   user:
     #     new:
     #       email: 'E-mail to sign in.'

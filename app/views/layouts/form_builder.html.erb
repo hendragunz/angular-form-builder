@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="FormBuilder">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= t 'site_name' %></title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render 'header' %>
+  <div class="container main-container" ng-controller="FormBuilderCtrl" ng-init="form = <%= @form.to_json %>; fields = <%= @form.fields.to_json(include: [:field_options]) %>; ">
+    <div class="row row-offcanvas row-offcanvas-left">
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+
+      <div class="col-xs-12 col-sm-9" data-no-turbolink>
+        <p class="pull-right visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
+        <%= render 'flash' %>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

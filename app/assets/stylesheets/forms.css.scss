@@ -1,0 +1,31 @@
+#form-sidebar {
+	padding-top: 20px;
+
+	#form_introduction,
+	#form_confirmation_message {
+    height: 200px;
+	}
+
+	select.datetime {
+	}
+}
+
+#form-container {
+	padding: 10px 50px;
+	background-color: #fcf8f2;
+}
+
+.form-intro {
+	margin-bottom: 20px;
+}
+
+.form-field {
+	.panel-heading:hover {
+		cursor: pointer;
+		background: #ededed;
+	}
+
+	.panel-footer {
+		background-color: #f7f7f9;
+	}
+}

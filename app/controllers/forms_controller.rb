@@ -1,6 +1,6 @@
-class FormsController < ApplicationController
+class FormsController < BaseController
   add_abilities_for(Form)
-  before_action :set_form, only: [:show, :edit, :update, :destroy]
+  before_action :set_form, only: [:show, :edit, :update, :destroy, :notifications, :report]
   before_action :create_hstore_data, only: [:create, :update]
   set_tab "forms"
 
@@ -16,6 +16,7 @@ class FormsController < ApplicationController
   end
 
   def edit
+    render layout: 'form_builder'
   end
 
   def create
@@ -24,7 +25,7 @@ class FormsController < ApplicationController
 
     respond_to do |format|
       if @form.save
-        format.html { redirect_to form_path(@form), notice: 'Form was successfully created.' }
+        format.html { redirect_to edit_form_path(@form), notice: 'Form was successfully created.' }
         format.json { render action: 'show', status: :created, location: @form }
       else
         format.html { render action: 'new' }
@@ -39,7 +40,7 @@ class FormsController < ApplicationController
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render action: 'edit', layout: 'form_builder' }
         format.json { render json: @form.errors, status: :unprocessable_entity }
       end
     end
@@ -62,12 +63,14 @@ class FormsController < ApplicationController
   end
 
   def report
-    @form = Form.find_by_slug(params[:id])
     @entries = @form.entries
   end
 
   def get_form_fields
     render partial: "forms/fields/"+params[:type]
+  end
+
+  def notifications
   end
 
   private
@@ -80,7 +83,7 @@ class FormsController < ApplicationController
     def safe_params
       params.require(:form).permit(:name, :introduction, :confirmation_message, :max_entries_allowed, :start_date, :end_date, :unique_ip_only, :send_email_confirmation,
                                    :show_questions_one_by_one,
-      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :field_image, :data, :_destroy])
+      	                           fields_attributes: [:id, :name, :required, :field_label, :field_hint, :field_type, :field_image, :data, :_destroy])
     end
 
     def create_hstore_data

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223131511) do
+ActiveRecord::Schema.define(version: 20140224215011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,10 +35,8 @@ ActiveRecord::Schema.define(version: 20140223131511) do
 
   create_table "form_fields", force: true do |t|
     t.string   "name"
-    t.text     "en_label"
-    t.text     "fr_label"
-    t.text     "en_hint"
-    t.text     "fr_hint"
+    t.text     "field_label"
+    t.text     "field_hint"
     t.string   "field_type"
     t.hstore   "properties"
     t.boolean  "required",                 default: true
@@ -91,8 +89,10 @@ ActiveRecord::Schema.define(version: 20140223131511) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "access_token"
   end
 
+  add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 

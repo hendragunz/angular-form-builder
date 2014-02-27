@@ -37,10 +37,8 @@ puts "creating forms and fields..."
 
   field = form.fields.create!(
       name: "field_#{count}",
-      en_label: Faker::Lorem.paragraph,
-      fr_label: Faker::Lorem.paragraph,
-      en_hint: Faker::Lorem.paragraph,
-      fr_hint: Faker::Lorem.paragraph,
+      field_label: Faker::Lorem.paragraph,
+      field_hint: Faker::Lorem.paragraph,
       field_type: ['mcq', 'boolean', 'single_line', 'paragraph', 'rating', 'number', 'checkbox', 'dropdown', 'section_break', 'page_break', 'name', 'address', 'date', 'email', 'time', 'phone', 'website', 'price', 'likert', 'facebook', 'twitter'].sample
   )
     field.properties = {data:"{option1: 'a', option2: 'b'}"} if field.field_type == 'mcq'
@@ -65,5 +63,6 @@ puts "creating forms and fields..."
     #data: "{}" if field['field_type'] == 'website'
     #data: "{}" if field['field_type'] == 'facebook'
     #data: "{}" if field['field_type'] == 'twitter'
+
 end
 

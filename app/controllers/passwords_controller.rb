@@ -1,4 +1,4 @@
-class PasswordsController < ApplicationController
+class PasswordsController < BaseController
   skip_before_filter :require_login
   layout "public"
 
@@ -15,7 +15,7 @@ class PasswordsController < ApplicationController
 
     # Tell the user instructions have been sent whether or not email was found.
     # This is to not leak information to attackers about which emails exist in the system.
-    redirect_to(root_path, notice: "#{t 'passwords.instructions_sent', default: 'Instructions sent. Please check your inbox'}.")
+    redirect_to(login_path, notice: "#{t 'passwords.instructions_sent', default: 'Instructions sent. Please check your inbox'}.")
   end
 
   # This is the reset password form.

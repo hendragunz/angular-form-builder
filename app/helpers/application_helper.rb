@@ -39,7 +39,7 @@ module ApplicationHelper
     "<i class='glyphicon glyphicon-#{icon}'></i>".html_safe
   end
 
-  def get_options_count(form,field)
+  def get_options_count(form, field)
     entries = form.entries
     results = {}
     data_table = GoogleVisualr::DataTable.new
@@ -66,7 +66,7 @@ module ApplicationHelper
     @chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
 
-  def get_scale_average(form,field)
+  def get_scale_average(form, field)
     entries = form.entries
     results = {}
     key = field.id.to_s
@@ -78,19 +78,19 @@ module ApplicationHelper
     (results[key].to_f/entries.count.to_f).to_s
   end
 
-  def get_bool_count(form,field)
+  def get_bool_count(form, field)
     entries = form.entries
     results = {}
     key = field.id.to_s
-    results[field.true_label] = 0
-    results[field.false_label] = 0
+    results[field.attributes[:true_label]] = 0
+    results[field.attributes[:false_label]] = 0
     data_table = GoogleVisualr::DataTable.new
     entries.each do |entry|
       answer = entry.answers
       if answer[key] == 'true'
-        results[field.true_label] = results[field.true_label] + 1
+        results[field.attributes[:true_label]] = results[field.attributes[:true_label]] + 1
       else
-        results[field.false_label] = results[field.false_label] + 1
+        results[field.attributes[:false_label]] = results[field.attributes[:false_label]] + 1
       end
     end
     #results
@@ -103,11 +103,11 @@ module ApplicationHelper
       data_table.set_cell(index, 1, value)
       index = index + 1
     end
-    opts = { width: 400, height: 240, title: field.name+' '+'Results', hAxis: { title: 'Options', titleTextStyle: {color: 'red'}} }
+    opts = { width: 400, height: 240, title: field.name+' '+'Results', hAxis: { title: 'Options', titleTextStyle: {color: 'red'} } }
     @chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
 
-  def get_entries(form,field)
+  def get_entries(form, field)
     entries = form.entries
     results = {}
     entries.each do |entry|
@@ -121,7 +121,5 @@ module ApplicationHelper
     results.map{ |key , value| results[key] = ((value.to_f/entries.count.to_f)*100).to_s + "%"}
     results
   end
-
-
 
 end

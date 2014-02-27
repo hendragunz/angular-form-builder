@@ -6,25 +6,15 @@
   <div>
  	  <h3>#<%= field.position.to_i + 1 %> - <%= field.name %> <%= status_tag("required", level: 'info') if field.required? %></h3>
 
- 	  <div class="row">
-		  <div class="col-xs-12 col-sm-6 col-md-6">
-        <h5>ENGLISH</h5>
-		  	<p><b>Name: </b> <%= field.en_label %></p>
-		  	<p><b>Hint: </b> <%= field.en_hint %></p>
-		  </div>
-		  <div class="col-xs-12 col-sm-6 col-md-6">
-        <h5>FRENCH</h5>
-  	    <p><b>Name: </b> <%= field.fr_label %></p>
-  	    <p><b>Hint: </b> <%= field.fr_hint %></p>
-		  </div>
-		</div>
+		<p><b>Label: </b> <%= field.field_label %></p>
+    <p><b>Hint: </b> <%= field.field_hint %></p>
     <p><b>Type: </b> <%= field.field_type %></p>
 	  <!--<%# if field.rating? %>-->
 	    <!--<p><b>Scale: </b> <%#= field.scale %></p>-->
 	  <!--<%# elsif field.mcq? %>-->
 	    <!--<p><b>Options: </b> <%#=  (@form.entries.count <= 0) ? field.field_options.map(&:name) : get_entries(@form, field) %></p>-->
 	  <!--<%# end %>-->
-     <%= field.properties['data'] %>
+    <%= field.properties['data'] %>
   </div>
   <hr>
 <% end %>

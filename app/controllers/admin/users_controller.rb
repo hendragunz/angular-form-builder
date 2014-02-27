@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::BaseController
     respond_to do |format|
       if @user.save
         UserMailer.new_account_member(@user, random_password).deliver
-        format.html { redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_created', default: 'is created'}. #{t 'an_email_was_sent_to', default: 'An email was sent to'} #{@user.email}." }
+        format.html { redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_created', default: 'created'}. #{t 'an_email_was_sent_to', default: 'An email was sent to'} #{@user.email}." }
       else
         format.html { render action: "new" }
       end

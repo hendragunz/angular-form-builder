@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: form_fields
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  field_label   :text
+#  field_hint    :text
+#  field_type :string(255)
+#  properties :hstore
+#  required   :boolean          default(TRUE)
+#  position   :integer          default(0)
+#  form_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class FormField < ActiveRecord::Base
 
   # CONSTANTS
@@ -11,8 +28,6 @@ class FormField < ActiveRecord::Base
     NUMBER        = 'number'
     CHECKBOX      = 'checkbox'
     DROPDOWN      = 'dropdown'
-    SECTION_BREAK = 'section_break'
-    PAGE_BREAK    = 'page_break'
     NAME          = 'name'
     ADDRESS       = 'address'
     DATE          = 'date'
@@ -26,12 +41,13 @@ class FormField < ActiveRecord::Base
     TWITTER       = 'twitter'
 
     def self.options
-      [ RATING, MCQ, SINGLE_LINE, PARAGRAPH, BOOLEAN, NUMBER, CHECKBOX, DROPDOWN, SECTION_BREAK, PAGE_BREAK, NAME, ADDRESS,
+      [ RATING, MCQ, SINGLE_LINE, PARAGRAPH, BOOLEAN, NUMBER, CHECKBOX, DROPDOWN, NAME, ADDRESS,
         DATE, EMAIL, TIME, PHONE, WEBSITE, PRICE, LIKERT, FACEBOOK, TWITTER]
     end
+
     def self.options_with_label
       [ ['MCQ', MCQ], ['Single Line Text', SINGLE_LINE], ['Paragraph Text', PARAGRAPH], ['Rating', RATING], ['Yes/No', BOOLEAN],
-      [ 'Number', NUMBER],['Checkbox', CHECKBOX], ['Dropdown', DROPDOWN], ['Section Break', SECTION_BREAK], ['Page Break', PAGE_BREAK],
+      [ 'Number', NUMBER],['Checkbox', CHECKBOX], ['Dropdown', DROPDOWN],
       ['Name', NAME], ['Address', ADDRESS], ['Date', DATE], ['Email', EMAIL], ['Time', TIME], ['Phone', PHONE], ['Website', WEBSITE],
       ['Price', PRICE], ['Likert', LIKERT], ['Facebook', FACEBOOK], ['Twitter', TWITTER]]
     end
@@ -49,15 +65,17 @@ class FormField < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   # hstore
   # store_accessor :properties, :currency, :scale_rate, :scale_type, :true_label, :false_label, :options, :likert_rows, :likert_columns
-    store_accessor :properties, :data
+  store_accessor :properties, :data
+
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
+  default_scope { order('position') }
 
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :name, :en_label, :field_type
+  validates_presence_of :name, :field_label, :field_type
   validates_uniqueness_of :name, scope: :form_id
   validates :field_type, inclusion: { in: FieldType.options }
   validates_attachment_content_type :field_image, content_type: %w(image/jpeg image/jpg image/png)
@@ -75,10 +93,10 @@ class FormField < ActiveRecord::Base
 
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
-  [FieldType::BOOLEAN, FieldType::NUMBER, FieldType::CHECKBOX, FieldType::DROPDOWN, FieldType::SECTION_BREAK,
-  FieldType::PAGE_BREAK, FieldType::NAME, FieldType::ADDRESS, FieldType::DATE, FieldType::EMAIL, FieldType::TIME,
-  FieldType::PHONE, FieldType::WEBSITE, FieldType::PRICE, FieldType::LIKERT, FieldType::FACEBOOK, FieldType::TWITTER,
-  FieldType::MCQ, FieldType::SINGLE_LINE, FieldType::PARAGRAPH, FieldType::RATING, FieldType::BOOLEAN].each do |method|
+  [FieldType::BOOLEAN, FieldType::NUMBER, FieldType::CHECKBOX, FieldType::DROPDOWN, FieldType::NAME, FieldType::ADDRESS,
+   FieldType::DATE, FieldType::EMAIL, FieldType::TIME,
+   FieldType::PHONE, FieldType::WEBSITE, FieldType::PRICE, FieldType::LIKERT, FieldType::FACEBOOK, FieldType::TWITTER,
+   FieldType::MCQ, FieldType::SINGLE_LINE, FieldType::PARAGRAPH, FieldType::RATING, FieldType::BOOLEAN].each do |method|
 	  define_method "#{method}?" do
 	    self.field_type == method
 	  end
@@ -86,6 +104,11 @@ class FormField < ActiveRecord::Base
 
   def can_be_deleted?
   	true
+  end
+
+  def as_json(options = {})
+    # this example ignores the user's options
+    super(options).merge(persisted: persisted?, field_options: field_options.map{|x| x.as_json})
   end
 
   private

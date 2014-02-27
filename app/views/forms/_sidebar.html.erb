@@ -1,0 +1,98 @@
+<div class="sidebar-nav">
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href="#form-fields" data-toggle="tab">Fields</a></li>
+	  <li><a href="#form-settings" data-toggle="tab">Settings</a></li>
+	  <li><a href="#form-style" data-toggle="tab">Style</a></li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div id="form-sidebar" class="tab-content">
+	  <div class="tab-pane active" id="form-fields">
+      <h5>ADD A FIELD</h5>
+      <p style="color:red;">WORKING FIELDS</p>
+      <ul>
+			  <li><%= link_to "Single Line Text", '', 'ng-click' => "addField('single_line')" %></li>
+			  <li><%= link_to "Paragraph Text", "", 'ng-click' => "addField('paragraph')"  %></li>
+			  <li><%= link_to "Yes / No", "", 'ng-click' => "addField('boolean')"  %></li>
+			  <li><%= link_to "Checkbox", "", 'ng-click' => "addField('mcq')"  %></li>
+      </ul>
+      <p style="color:red;">TO DO</p>
+      <ul>
+        <li><%= link_to "Dropdown", "", 'ng-click' => "addField('dropdown')"  %></li>
+			  <li><%= link_to "Rating", "", 'ng-click' => "addField('rating')"  %></li>
+        <li><%= link_to "Number", "", 'ng-click' => "addField('number')"  %></li>
+        <li><%= link_to "Calendar", "", 'ng-click' => "addField('calendar')"  %></li>
+        <li><%= link_to "Date & Time", "", 'ng-click' => "addField('datetime')"  %></li>
+        <li><%= link_to "Price", "", 'ng-click' => "addField('price')"  %></li>
+        <li><%= link_to "Website", "", 'ng-click' => "addField('website')"  %></li>
+        <li><%= link_to "Email", "", 'ng-click' => "addField('email')"  %></li>
+        <li><%= link_to "Phone", "", 'ng-click' => "addField('phone')"  %></li>
+        <li><%= link_to "Address", "", 'ng-click' => "addField('address')"  %></li>
+        <li><%= link_to "Section", "", 'ng-click' => "addField('section')"  %></li>
+        <li><%= link_to "Facebook", "", 'ng-click' => "addField('facebook')"  %></li>
+        <li><%= link_to "Twitter", "", 'ng-click' => "addField('twitter')"  %></li>
+        <li><%= link_to "File upload", "", 'ng-click' => "addField('file')"  %></li>
+        <li><%= link_to "Statement", "", 'ng-click' => "addField('statement')"  %></li>
+        <li><%= link_to "Picture choice", "", 'ng-click' => "addField('picture_choice')"  %></li>
+        <li><%= link_to "Question group", "", 'ng-click' => "addField('group')"  %></li>
+      </ul>
+	  </div>
+
+	  <div class="tab-pane" id="form-settings">
+      <h5>FORM SETTINGS</h5>
+      <%= f.input :introduction, input_html: {"ng-model"=>"form.introduction"} %>
+      <%= f.input :confirmation_message %>
+      <hr>
+      <%= f.input :name, input_html: {"ng-model"=>"form.name"} %>
+      <hr>
+      <%= f.input :max_entries_allowed %>
+      <%= f.input :start_date %>
+      <%= f.input :end_date %>
+      <hr>
+      <div class="form-group">
+         <div class="checkbox">
+          <label><%= f.check_box :unique_ip_only %> Allow Only One Entry Per IP</label>
+        </div>
+      </div>
+      <div class="form-group">
+         <div class="checkbox">
+          <label><%= f.check_box :send_email_confirmation %> Send Confirmation Email to User</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label><%= f.check_box :show_questions_one_by_one %> Show questions one by one</label>
+        </div>
+      </div>
+    </div>
+
+	  <div class="tab-pane" id="form-style" ng-controller="FormStyleCtrl">
+	  	<h5>STANDARD THEMES</h5>
+      <ul class="form-swatches">
+        <li>Blue</li>
+        <li>Green</li>
+        <li>Red</li>
+        <li>Grey</li>
+      </ul>
+    <h5 style="margin-top:20px;">CUSTOM THEME</h5>
+    <p>Add color swatch with live preview for the following sections</p>
+    <ul>
+      <li>Page background</li>
+      <li>Form Title</li>
+      <li>Form Introduction</li>
+      <li>Field Header background</li>
+      <li>Field background</li>
+      <li>Section Title</li>
+      <li>Section Description</li>
+      <li>Buttons</li>
+    </ul>
+
+    <h5>TYPOGRAPHY</h5>
+    <p>Integrate with Google fonts</p>
+
+    <h5>LOGO</h5>
+    <p>Allow user to drag & drop logo</p>
+    <p>Logo goes to Header</p>
+	  </div>
+	</div>
+</div>

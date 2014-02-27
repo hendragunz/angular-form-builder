@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: forms
+#
+#  id                        :integer          not null, primary key
+#  name                      :string(255)
+#  slug                      :string(255)      not null
+#  introduction              :text
+#  confirmation_message      :text
+#  max_entries_allowed       :integer
+#  unique_ip_only            :boolean          default(FALSE)
+#  send_email_confirmation   :boolean          default(FALSE)
+#  show_questions_one_by_one :boolean          default(FALSE)
+#  start_date                :datetime
+#  end_date                  :datetime
+#  entries_count             :integer          default(0)
+#  user_id                   :integer
+#  created_at                :datetime
+#  updated_at                :datetime
+#
+
 class Form < ActiveRecord::Base
 
 	# ASSOCIATIONS
@@ -5,13 +26,13 @@ class Form < ActiveRecord::Base
   has_many :fields, class_name: "FormField", dependent: :destroy
   accepts_nested_attributes_for :fields, reject_if: :all_blank, allow_destroy: true
 
-  belongs_to :creator, class_name: "User"
+  belongs_to :creator, class_name: "User", foreign_key: "user_id"
   has_many :entries, class_name: "FormEntry", dependent: :destroy
 
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
-  scope :active, -> { where(active: true) }
+  scope :active,   -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
 
@@ -40,7 +61,7 @@ class Form < ActiveRecord::Base
   def self.allowed(user, subject)
     rules = []
     return rules unless subject.instance_of?(Form)
-    rules << :manage if user && (user.account.is_owner?(user) || user == subject.creator)
+    rules << :manage if user && user == subject.creator
     rules
   end
 

@@ -1,3 +1,21 @@
-<%= page_title("Editing Form") %>
+<%= simple_nested_form_for(@form, html: { class: 'form-horizontal' }) do |f| %>
+  <%= content_for :sidebar do %>
+    <%= render 'sidebar', f: f %>
+  <% end %>
+  <%= f.error_notification %>
 
-<%= render 'form' %>
+  <div id="form-container">
+    <div class="page-title">
+      <h1>{{ form.name || 'Form' }}</h1>
+    </div>
+
+    <div class="form-intro">
+      {{ form.introduction || 'Introduce the purpose of your form and how you intend to use collected data. Hover to the form settings to replace this message.' }}
+    </div>
+
+    <%= render 'fields', f: f %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-success' %>
+  </div>
+<% end %>

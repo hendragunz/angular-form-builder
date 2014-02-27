@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionsController < BaseController
   skip_before_filter :require_login, only: [:new, :create]
   layout "public", only: [:new, :create]
 

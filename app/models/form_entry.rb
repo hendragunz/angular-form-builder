@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: form_entries
+#
+#  id         :integer          not null, primary key
+#  form_id    :integer
+#  answers    :hstore
+#  user_info  :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class FormEntry < ActiveRecord::Base
 
 	# ASSOCIATIONS
@@ -57,6 +69,28 @@ class FormEntry < ActiveRecord::Base
 
   def can_be_deleted?
     false
+  end
+
+  def self.to_csv(options = {})
+    headers = %w{ID Answers IP Date}
+    header_indexes = Hash[headers.map.with_index{|*x| x}]
+
+    CSV.generate(options) do |csv|
+      csv << headers
+      all.each do |entry|
+        data = {}
+        data["ID"]      = entry.id
+        data["Answers"] = entry.answers
+        data["IP"] = entry.remote_ip
+        data["Date"]    = entry.created_at
+
+        row = []
+        header_indexes.each do |field, index|
+          row << data[field] || ''
+        end
+        csv << row
+      end
+    end
   end
 
 end
