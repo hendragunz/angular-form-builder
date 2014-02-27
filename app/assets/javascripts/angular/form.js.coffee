@@ -85,13 +85,15 @@
   $scope.needField = (field, field_needed) ->
     switch field_needed
       when 'field_options'
-        return ['mcq', 'dropdown'].indexOf(field.field_type) >= 0
+        return ['mcq', 'dropdown', 'rating'].indexOf(field.field_type) >= 0
       when 'boolean_label'
         return ['boolean'].indexOf(field.field_type) >= 0
 
 
   angular.element(document).ready () ->
-    $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
+    $timeout (->
+      $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
+    )
     # console.log $scope.fields
     # console.log $scope.form
 

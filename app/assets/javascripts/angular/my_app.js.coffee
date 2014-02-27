@@ -1,8 +1,5 @@
-myApp = angular.module('FormBuilder', ['ui.sortable'])
+bootstrapAngular = ->
+  angular.module('FormBuilder', ['ui.sortable']);
+  angular.bootstrap(document.body, ['FormBuilder'])
 
-# @bootstrapAngular = ->
-#   $('[ng-app]').each ->
-#     module = $(this).attr('ng-app')
-#     angular.bootstrap(this, [module])
-
-# $(document).on('page:load', bootstrapAngular)
+$(document).on('ready page:load', bootstrapAngular)
