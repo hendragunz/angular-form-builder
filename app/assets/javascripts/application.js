@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require i18n
 //= require jquery
 //= require jquery.ui.sortable
 //= require jquery_ujs
@@ -22,4 +23,3 @@
 //= require angular/modules/sortable
 //= require angular/my_app
 //= require angular/form
-
