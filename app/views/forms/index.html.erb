@@ -20,7 +20,7 @@
         <td class="tright">
           <%= link_to "Notifications", notifications_form_path(form) %> |
           <%= link_to 'Edit', edit_form_path(form), 'data-no-turbolink' => true %> |
-          <%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: 'Are you sure?' }, class: "#{form.can_be_deleted? ? 'disabled' : ''}" %>
+          <%= link_to 'Destroy', form_path(form), method: :delete, data: { confirm: "#{t 'are_you_sure'}" }, class: "#{form.can_be_deleted? ? 'disabled' : ''}" %>
         </td>
       </tr>
     <% end %>
