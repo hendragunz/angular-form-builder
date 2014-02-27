@@ -55,7 +55,7 @@
   # method to remove field
   $scope.removeField = (field) ->
     if field.persisted
-      if confirm("Are you sure you want to remove, existing data will be deleted as well")
+      if confirm( I18n.t('form').confirm_remove_field )
         field.deleted = true
     else
       $scope.fields.splice( $scope.fields.indexOf(field), 1 )
@@ -65,7 +65,7 @@
 
   $scope.removeFieldOption = (field, field_option)->
     if field_option.persisted
-      if confirm("Are you sure you want to remove, existing data will be deleted as well")
+      if confirm( I18n.t('form').confirm_remove_field )
         field_option.deleted = true
     else
       field.field_options.splice( field.field_options.indexOf(field_option), 1 )
@@ -94,7 +94,7 @@
 
 
   angular.element(document).ready () ->
-    $scope.form.introduction ||= 'content should go in text area'
+    $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
     # console.log $scope.fields
     # console.log $scope.form
 
