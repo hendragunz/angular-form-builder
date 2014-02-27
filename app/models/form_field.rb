@@ -4,10 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
-#  en_label   :text
-#  fr_label   :text
-#  en_hint    :text
-#  fr_hint    :text
+#  field_label   :text
+#  field_hint    :text
 #  field_type :string(255)
 #  properties :hstore
 #  required   :boolean          default(TRUE)
@@ -58,7 +56,7 @@ class FormField < ActiveRecord::Base
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :name, :en_label, :field_type
+  validates_presence_of :name, :field_label, :field_type
   validates_uniqueness_of :name, scope: :form_id
   validates :field_type, inclusion: { in: FieldType.options }
   # validates :scale, presence: true, numericality: { greater_than: 0 }, if: Proc.new { |question| question.rating? }

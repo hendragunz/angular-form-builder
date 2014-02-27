@@ -1,5 +1,13 @@
 #form-sidebar {
 	padding-top: 20px;
+
+	#form_introduction,
+	#form_confirmation_message {
+    height: 200px;
+	}
+
+	select.datetime {
+	}
 }
 
 #form-container {

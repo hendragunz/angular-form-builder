@@ -43,10 +43,8 @@ puts "creating form fields..."
 	count = x + 1
 	field = FormField.create!(
 		name: "field_#{count}",
-		en_label: Faker::Lorem.paragraph,
-    fr_label: Faker::Lorem.paragraph,
-		en_hint: Faker::Lorem.paragraph,
-		fr_hint: Faker::Lorem.paragraph,
+		field_label: Faker::Lorem.paragraph,
+		field_hint: Faker::Lorem.paragraph,
 		field_type: ['mcq', 'boolean', 'single_line', 'paragraph', 'rating'].sample,
 		scale: (1..5).to_a.sample,
 		true_label: "Yes",

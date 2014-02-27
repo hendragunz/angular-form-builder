@@ -42,14 +42,12 @@ ActiveRecord::Schema.define(version: 20140224215011) do
 
   create_table "form_fields", force: true do |t|
     t.string   "name"
-    t.text     "en_label"
-    t.text     "fr_label"
-    t.text     "en_hint"
-    t.text     "fr_hint"
+    t.text     "field_label"
+    t.text     "field_hint"
     t.string   "field_type"
     t.hstore   "properties"
-    t.boolean  "required",   default: true
-    t.integer  "position",   default: 0
+    t.boolean  "required",    default: true
+    t.integer  "position",    default: 0
     t.integer  "form_id"
     t.datetime "created_at"
     t.datetime "updated_at"

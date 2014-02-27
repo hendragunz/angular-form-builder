@@ -7,8 +7,8 @@
  	  <h3>#<%= field.position.to_i + 1 %> - <%= field.name %> <%= status_tag("required", level: 'info') if field.required? %></h3>
 
  	  <div class="row">
-		  <p><b>Name: </b> <%= field.en_label %></p>
-      <p><b>Hint: </b> <%= field.en_hint %></p>
+		  <p><b>Name: </b> <%= field.field_label %></p>
+      <p><b>Hint: </b> <%= field.field_hint %></p>
 		</div>
     <p><b>Type: </b> <%= field.field_type %></p>
 	  <% if field.rating? %>

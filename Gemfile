@@ -36,7 +36,6 @@ gem 'sdoc',          group: :doc, require: false
 gem 'spring',        group: :development
 
 gem 'simple_form'
-gem 'net-ldap', require: 'net/ldap'
 #gem 'compass-rails', "~> 2.0.0", github: "Compass/compass-rails"
 #gem 'compass-rails'
 gem 'tabs_on_rails', "~> 2.1.1"
@@ -49,7 +48,7 @@ gem 'six'
 gem 'kaminari-bootstrap'
 gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
-gem 'angularjs-rails'
+gem 'angularjs-rails', '~> 1.2.13'
 
 group :development, :test do
   gem 'faker', '1.0.1'

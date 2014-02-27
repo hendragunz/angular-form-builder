@@ -24,7 +24,7 @@ class FormsController < BaseController
 
     respond_to do |format|
       if @form.save
-        format.html { redirect_to form_path(@form), notice: 'Form was successfully created.' }
+        format.html { redirect_to edit_form_path(@form), notice: 'Form was successfully created.' }
         format.json { render action: 'show', status: :created, location: @form }
       else
         format.html { render action: 'new' }
@@ -78,7 +78,7 @@ class FormsController < BaseController
     def safe_params
       params.require(:form).permit(:name, :introduction, :confirmation_message, :max_entries_allowed, :start_date, :end_date, :unique_ip_only, :send_email_confirmation,
                                    :show_questions_one_by_one,
-      	                           fields_attributes: [:id, :name, :required, :en_label, :fr_label, :en_hint, :fr_hint, :field_type, :scale, :true_label, :false_label, :_destroy, :position,
+      	                           fields_attributes: [:id, :name, :required, :field_label, :field_hint, :field_type, :scale, :true_label, :false_label, :_destroy, :position,
                                    field_options_attributes: [:id, :name, :_destroy] ])
     end
 end

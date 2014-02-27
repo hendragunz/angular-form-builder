@@ -14,7 +14,7 @@
   $scope.sortableOptions =
     update: (e, ui) ->
       $timeout (->
-        angular.forEach $scope.fields, (field, index)->
+        angular.forEach $scope.fields, (field, index) ->
           field.position = index
           console.log field
       ), 100
@@ -27,8 +27,8 @@
       deleted: false
       id: $scope.unique_id()
       name: 'field_' + $scope.unique_id()
-      en_label: 'Field Label'
-      en_hint: ''
+      field_label: 'Field Label'
+      field_hint: ''
       field_type: field_type
       required: false
       position: ($scope.fields.length + 1)
@@ -60,7 +60,7 @@
         $scope.fields.splice( $scope.fields.indexOf(field), 1 );
 
   $scope.addFieldOption = (field) ->
-    field.field_options.push({name: 'New Option', id: $scope.unique_id(), persisted: false, deleted: false})
+    field.field_options.push({name: 'New option', id: $scope.unique_id(), persisted: false, deleted: false})
 
   $scope.removeFieldOption = (field, field_option)->
     if confirm("Are you sure you want to remove, existing data will be deleted as well")
@@ -83,11 +83,11 @@
   $scope.underscorizeFieldName = (field) ->
     field.name = String(field.name).toLowerCase().replace(' ', '_')
 
-  # w
+  # display field options based on field type
   $scope.needField = (field, field_needed) ->
     switch field_needed
       when 'field_options'
-        return ['rating', 'dropdown'].indexOf(field.field_type) >= 0
+        return ['mcq', 'dropdown'].indexOf(field.field_type) >= 0
       when 'boolean_label'
         return ['boolean'].indexOf(field.field_type) >= 0
 

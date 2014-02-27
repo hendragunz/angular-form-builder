@@ -126,7 +126,6 @@ GEM
     multi_json (1.8.2)
     multipart-post (1.2.0)
     nested_form (0.3.2)
-    net-ldap (0.3.1)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -227,7 +226,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angularjs-rails
+  angularjs-rails (~> 1.2.13)
   annotate
   awesome_print
   better_errors
@@ -246,7 +245,6 @@ DEPENDENCIES
   kaminari-bootstrap
   letter_opener
   nested_form
-  net-ldap
   pg
   quiet_assets
   rack-mini-profiler

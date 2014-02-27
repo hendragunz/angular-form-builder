@@ -3,7 +3,7 @@
   <div ng-repeat="field in fields" class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}">
     <div class="panel-heading" ng-click="toggleFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
-        {{ field.en_label || field.fr_label }}
+        {{ field.field_label }}
         <%= link_to '', "ng-click" => "removeField(field)", class: 'pull-right link-delete', title: "Click to delete this field" do %>
           <i class='fa fa-trash-o'></i>
         <% end %>
@@ -57,7 +57,7 @@
         <span class="input-group-addon"> {{ field.properties.currency || '$' }}</span>
       </div>
 
-      <p class="help-block" ng-if="field.en_hint != ''"> {{ field.en_hint }} </p>
+      <p class="help-block" ng-if="field.field_hint != ''"> {{ field.field_hint }} </p>
     </div>
     <!-- end panel body -->
 
@@ -70,8 +70,8 @@
         <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
         <%= ff.hidden_field :name, value: "{{ field.name }}" %>
-        <%= ff.input :en_label, label: 'Label', as: :string, input_html:  { 'ng-model' => "field.en_label", id: nil } %>
-        <%= ff.input :en_hint, label: 'Hint', as: :string, input_html:   { 'ng-model' => "field.en_hint", id: nil } %>
+        <%= ff.input :field_label, label: 'Label', as: :string, input_html: { 'ng-model' => "field.field_label", id: nil } %>
+        <%= ff.input :field_hint, label: 'Hint', as: :string, input_html: { 'ng-model' => "field.field_hint", id: nil } %>
         <div class="checkbox">
           <label><%= ff.check_box :required, { 'ng-model' => "field.required", id: nil } %> Required</label>
         </div>
@@ -94,12 +94,12 @@
                 <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
                 <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
               </div>
-              <div class="col-xs-1" style='text-align:left;'>
+              <div class="col-xs-1" style='padding-left:0;'>
                 <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>
               </div>
             <% end %>
           </div>
-          <p><%= link_to "Add Option", '', 'ng-click' => "addFieldOption(field)" %></p>
+          <p><%= link_to "Add option", '', 'ng-click' => "addFieldOption(field)" %></p>
         </div><!-- end field options -->
 
       <% end %>
