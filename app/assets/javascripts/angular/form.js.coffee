@@ -32,13 +32,8 @@
       field_type: field_type
       required: false
       position: ($scope.fields.length + 1)
-      properties: {
-        true_label: ''
-        false_label: ''
-      }
-      field_options: [
-        # {name: 'Option 1', id: $scope.unique_id(), persisted: false}
-      ]
+      properties: {}
+      field_options: []
     }
 
     # prepopulate field options if field type is mcq | dropdown
@@ -49,25 +44,31 @@
         {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
       ]
 
+    # prepopulate field options if field type is boolean
+    if (field.field_type == 'boolean')
+      field.properties =
+        true_label: 'Yes'
+        false_label: 'No'
+
     $scope.fields.push( field )
 
   # method to remove field
   $scope.removeField = (field) ->
-    if confirm("Are you sure you want to remove, existing data will be deleted as well")
-      if field.persisted
+    if field.persisted
+      if confirm("Are you sure you want to remove, existing data will be deleted as well")
         field.deleted = true
-      else
-        $scope.fields.splice( $scope.fields.indexOf(field), 1 );
+    else
+      $scope.fields.splice( $scope.fields.indexOf(field), 1 )
 
   $scope.addFieldOption = (field) ->
     field.field_options.push({name: 'New option', id: $scope.unique_id(), persisted: false, deleted: false})
 
   $scope.removeFieldOption = (field, field_option)->
-    if confirm("Are you sure you want to remove, existing data will be deleted as well")
-      if field_option.persisted
+    if field_option.persisted
+      if confirm("Are you sure you want to remove, existing data will be deleted as well")
         field_option.deleted = true
-      else
-        field.field_options.splice( field.field_options.indexOf(field_option), 1 )
+    else
+      field.field_options.splice( field.field_options.indexOf(field_option), 1 )
 
   # will return unique_id
   $scope.unique_id = () ->
@@ -93,7 +94,8 @@
 
 
   angular.element(document).ready () ->
-    console.log $scope.fields
+    $scope.form.introduction ||= 'content should go in text area'
+    # console.log $scope.fields
     # console.log $scope.form
 
 ]

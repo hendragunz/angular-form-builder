@@ -23,3 +23,14 @@
 //= require angular/my_app
 //= require angular/form
 
+
+var bootstrapAngular = function() {
+  return $('[ng-app]').each(function() {
+    var module;
+    module = $(this).attr('ng-app');
+    return angular.bootstrap(this, [module]);
+  });
+};
+
+
+$(document).on('page:load', bootstrapAngular)
