@@ -9,6 +9,8 @@
     boolean:      'boolean'
     price:        'price'
     dropdown:     'dropdown'
+    facebook:     'facebook'
+    twitter:      'twitter'
   }
 
   $scope.sortableOptions =
@@ -36,7 +38,7 @@
       field_options: []
     }
 
-    # prepopulate field options if field type is mcq | dropdown
+    # prepopulate field based on type
     if (field.field_type == 'mcq') || (field.field_type == 'dropdown')
       field.field_options = [
         {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
@@ -44,11 +46,22 @@
         {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
       ]
 
-    # prepopulate field options if field type is boolean
     if (field.field_type == 'boolean')
       field.properties =
         true_label: 'Yes'
         false_label: 'No'
+
+    if (field.field_type == 'facebook')
+      field = {
+        field_label: 'Facebook'
+        field_hint: 'Enter valid facebook page URL'
+      }
+
+    if (field.field_type == 'twitter')
+      field = {
+        field_label: 'Twitter'
+        field_hint: 'Enter twitter username'
+      }
 
     $scope.fields.push( field )
 
