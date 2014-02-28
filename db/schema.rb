@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140224215011) do
     t.boolean  "show_questions_one_by_one", default: false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string   "persons_to_notify"
     t.integer  "entries_count",             default: 0
     t.integer  "user_id"
     t.datetime "created_at"

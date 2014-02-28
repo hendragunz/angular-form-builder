@@ -37,6 +37,9 @@ en:
   users:
     new: Add user
     random_password_will_be_sent: A random password will be sent to the user once created
+  form_entry_mailer:
+    notify_recipient:
+      subject: "New entry received"
   user_mailer:
     welcome:
       subject: "Welcome to %{site_name}!"

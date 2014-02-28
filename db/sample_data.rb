@@ -32,6 +32,7 @@ puts "creating forms..."
 	  end_date: [nil, Date.today + 3.months].sample,
 	  show_questions_one_by_one: [true, false].sample,
 	  send_email_confirmation: [true, false].sample,
+	  persons_to_notify: "@email.com, b@email.com, c@email.com",
 	  user_id: User.all.map(&:id).sample
 	)
 end

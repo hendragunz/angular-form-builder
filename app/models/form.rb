@@ -40,6 +40,7 @@ class Form < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   validates_presence_of :name
   validates_uniqueness_of :name
+  validates_length_of :persons_to_notify, maximum: 255, allow_blank: true
 
 
   # CALLBACKS
