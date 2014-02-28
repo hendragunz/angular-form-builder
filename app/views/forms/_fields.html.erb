@@ -11,51 +11,9 @@
     </div>
 
     <div class="panel-body">
-      <!-- single line -->
-      <input type="text" class="form-control" ng-if="field.field_type == 'single_line'" name="{{ field.name }}">
-
-      <!-- paragraph -->
-      <textarea class="form-control" rows="3" ng-if="field.field_type == 'paragraph'" name="{{ field.name }}"></textarea>
-
-      <!-- boolean -->
-      <div class="radio" ng-if="field.field_type == 'boolean'">
-        <label>
-          <input type="radio" name="{{ field.name }}" value="1" checked>
-          {{ field.properties.true_label }}
-        </label>
-      </div>
-      <div class="radio" ng-if="field.field_type == 'boolean'">
-        <label>
-          <input type="radio" name="{{ field.name }}" value="0" checked>
-          {{ field.properties.false_label }}
-        </label>
-      </div>
-
-      <!-- MCQ -->
-      <div class="checkbox" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'mcq') && ((opt.deleted == undefined) || (opt.deleted == false))">
-        <label>
-          <input type="checkbox"> {{ opt.name }}
-        </label>
-      </div>
-
-      <!-- rating -->
-      <div class="radio-inline" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating') && ((opt.deleted == undefined) || (opt.deleted == false))">
-        <label>
-          <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
-          {{ opt.name }}
-        </label>
-      </div>
-
-      <!-- dropdown -->
-      <!-- <select class="form-control" ng-show="(field.field_type = 'dropdown')">
-        <option> {{ opt.name }} </option>
-      </select> -->
-
-      <!-- price -->
-      <div class="input-group price" ng-show="(field.field_type == 'price')">
-        <input type="text" class="form-control span3">
-        <span class="input-group-addon"> {{ field.properties.currency || '$' }}</span>
-      </div>
+      <% Enum::FormField::FIELD_TYPE[:options].each do |f_type| %>
+        <%= render "/forms/field_types/#{f_type.to_s}" %>
+      <% end %>
 
       <p class="help-block" ng-if="field.field_hint != ''"> {{ field.field_hint }} </p>
     </div>

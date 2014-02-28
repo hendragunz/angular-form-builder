@@ -1,0 +1,23 @@
+en:
+  enumerize:
+    form_field:
+      field_type:
+        single_line:  "Single Line"
+        boolean:      "Boolean"
+        paragraph:    "Paragraph"
+        mcq:          "MCQ"
+        rating:       "Rating"
+        number:       "Number"
+        checkbox:     "Checkbox"
+        dropdown:     "Dropdown"
+        name:         "Name"
+        address:      "Address"
+        date:         "Date"
+        email:        "Email"
+        time:         "Time"
+        phone:        "Phone"
+        website:      "Website"
+        price:        "Price"
+        likert:       "Likert"
+        facebook:     "Facebook"
+        twitter:      "Twitter"

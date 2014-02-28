@@ -1,7 +1,10 @@
+
 <!-- rating -->
-<div class="radio" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'rating') && ((opt.deleted == undefined) || (opt.deleted == false))">
-  <label>
-    <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
-    {{ opt.name }}
-  </label>
+<div  ng-if="(field.field_type == 'rating')">
+  <div class="radio" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
+    <label>
+      <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
+      {{ opt.name }}
+    </label>
+  </div>
 </div>

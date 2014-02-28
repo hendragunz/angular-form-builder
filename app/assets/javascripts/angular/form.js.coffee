@@ -1,15 +1,7 @@
 @FormBuilderCtrl = ["$scope", "$timeout", ($scope, $timeout) ->
   $scope.form
   $scope.fields
-  $scope.field_types = {
-    mcq:          'mcq'
-    paragraph:    'paragraph'
-    single_line:  'single_line'
-    rating:       'rating'
-    boolean:      'boolean'
-    price:        'price'
-    dropdown:     'dropdown'
-  }
+  $scope.field_types
 
   $scope.sortableOptions =
     update: (e, ui) ->
@@ -37,7 +29,7 @@
     }
 
     # prepopulate field options if field type is mcq | dropdown
-    if (field.field_type == 'mcq') || (field.field_type == 'dropdown')
+    if (field.field_type == 'mcq') || (field.field_type == 'dropdown') || (field.field_type == 'rating') || (field.field_type == 'checkbox')
       field.field_options = [
         {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
         {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}
@@ -83,19 +75,19 @@
 
   # display field options based on field type
   $scope.needField = (field, field_needed) ->
-    switch field_needed
-      when 'field_options'
-        return ['mcq', 'dropdown', 'rating'].indexOf(field.field_type) >= 0
-      when 'boolean_label'
-        return ['boolean'].indexOf(field.field_type) >= 0
+    field_type = $scope.field_types[field.field_type]
+    return ( field_type.options.indexOf(field_needed) >= 0 )
 
 
   angular.element(document).ready () ->
     $timeout (->
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
+      console.log $scope.fields
+      console.log "---------------------------"
+      console.log $scope.form
+      console.log "---------------------------"
+      console.log $scope.field_types
     )
-    # console.log $scope.fields
-    # console.log $scope.form
 
 ]
 

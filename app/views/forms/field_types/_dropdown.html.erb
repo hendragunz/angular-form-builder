@@ -1,0 +1,4 @@
+<!-- dropdown -->
+<select class="form-control" ng-show="(field.field_type == 'dropdown')">
+  <option ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))"> {{ opt.name }} </option>
+</select>
