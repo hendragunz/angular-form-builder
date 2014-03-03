@@ -20,7 +20,8 @@ module FieldTypeCollection
     price:        {type: 'number',    options: ['label', 'hint', 'required']},
     likert:       {type: 'rowcolumn', options: ['label', 'hint', 'required']},
     facebook:     {type: 'text',      options: ['label', 'hint', 'required']},
-    twitter:      {type: 'text',      options: ['label', 'hint', 'required']}
+    twitter:      {type: 'text',      options: ['label', 'hint', 'required']},
+    file:         {type: 'file',      options: ['label', 'hint', 'required']}
   }
 
   included do
