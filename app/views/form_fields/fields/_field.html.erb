@@ -4,7 +4,7 @@
   </div>
 
   <div class="panel-body">
-    <%= image_tag question.field_image.url(:thumb) %>
+    <%#= image_tag question.field_image.url(:thumb) %>
     <%= render "form_fields/fields/#{question.field_type}", f: f, question: question %>
     <% if question.field_hint.present? %>
       <span class="help-block"><%= question.field_hint %></span>
