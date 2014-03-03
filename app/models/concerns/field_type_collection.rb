@@ -2,26 +2,26 @@ module FieldTypeCollection
   extend ActiveSupport::Concern
 
   FieldConfig = {
-    single_line:  {type: 'text',      options: ['label', 'hint', 'required']},
-    boolean:      {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
-    paragraph:    {type: 'textarea',  options: ['label', 'hint', 'required']},
-    mcq:          {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
-    rating:       {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
-    number:       {type: 'number',    options: ['label', 'hint', 'required']},
-    checkbox:     {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
-    dropdown:     {type: 'select',    options: ['label', 'hint', 'required', 'field_options']},
-    name:         {type: 'text',      options: ['label', 'hint', 'required']},
     address:      {type: 'text',      options: ['label', 'hint', 'required']},
+    boolean:      {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
+    checkbox:     {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     date:         {type: 'date',      options: ['label', 'hint', 'required']},
+    dropdown:     {type: 'select',    options: ['label', 'hint', 'required', 'field_options']},
     email:        {type: 'email',     options: ['label', 'hint', 'required']},
-    time:         {type: 'time',      options: ['label', 'hint', 'required']},
-    phone:        {type: 'tel',       options: ['label', 'hint', 'required']},
-    website:      {type: 'url',       options: ['label', 'hint', 'required']},
-    price:        {type: 'number',    options: ['label', 'hint', 'required']},
-    likert:       {type: 'rowcolumn', options: ['label', 'hint', 'required']},
     facebook:     {type: 'text',      options: ['label', 'hint', 'required']},
+    file:         {type: 'file',      options: ['label', 'hint', 'required']},
+    mcq:          {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
+    name:         {type: 'text',      options: ['label', 'hint', 'required']},
+    number:       {type: 'number',    options: ['label', 'hint', 'required']},
+    paragraph:    {type: 'textarea',  options: ['label', 'hint', 'required']},
+    phone:        {type: 'tel',       options: ['label', 'hint', 'required']},
+    price:        {type: 'number',    options: ['label', 'hint', 'required']},
+    rating:       {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
+    single_line:  {type: 'text',      options: ['label', 'hint', 'required']},
+    statement:    {type: 'rowcolumn', options: ['label', 'hint', 'required']},
+    time:         {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:      {type: 'text',      options: ['label', 'hint', 'required']},
-    file:         {type: 'file',      options: ['label', 'hint', 'required']}
+    website:      {type: 'url',       options: ['label', 'hint', 'required']}
   }
 
   included do
