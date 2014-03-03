@@ -40,6 +40,9 @@
       field.properties =
         true_label: 'Yes'
         false_label: 'No'
+      # 2 lines below will be removed soon!!!
+      field.true_label = 'Yes'
+      field.false_label = 'No'
 
     if (field.field_type == 'facebook')
       field = {
@@ -52,6 +55,11 @@
         field_label: 'Twitter'
         field_hint: 'Enter twitter username'
       }
+
+    if (field.field_type == 'section')
+        field.properties = {
+          description: "Section detail here..."
+        }
 
     $scope.fields.push( field )
 
@@ -93,11 +101,11 @@
   angular.element(document).ready () ->
     $timeout (->
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
-      console.log $scope.fields
-      console.log "---------------------------"
-      console.log $scope.form
-      console.log "---------------------------"
-      console.log $scope.field_types
+      # console.log $scope.fields
+      # console.log "---------------------------"
+      # console.log $scope.form
+      # console.log "---------------------------"
+      # console.log $scope.field_types
     )
 
 ]

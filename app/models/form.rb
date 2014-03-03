@@ -13,6 +13,7 @@
 #  show_questions_one_by_one :boolean          default(FALSE)
 #  start_date                :datetime
 #  end_date                  :datetime
+#  persons_to_notify         :string(255)
 #  entries_count             :integer          default(0)
 #  user_id                   :integer
 #  created_at                :datetime
