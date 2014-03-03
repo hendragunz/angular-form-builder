@@ -1,0 +1,10 @@
+
+<!-- picture choice -->
+<div  ng-if="(field.field_type == 'picture_choice')">
+  <div class="radio" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
+    <label>
+      <input type="radio" name="{{ field.name }}" value="{{ opt.id }}">
+      {{ opt.name }}
+    </label>
+  </div>
+</div>

@@ -19,7 +19,7 @@ class FormField < ActiveRecord::Base
 
 	# CAPABILITIES
   # ------------------------------------------------------------------------------------------------------
-  # has_attached_file :field_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :field_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
 
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
@@ -48,12 +48,7 @@ class FormField < ActiveRecord::Base
   validates :name,        presence: true,
                           uniqueness: { scope: :form_id, case_sensitive: false }
   validates :field_label, presence: true
-  # validates_attachment_content_type :field_image, content_type: %w(image/jpeg image/jpg image/png)
-
-  # validates :scale, presence: true, numericality: { greater_than: 0 }, if: Proc.new { |question| question.rating? }
-  # validates :options, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.mcq? }
-  # validates :true_label, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.boolean? }
-  # validates :false_label, presence: true, length: { maximum: 255 }, if: Proc.new { |question| question.boolean? }
+  validates_attachment_content_type :field_image, content_type: %w(image/jpeg image/jpg image/png)
 
 
   # CALLBACKS

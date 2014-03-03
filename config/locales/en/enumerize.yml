@@ -13,6 +13,7 @@ en:
         name:         "Name"
         address:      "Address"
         date:         "Date"
+        datetime:     "DateTime"
         email:        "Email"
         time:         "Time"
         phone:        "Phone"
@@ -22,3 +23,4 @@ en:
         facebook:     "Facebook"
         twitter:      "Twitter"
         file:         "File"
+        picture_choice:  "Picture Choice"
