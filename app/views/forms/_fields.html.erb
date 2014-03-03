@@ -15,7 +15,7 @@
         <%= render "/forms/field_types/#{f_type.to_s}" %>
       <% end %>
 
-      <p class="help-block" ng-if="field.field_hint != ''"> {{ field.field_hint }} </p>
+      <p class="help-block" ng-if="(field.field_hint != '') && (field.field_hint != undefined)"> {{ field.field_hint }} </p>
     </div>
     <!-- end panel body -->
 
@@ -30,7 +30,7 @@
         <%= ff.hidden_field :name, value: "{{ field.name }}" %>
         <%= ff.input :field_label, label: 'Label', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'label')" }, input_html: { 'ng-model' => "field.field_label" } %>
         <%= ff.input :field_hint, label: 'Hint', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'hint')" }, input_html: { 'ng-model' => "field.field_hint" } %>
-        <div class="checkbox" ng-if="needField(field, 'required')">
+        <div class="checkbox {{ needField(field, 'required') ? '' : 'hide' }}">
           <label><%= ff.check_box :required, { 'ng-model' => "field.required" } %> Required</label>
         </div>
 
