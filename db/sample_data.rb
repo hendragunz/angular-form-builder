@@ -40,7 +40,7 @@ puts "creating forms and fields..."
       name: "field_#{count}",
       field_label: Faker::Lorem.paragraph,
       field_hint: Faker::Lorem.paragraph,
-      field_type: ['mcq', 'boolean', 'single_line', 'paragraph', 'rating', 'number', 'checkbox', 'dropdown', 'section_break', 'page_break', 'name', 'address', 'date', 'email', 'time', 'phone', 'website', 'price', 'likert', 'facebook', 'twitter'].sample
+      field_type: ['mcq', 'boolean', 'single_line', 'paragraph', 'rating', 'number', 'checkbox', 'dropdown', 'name', 'address', 'date', 'email', 'time', 'phone', 'website', 'price', 'statement', 'facebook', 'twitter', 'website'].sample
   )
     field.properties = {data:"{option1: 'a', option2: 'b'}"} if field.field_type == 'mcq'
     field.properties = {data:"{format: 'words', min: '0', max: '50'}"} if field.field_type == 'single_line'
@@ -50,10 +50,9 @@ puts "creating forms and fields..."
     field.properties = {data:"{format: 'value', min:'0', max:'10'}"} if field.field_type == 'number'
     field.properties = {data:"{choice1: 'a', choice2: 'b'}"} if field.field_type == 'checkbox'
     field.properties = {data:"{select1: 'a', select2: 'b'}"} if field.field_type == 'dropdown'
-    field.properties = {data:"{button_text: 'next'}"} if field.field_type == 'page_break'
     field.properties = {data:"{format: 'extended'}"} if field.field_type == 'name'
     field.properties = {data:"{format: 'character', min: '0', max: '20', currency: '$'}"} if field.field_type == 'price'
-    field.properties = {data:"{row1: 'statement 1', row2:'statement 2', column1:'agree', column2: 'disagree'}"} if field.field_type == 'likert'
+    field.properties = {data:"{row1: 'statement 1', row2:'statement 2', column1:'agree', column2: 'disagree'}"} if field.field_type == 'statement'
     field.save!
     #data: "{}" if field['field_type'] == 'address'
     #data: "{}" if field['field_type'] == 'section_break'
