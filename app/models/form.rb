@@ -38,8 +38,8 @@ class Form < ActiveRecord::Base
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates :name,  presence: true,
+                    uniqueness: { scope: 'user_id', case_sensitve: false }
 
 
   # CALLBACKS
