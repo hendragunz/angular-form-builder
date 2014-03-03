@@ -3,7 +3,7 @@
 <div  ng-if="(field.field_type == 'rating')">
   <div class="radio" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
     <label>
-      <input type="radio" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
+      <input type="radio" name="{{ field.name }}" value="{{ opt.id }}">
       {{ opt.name }}
     </label>
   </div>
