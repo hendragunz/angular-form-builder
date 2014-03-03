@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20140224215011) do
     t.datetime "updated_at"
   end
 
+  create_table "field_options", force: true do |t|
+    t.integer  "form_field_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "form_entries", force: true do |t|
     t.integer  "form_id"
     t.hstore   "answers"
@@ -39,18 +46,18 @@ ActiveRecord::Schema.define(version: 20140224215011) do
     t.text     "field_hint"
     t.string   "field_type"
     t.hstore   "properties"
-    t.boolean  "required",                 default: true
-    t.integer  "position",                 default: 0
+    t.integer  "scale"
+    t.string   "options"
+    t.string   "true_label"
+    t.string   "false_label"
+    t.boolean  "required",    default: true
+    t.integer  "position",    default: 0
     t.integer  "form_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "size"
-    t.integer  "page",                     default: 1,    null: false
+    t.integer  "page",        default: 1,    null: false
     t.string   "show_to"
-    t.string   "field_image_file_name"
-    t.string   "field_image_content_type"
-    t.integer  "field_image_file_size"
-    t.datetime "field_image_updated_at"
   end
 
   create_table "forms", force: true do |t|

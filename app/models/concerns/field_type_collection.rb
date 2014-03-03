@@ -8,7 +8,7 @@ module FieldTypeCollection
     mcq:          {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
     rating:       {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
     number:       {type: 'number',    options: ['label', 'hint', 'required']},
-    checkbox:     {type: 'checkbox',  options: ['label', 'hint']},
+    checkbox:     {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     dropdown:     {type: 'select',    options: ['label', 'hint', 'required', 'field_options']},
     name:         {type: 'text',      options: ['label', 'hint', 'required']},
     address:      {type: 'text',      options: ['label', 'hint', 'required']},

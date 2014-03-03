@@ -16,10 +16,7 @@
 #
 
 class FormField < ActiveRecord::Base
-
-	# CAPABILITIES
-  # ------------------------------------------------------------------------------------------------------
-  has_attached_file :field_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  include FieldTypeCollection
 
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
@@ -48,7 +45,6 @@ class FormField < ActiveRecord::Base
   validates :name,        presence: true,
                           uniqueness: { scope: :form_id, case_sensitive: false }
   validates :field_label, presence: true
-  validates_attachment_content_type :field_image, content_type: %w(image/jpeg image/jpg image/png)
 
 
   # CALLBACKS
