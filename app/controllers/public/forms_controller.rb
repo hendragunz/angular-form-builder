@@ -17,6 +17,7 @@ class Public::FormsController < Public::BaseController
       if @entry.save
         format.html { redirect_to completed_public_form_path(@form) }
         format.json { render action: 'completed', status: :created, location: @entry }
+        FormEntryMailer.notify_recipient(@entry).deliver if @entry.form.persons_to_notify.present?
       else
         format.html { render action: 'show' }
         format.json { render json: @entry.errors, status: :unprocessable_entity }

@@ -36,11 +36,22 @@
         {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
       ]
 
-    # prepopulate field options if field type is boolean
     if (field.field_type == 'boolean')
       field.properties =
         true_label: 'Yes'
         false_label: 'No'
+
+    if (field.field_type == 'facebook')
+      field = {
+        field_label: 'Facebook'
+        field_hint: 'Enter valid facebook page URL'
+      }
+
+    if (field.field_type == 'twitter')
+      field = {
+        field_label: 'Twitter'
+        field_hint: 'Enter twitter username'
+      }
 
     $scope.fields.push( field )
 

@@ -40,6 +40,7 @@ class Form < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   validates :name,  presence: true,
                     uniqueness: { scope: 'user_id', case_sensitve: false }
+  validates_length_of :persons_to_notify, maximum: 255, allow_blank: true
 
 
   # CALLBACKS

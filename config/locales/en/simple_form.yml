@@ -24,6 +24,7 @@ en:
     hints:
       defaults:
         scale: "Integer. Maximum value (5 in case of 1..5 scale) "
+        persons_to_notify: Receive an email when a new entry is created. Separate email addresses by a comma
       user:
         password: Leave empty if you don't want to change it
     helpers:
