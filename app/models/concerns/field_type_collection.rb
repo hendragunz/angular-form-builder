@@ -21,7 +21,8 @@ module FieldTypeCollection
     statement:    {type: 'rowcolumn', options: ['label', 'hint', 'required']},
     time:         {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:      {type: 'text',      options: ['label', 'hint', 'required']},
-    website:      {type: 'url',       options: ['label', 'hint', 'required']}
+    website:      {type: 'url',       options: ['label', 'hint', 'required']},
+    section:      {type: 'section',   options: ['label', 'description']}
   }
 
   included do

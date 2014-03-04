@@ -2,17 +2,24 @@
 #
 # Table name: form_fields
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  field_label   :text
-#  field_hint    :text
-#  field_type :string(255)
-#  properties :hstore
-#  required   :boolean          default(TRUE)
-#  position   :integer          default(0)
-#  form_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  field_label :text
+#  field_hint  :text
+#  field_type  :string(255)
+#  properties  :hstore
+#  scale       :integer
+#  options     :string(255)
+#  true_label  :string(255)
+#  false_label :string(255)
+#  required    :boolean          default(TRUE)
+#  position    :integer          default(0)
+#  form_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  size        :string(255)
+#  page        :integer          default(1), not null
+#  show_to     :string(255)
 #
 
 class FormField < ActiveRecord::Base
@@ -32,7 +39,7 @@ class FormField < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   # hstore
   # store_accessor :properties, :currency, :scale_rate, :scale_type, :true_label, :false_label, :options, :likert_rows, :likert_columns
-  store_accessor :properties, :data
+  store_accessor :properties
 
 
   # SCOPES

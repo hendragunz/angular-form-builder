@@ -29,3 +29,25 @@
 		background-color: #f7f7f9;
 	}
 }
+
+.panel-default {
+  &.fieldsection {
+    border: none;
+    background-color: transparent;
+
+    .panel-heading {
+      padding: 0;
+      border: none;
+      background-color: transparent;
+
+      h3 {
+        font-size: 20px;
+      }
+    }
+
+    .panel-body {
+      padding: 0;
+      background-color: transparent;
+    }
+  } // end field section
+} // end panel-default

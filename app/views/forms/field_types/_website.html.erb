@@ -1,2 +1,5 @@
 <!-- website -->
-<input type="url" class="form-control" ng-if="field.field_type == 'website'" name="{{ field.name }}">
+<div class="input-group" ng-if="field.field_type == 'website'">
+  <span class="input-group-addon">http://</span>
+  <input type="text" class="form-control" name="{{ field.name }}">
+</div>

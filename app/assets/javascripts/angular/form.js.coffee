@@ -28,30 +28,36 @@
       field_options: []
     }
 
-    # prepopulate field options if field type is mcq | dropdown
-    if (field.field_type == 'mcq') || (field.field_type == 'dropdown') || (field.field_type == 'rating') || (field.field_type == 'checkbox')
-      field.field_options = [
-        {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
-        {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}
-        {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
-      ]
+    switch field.field_type
+      # prepopulate field options if field type is mcq | dropdown
+      when 'mcq', 'dropdown', 'rating', 'checkbox'
+        field.field_options = [
+          {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
+          {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}
+          {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
+        ]
 
-    if (field.field_type == 'boolean')
-      field.properties =
-        true_label: 'Yes'
-        false_label: 'No'
+      when 'boolean'
+        field.properties =
+          true_label: 'Yes'
+          false_label: 'No'
+        # 2 lines below will be removed soon!!!
+        field.true_label = 'Yes'
+        field.false_label = 'No'
 
-    if (field.field_type == 'facebook')
-      field = {
-        field_label: 'Facebook'
-        field_hint: 'Enter valid facebook page URL'
-      }
+      when 'facebook'
+        field.field_label = 'Facebook'
+        field.field_hint =  'Enter valid facebook page URL'
 
-    if (field.field_type == 'twitter')
-      field = {
-        field_label: 'Twitter'
-        field_hint: 'Enter twitter username'
-      }
+      when 'twitter'
+        field.field_label = 'Twitter'
+        field.field_hint  = 'Enter twitter username'
+
+      when 'section'
+        field.properties = {
+          description: "Section detail here..."
+        }
+    # end of switch
 
     $scope.fields.push( field )
 
@@ -93,10 +99,10 @@
   angular.element(document).ready () ->
     $timeout (->
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
-      console.log $scope.fields
-      console.log "---------------------------"
-      console.log $scope.form
-      console.log "---------------------------"
+      # console.log $scope.fields
+      # console.log "---------------------------"
+      # console.log $scope.form
+      # console.log "---------------------------"
       console.log $scope.field_types
     )
 

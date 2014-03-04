@@ -1,6 +1,6 @@
 <div ui-sortable="sortableOptions" ng-model="fields">
 
-  <div ng-repeat="field in fields" class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}">
+  <div ng-repeat="field in fields" class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}" ng-class="{fieldsection: (field.field_type == 'section')}">
     <div class="panel-heading" ng-click="toggleFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
         {{ field.field_label }}
@@ -15,7 +15,7 @@
         <%= render "/forms/field_types/#{f_type.to_s}" %>
       <% end %>
 
-      <p class="help-block" ng-if="field.field_hint != ''"> {{ field.field_hint }} </p>
+      <p class="help-block" ng-if="(field.field_hint != '') && (field.field_hint != undefined)"> {{ field.field_hint }} </p>
     </div>
     <!-- end panel body -->
 
@@ -28,13 +28,21 @@
         <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
         <%= ff.hidden_field :name, value: "{{ field.name }}" %>
-        <%= ff.input :field_label, label: 'Label', as: :string, input_html: { 'ng-model' => "field.field_label", id: nil } %>
-        <%= ff.input :field_hint, label: 'Hint', as: :string, input_html: { 'ng-model' => "field.field_hint", id: nil } %>
-        <div class="checkbox">
-          <label><%= ff.check_box :required, { 'ng-model' => "field.required", id: nil } %> Required</label>
+        <%= ff.input :field_label, label: 'Label', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'label')" }, input_html: { 'ng-model' => "field.field_label" } %>
+        <%= ff.input :field_hint, label: 'Hint', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'hint')" }, input_html: { 'ng-model' => "field.field_hint" } %>
+        <div class="checkbox" ng-if="needField(field, 'required')">
+          <label><%= ff.check_box :required, { 'ng-model' => "field.required" } %> Required</label>
         </div>
 
-        <div class="row" ng-if="needField(field, 'boolean_label')">
+        <div class="row" ng-if="needField(field, 'description')">
+          <div class="col-xs-12">
+            <%= ff.fields_for "properties" do |fp| %>
+              <%= fp.input :description, as: :text, input_html: { 'ng-model' => "field.properties.description" } %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row"  ng-if="needField(field, 'boolean_label')">
           <div class="col-xs-6">
             <%= ff.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.true_label", id: nil } %>
           </div>

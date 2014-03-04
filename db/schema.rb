@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224215011) do
+ActiveRecord::Schema.define(version: 20140304090730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(version: 20140224215011) do
     t.string   "options"
     t.string   "true_label"
     t.string   "false_label"
-    t.boolean  "required",    default: true
+    t.boolean  "required",    default: false
     t.integer  "position",    default: 0
     t.integer  "form_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "size"
-    t.integer  "page",        default: 1,    null: false
+    t.integer  "page",        default: 1,     null: false
     t.string   "show_to"
   end
 

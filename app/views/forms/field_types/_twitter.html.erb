@@ -1,2 +1,5 @@
 <!-- twitter -->
-<input type="text" class="form-control" ng-if="field.field_type == 'twitter'" name="{{ field.name }}">
+<div class="input-group" ng-if="field.field_type == 'twitter'">
+  <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+  <input type="text" class="form-control" name="{{ field.name }}">
+</div>
