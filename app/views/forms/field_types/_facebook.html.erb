@@ -1,2 +1,5 @@
 <!-- facebook -->
-<input type="text" class="form-control" ng-if="field.field_type == 'facebook'" name="{{ field.name }}">
+<div class="input-group" ng-if="field.field_type == 'facebook'">
+  <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+  <input type="text" class="form-control" name="{{ field.name }}">
+</div>
