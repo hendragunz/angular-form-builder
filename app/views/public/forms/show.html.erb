@@ -8,7 +8,6 @@
 
 	<%= simple_form_for([@form, @entry], url: create_public_form_path) do |f| %>
 	  <%= f.error_notification %>
-
 	  <%= render 'form_entries/fields', f: f, form: @form, entry: @entry %>
   <% end %>
 <% end %>

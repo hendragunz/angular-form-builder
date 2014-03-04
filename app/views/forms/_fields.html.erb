@@ -30,11 +30,11 @@
         <%= ff.hidden_field :name, value: "{{ field.name }}" %>
         <%= ff.input :field_label, label: 'Label', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'label')" }, input_html: { 'ng-model' => "field.field_label" } %>
         <%= ff.input :field_hint, label: 'Hint', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'hint')" }, input_html: { 'ng-model' => "field.field_hint" } %>
-        <div class="checkbox {{ needField(field, 'required') ? '' : 'hide' }}">
+        <div class="checkbox" ng-if="needField(field, 'required')">
           <label><%= ff.check_box :required, { 'ng-model' => "field.required" } %> Required</label>
         </div>
 
-        <div class="row">
+        <div class="row" ng-if="needField(field, 'description')">
           <div class="col-xs-12">
             <%= ff.fields_for "properties" do |fp| %>
               <%= fp.input :description, as: :text, input_html: { 'ng-model' => "field.properties.description" } %>
