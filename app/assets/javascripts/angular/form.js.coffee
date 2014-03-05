@@ -38,6 +38,7 @@
         ]
 
       when 'price'
+        field.field_label = 'Price'
         field.properties =
           currency: '$'
 

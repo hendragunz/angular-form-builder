@@ -1,4 +1,4 @@
-<%= f.input :price, :wrapper => :prepend do %>
+<%= f.input :price, wrapper: :prepend do %>
   <span class="input-group-addon"><%= question.properties['currency'] || '$' %></span>
-  <%= f.input_field :price, as: :integer %>
+  <%= f.input_field :price, as: :integer, min: 0 %>
 <% end %>

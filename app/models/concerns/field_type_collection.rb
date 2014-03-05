@@ -17,12 +17,12 @@ module FieldTypeCollection
     phone:        {type: 'tel',       options: ['label', 'hint', 'required']},
     price:        {type: 'number',    options: ['label', 'hint', 'required', 'currency']},
     rating:       {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
+    section:      {type: 'section',   options: ['label', 'description']},
     single_line:  {type: 'text',      options: ['label', 'hint', 'required']},
     statement:    {type: 'rowcolumn', options: ['label', 'hint', 'required']},
     time:         {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:      {type: 'text',      options: ['label', 'hint', 'required']},
-    website:      {type: 'url',       options: ['label', 'hint', 'required']},
-    section:      {type: 'section',   options: ['label', 'description']}
+    website:      {type: 'url',       options: ['label', 'hint', 'required']}
   }
 
   included do
@@ -34,7 +34,6 @@ module FieldTypeCollection
 
 
 end
-
 
 
 # HTML input types
