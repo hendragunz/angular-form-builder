@@ -1,2 +1,3 @@
 <!-- boolean -->
-<%= f.input question.id.to_s, as: :radio_buttons, label: question.field_label, hint: question.field_hint, collection: [question.properties['true_label'], question.properties['false_label']], required: question.required   %>
+<%= f.input question.id.to_s, as: :radio_buttons, label: question.field_label, hint: question.field_hint, 
+collection: [question.properties['true_label'], question.properties['false_label']], required: question.required %>
