@@ -42,6 +42,14 @@
           </div>
         </div>
 
+        <div class="row" ng-if="needField(field, 'currency')">
+          <div class="col-xs-3">
+            <%= ff.fields_for "properties" do |fp| %>
+              <%= fp.input :currency, as: :string, input_html: { 'ng-model' => "field.properties.currency" } %>
+            <% end %>
+          </div>
+        </div>
+
         <div class="row"  ng-if="needField(field, 'boolean_label')">
           <div class="col-xs-6">
             <%= ff.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.true_label", id: nil } %>

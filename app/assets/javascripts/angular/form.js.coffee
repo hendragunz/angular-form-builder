@@ -37,6 +37,10 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
+      when 'price'
+        field.properties =
+          currency: '$'
+
       when 'boolean'
         field.properties =
           true_label: 'Yes'
