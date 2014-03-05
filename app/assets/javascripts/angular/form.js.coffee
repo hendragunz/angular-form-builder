@@ -49,14 +49,17 @@
         field.field_label = 'Facebook'
         field.field_hint =  'Enter valid facebook page URL'
 
-      when 'twitter'
-        field.field_label = 'Twitter'
-        field.field_hint  = 'Enter twitter username'
-
       when 'section'
         field.properties = {
           description: "Section detail here..."
         }
+
+      when 'twitter'
+        field.field_label = 'Twitter'
+        field.field_hint  = 'Enter twitter username'
+
+      when 'website'
+        field.field_label = 'URL'
     # end of switch
 
     $scope.fields.push( field )
