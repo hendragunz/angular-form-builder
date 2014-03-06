@@ -43,21 +43,21 @@
         </div>
 
         <div class="row" ng-if="needField(field, 'currency')">
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             <%= ff.fields_for "properties" do |fp| %>
               <%= fp.input :currency, as: :string, input_html: { 'ng-model' => "field.properties.currency" } %>
             <% end %>
           </div>
 
-          <div class="col-xs-3">
+          <div class="col-xs-6">
             <%= ff.fields_for "properties" do |fp| %>
-              <%= fp.input :add_on, as: :select, collection: ['prepend', 'append'], include_blank: false, input_html: { 'ng-model' => "field.properties.add_on" } %>
+              <%= fp.input :add_on, as: :select, collection: [['Prepend', 'prepend'], ['Append', 'append']], include_blank: false, input_html: { 'ng-model' => "field.properties.add_on" } %>
             <% end %>
           </div>
           </div>
         </div>
 
-        <div class="row"  ng-if="needField(field, 'boolean_label')">
+        <div class="row" ng-if="needField(field, 'boolean_label')">
           <%= ff.fields_for "properties" do |fp| %>
             <div class="col-xs-6">
               <%= fp.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.properties.true_label", id: nil } %>

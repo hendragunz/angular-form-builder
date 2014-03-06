@@ -8,7 +8,6 @@
       $timeout (->
         angular.forEach $scope.fields, (field, index) ->
           field.position = index
-          console.log field
       ), 100
     axis: 'y'
 
@@ -41,6 +40,7 @@
         field.field_label = 'Price'
         field.properties =
           currency: '$'
+          add_on: 'prepend'
 
       when 'boolean'
         field.properties =
@@ -111,7 +111,7 @@
       # console.log "---------------------------"
       # console.log $scope.form
       # console.log "---------------------------"
-      console.log $scope.field_types
+      # console.log $scope.field_types
     )
 
 ]

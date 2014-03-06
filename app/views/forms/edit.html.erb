@@ -1,5 +1,5 @@
 <%= simple_nested_form_for(@form, html: { class: 'form-horizontal' }) do |f| %>
-  <%= content_for :sidebar do %>
+  <% content_for :sidebar do %>
     <%= render 'sidebar', f: f %>
   <% end %>
   <%= f.error_notification %>
@@ -14,8 +14,9 @@
     </div>
 
     <%= render 'fields', f: f %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-success' %>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>
