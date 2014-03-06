@@ -142,4 +142,17 @@ SimpleForm.setup do |config|
 
   # Default class for inputs
   config.input_class = "form-control"
+
+  # BS 3 prepend
+  config.wrappers :prepend, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper tag: 'div', class: 'input-group' do |prepend|
+      prepend.use :input
+    end
+    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
+  end
+
 end
