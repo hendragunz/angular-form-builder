@@ -51,12 +51,14 @@
         </div>
 
         <div class="row"  ng-if="needField(field, 'boolean_label')">
-          <div class="col-xs-6">
-            <%= ff.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.true_label", id: nil } %>
-          </div>
-          <div class="col-xs-6">
-            <%= ff.input :false_label, placeholder: "No", input_html: { 'ng-model' => "field.false_label", id: nil } %>
-          </div>
+          <%= ff.fields_for "properties" do |fp| %>
+            <div class="col-xs-6">
+              <%= fp.input :true_label, placeholder: "Yes", input_html: { 'ng-model' => "field.properties.true_label", id: nil } %>
+            </div>
+            <div class="col-xs-6">
+              <%= fp.input :false_label, placeholder: "No", input_html: { 'ng-model' => "field.properties.false_label", id: nil } %>
+            </div>
+          <% end %>
         </div>
 
         <div  ng-if="needField(field, 'field_options')">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304090730) do
+ActiveRecord::Schema.define(version: 20140305051810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,6 @@ ActiveRecord::Schema.define(version: 20140304090730) do
     t.hstore   "properties"
     t.integer  "scale"
     t.string   "options"
-    t.string   "true_label"
-    t.string   "false_label"
     t.boolean  "required",    default: false
     t.integer  "position",    default: 0
     t.integer  "form_id"
