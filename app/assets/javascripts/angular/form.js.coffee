@@ -43,10 +43,10 @@
           add_on: 'prepend'
 
       when 'range'
+        field.field_label = 'Range'
         field.properties =
           from_number: 0
           to_number: 0
-
 
       when 'boolean'
         field.properties =
