@@ -3,7 +3,6 @@
 <%= f.fields_for :answers, OpenStruct.new(@entry.answers) do |builder| %>
   <% @entry.form.fields.each_with_index do |question, index| %>
     <%= render "form_fields/fields/#{question.field_type}", question: question, f: builder, index: index %>
-    <%#= render "form_fields/fields/field", question: question, f: builder, index: index %>
   <% end %>
 <% end %>
 
