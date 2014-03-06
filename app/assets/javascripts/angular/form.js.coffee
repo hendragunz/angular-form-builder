@@ -41,6 +41,7 @@
         field.field_label = 'Price'
         field.properties =
           currency: '$'
+          add_on: 'prepend'
 
       when 'boolean'
         field.properties =

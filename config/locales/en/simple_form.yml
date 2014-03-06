@@ -16,6 +16,7 @@ en:
         field_name: Field Name
         field_label: Label
         field_hint: Hint
+        add_on: Position
     #   user:
     #     new:
     #       email: 'E-mail to sign in.'

@@ -1,5 +1,5 @@
 <!-- checkbox -->
-<div  ng-if="(field.field_type == 'checkbox')">
+<div ng-if="(field.field_type == 'checkbox')">
   <div class="checkbox" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
     <label>
       <input type="checkbox" name="{{ field.name }}[{{ opt.name }}]" value="{{ opt.name }}">
