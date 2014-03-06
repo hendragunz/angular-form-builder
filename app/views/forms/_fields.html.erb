@@ -48,7 +48,15 @@
               <%= fp.input :currency, as: :string, input_html: { 'ng-model' => "field.properties.currency" } %>
             <% end %>
           </div>
+
+          <div class="col-xs-3">
+            <%= ff.fields_for "properties" do |fp| %>
+              <%= fp.input :add_on, as: :select, collection: ['prepend', 'append'], include_blank: false, input_html: { 'ng-model' => "field.properties.add_on" } %>
+            <% end %>
+          </div>
+          </div>
         </div>
+
 
         <div class="row"  ng-if="needField(field, 'boolean_label')">
           <%= ff.fields_for "properties" do |fp| %>
