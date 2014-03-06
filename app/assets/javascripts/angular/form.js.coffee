@@ -42,13 +42,16 @@
           currency: '$'
           add_on: 'prepend'
 
+      when 'range'
+        field.properties =
+          from_number: 0
+          to_number: 0
+
+
       when 'boolean'
         field.properties =
           true_label: 'Yes'
           false_label: 'No'
-        # 2 lines below will be removed soon!!!
-        field.true_label = 'Yes'
-        field.false_label = 'No'
 
       when 'facebook'
         field.field_label = 'Facebook'

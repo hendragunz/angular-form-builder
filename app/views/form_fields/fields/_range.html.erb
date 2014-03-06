@@ -1,0 +1,8 @@
+<div class="form-group string <%= question.required %>">
+  <%= f.label :range, question.field_label, required: question.required %>
+
+  <div class="row">
+    <%= f.input question.id.to_s + "_from", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6' }, input_html: { placeholder: 'From' } %>
+    <%= f.input question.id.to_s + "_to", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6' }, input_html: { placeholder: 'To' } %>
+  </div>
+</div>

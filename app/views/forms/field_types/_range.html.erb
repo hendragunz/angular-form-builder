@@ -1,0 +1,18 @@
+<!-- range -->
+<div class="row" ng-if="field.field_type == 'range'">
+  <div class="col-xs-1 pull-left">
+    <span>From:</span>
+  </div>
+
+  <div class="col-xs-4 pull-left">
+    <input type="number" class="form-control" ng-if="field.field_type == 'range'" name="{{ field.name + '_from' }}">
+  </div>
+
+  <div class="col-xs-1 pull-left">
+    <span>To:</span>
+  </div>
+
+  <div class="col-xs-4 pull-left">
+    <input type="number" class="form-control" ng-if="field.field_type == 'range'" name="{{ field.name + '_to' }}">
+  </div>
+</div>

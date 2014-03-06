@@ -43,18 +43,27 @@
         </div>
 
         <div class="row" ng-if="needField(field, 'currency')">
-          <div class="col-xs-6">
-            <%= ff.fields_for "properties" do |fp| %>
-              <%= fp.input :currency, as: :string, input_html: { 'ng-model' => "field.properties.currency" } %>
-            <% end %>
-          </div>
+          <%= ff.fields_for "properties" do |fp| %>
+            <div class="col-xs-6">
+                <%= fp.input :currency, as: :string, input_html: { 'ng-model' => "field.properties.currency" } %>
+            </div>
 
-          <div class="col-xs-6">
-            <%= ff.fields_for "properties" do |fp| %>
+            <div class="col-xs-6">
               <%= fp.input :add_on, as: :select, collection: [['Prepend', 'prepend'], ['Append', 'append']], include_blank: false, input_html: { 'ng-model' => "field.properties.add_on" } %>
-            <% end %>
-          </div>
-          </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="row" ng-if="needField(field, 'range')">
+          <%= ff.fields_for "properties" do |fp| %>
+            <div class="col-xs-6">
+              <%= fp.input :from_number, as: :integer, input_html: { 'ng-model' => "field.properties.from_number" } %>
+            </div>
+
+            <div class="col-xs-6">
+              <%= fp.input :to_number,   as: :integer, input_html: { 'ng-model' => "field.properties.to_number" } %>
+            </div>
+          <% end %>
         </div>
 
         <div class="row" ng-if="needField(field, 'boolean_label')">
