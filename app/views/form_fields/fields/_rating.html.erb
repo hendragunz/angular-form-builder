@@ -1,6 +1,2 @@
-<% scale = eval(question.properties['data']) %>
-<% scale['rate'].to_i.times do |x| %>
-	<label class="radio-inline">
-    <%= f.radio_button question.id.to_s, x + 1 %> <%= x + 1 %>
-  </label>
-<% end %>
+<!-- rating -->
+<%= f.input question.id.to_s, as: :custom_radio_buttons, label: question.field_label, hint: question.field_hint, collection: build_rating_options(question), required: question.required, item_wrapper_class: "#{question.properties['format'] == 'inline' ? 'radio-inline' : ''}" %>
