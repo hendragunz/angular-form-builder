@@ -1,10 +1,10 @@
-
 <!-- rating -->
 <div  ng-if="(field.field_type == 'rating')">
-  <div class="radio" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
+  <div class="radio {{ field.properties.format == 'inline' ? 'radio-inline' : '' }}" ng-repeat="n in range(1, field.properties.max_rating)">
     <label>
-      <input type="radio" name="{{ field.name }}" value="{{ opt.id }}">
-      {{ opt.name }}
+      <input type="radio" name="{{ field.name }}" value="{{ n }}">
+      <i ng-if="field.properties.symbol != 'number'" ng-repeat="x in range(1, n)"  class="fa {{ field.properties.symbol }}"></i>
+      <span ng-if="field.properties.symbol == 'number'"> {{ n }} </span>
     </label>
   </div>
 </div>

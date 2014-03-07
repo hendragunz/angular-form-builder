@@ -17,7 +17,7 @@ module FieldTypeCollection
     phone:       {type: 'tel',       options: ['label', 'hint', 'required']},
     price:       {type: 'number',    options: ['label', 'hint', 'required', 'currency']},
     range:       {type: 'number',    options: ['label', 'hint', 'required', 'range']},
-    rating:      {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
+    rating:      {type: 'radio',     options: ['label', 'hint', 'required', 'rating']},
     section:     {type: 'section',   options: ['label', 'description']},
     single_line: {type: 'text',      options: ['label', 'hint', 'required']},
     statement:   {type: 'rowcolumn', options: ['label', 'hint', 'required']},
