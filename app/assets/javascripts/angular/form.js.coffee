@@ -46,6 +46,9 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
+      when 'file'
+        field.field_label = 'File'
+
       when 'rating'
         field.field_label = 'Rating'
         field.properties =
