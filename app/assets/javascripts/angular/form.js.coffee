@@ -58,6 +58,9 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
+      when 'number'
+        field.field_label = 'Number'
+
       when 'percentage'
         field.field_label = 'Percentage'
 
