@@ -53,6 +53,9 @@
           max_rating: 5
           format: 'inline'
 
+      when 'phone'
+        field.field_label = 'Phone'
+
       when 'price'
         field.field_label = 'Price'
         field.properties =
