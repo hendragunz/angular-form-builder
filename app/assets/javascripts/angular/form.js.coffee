@@ -38,6 +38,15 @@
     }
 
     switch field.field_type
+      when 'boolean'
+        field.properties =
+          true_label: 'Yes'
+          false_label: 'No'
+
+      when 'facebook'
+        field.field_label = 'Facebook'
+        field.field_hint =  'Enter valid facebook page URL'
+
       # prepopulate field options if field type is mcq | dropdown
       when 'mcq', 'dropdown', 'checkbox'
         field.field_options = [
@@ -46,12 +55,8 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
-      when 'rating'
-        field.field_label = 'Rating'
-        field.properties =
-          symbol: 'number'
-          max_rating: 5
-          format: 'inline'
+      when 'percentage'
+        field.field_label = 'Percentage'
 
       when 'price'
         field.field_label = 'Price'
@@ -65,14 +70,12 @@
           from_number: 0
           to_number: 0
 
-      when 'boolean'
+      when 'rating'
+        field.field_label = 'Rating'
         field.properties =
-          true_label: 'Yes'
-          false_label: 'No'
-
-      when 'facebook'
-        field.field_label = 'Facebook'
-        field.field_hint =  'Enter valid facebook page URL'
+          symbol: 'number'
+          max_rating: 5
+          format: 'inline'
 
       when 'section'
         field.properties = {
