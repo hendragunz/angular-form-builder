@@ -33,3 +33,7 @@ en:
         user:
           update: Update profile
 
+    placeholders:
+      address:      'Address'
+      city:         'City'
+      postal_code:  'Postal Code'

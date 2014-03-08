@@ -38,6 +38,9 @@
     }
 
     switch field.field_type
+      when 'address'
+        field.field_label = 'Address'
+
       when 'boolean'
         field.properties =
           true_label: 'Yes'
