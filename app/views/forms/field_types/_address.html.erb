@@ -1,2 +1,24 @@
 <!-- address -->
-<input type="text" class="form-control" ng-if="field.field_type == 'address'" name="{{ field.name }}">
+<div ng-if="field.field_type == 'address'">
+  <div class="row">
+    <div class="col-xs-12">
+      <input type="text" class="form-control" ng-if="field.field_type == 'address'" name="{{ field.name }}" placeholder="Address">
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="col-xs-4">
+      <input type="text" class="form-control" name="{{ field.name + '_city' }}" placeholder="City">
+    </div>
+
+    <div class="col-xs-4">
+      <input type="text" class="form-control" name="{{ field.name + '_postal_code' }}" placeholder="Postal Code">
+    </div>
+
+    <div class="col-xs-4">
+      <%= select_tag "{{ field.name + '_country' }}", country_options_for_select, { class: 'form-control' } %>
+    </div>
+  </div>
+</div>

@@ -77,6 +77,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     columnize (0.3.6)
+    country-select (1.1.1)
     daemons (1.1.9)
     debugger (1.6.5)
       columnize (>= 0.3.1)
@@ -243,6 +244,7 @@ DEPENDENCIES
   capistrano (~> 2.15.0)
   capistrano-nc
   coffee-rails (~> 4.0.0)
+  country-select
   debugger
   enumerize
   exception_notification

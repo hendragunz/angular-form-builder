@@ -1,0 +1,27 @@
+<div class="address-field">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= f.input question.id.to_s + "_address", as: :string, label: question.field_label, required: question.required, input_html: { placeholder: t('simple_form.placeholders.address') }  %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <%= f.input question.id.to_s + "_city", as: :string, label: false, input_html: { placeholder: t('simple_form.placeholders.city') } %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input question.id.to_s + "_postal_code", as: :string, label: false, input_html: { placeholder: t('simple_form.placeholders.postal_code') } %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.input question.id.to_s + "_country", collection: ActionView::Helpers::FormOptionsHelper::COUNTRIES, label: false %>
+    </div>
+  </div>
+
+  <% if question.field_hint.present? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="help-block"><%= question.field_hint %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
