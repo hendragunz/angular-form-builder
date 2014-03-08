@@ -38,6 +38,9 @@
     }
 
     switch field.field_type
+      when 'address'
+        field.field_label = 'Address'
+
       # prepopulate field options if field type is mcq | dropdown
       when 'mcq', 'dropdown', 'checkbox'
         field.field_options = [

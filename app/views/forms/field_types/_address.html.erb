@@ -18,7 +18,7 @@
     </div>
 
     <div class="col-xs-4">
-      <%= select_tag "{{ field.name + '_country' }}", country_options_for_select, { class: 'form-control' } %>
+      <%= select_tag "{{ field.name + '_country' }}", country_options_for_select, prompt: "Country", class: 'form-control' %>
     </div>
   </div>
 </div>
