@@ -3,6 +3,7 @@ module FieldTypeCollection
 
   FieldConfig = {
     address:     {type: 'text',      options: ['label', 'hint', 'required']},
+    percentage:  {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     boolean:     {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
     checkbox:    {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     date:        {type: 'date',      options: ['label', 'hint', 'required']},
@@ -33,30 +34,3 @@ module FieldTypeCollection
                             predicates: true
   end
 end
-
-
-# HTML input types
-# --------------------------------------------
-# button
-# checkbox
-# color
-# date
-# datetime
-# datetime-local
-# email
-# file
-# hidden
-# image
-# month
-# number
-# password
-# radio
-# range
-# reset
-# search
-# submit
-# tel
-# text
-# time
-# url
-# week

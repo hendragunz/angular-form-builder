@@ -1,0 +1,5 @@
+<!-- percentage -->
+<div class="input-group" ng-if="field.field_type == 'percentage'">
+  <input type="number" class="form-control" name="{{ field.name }}" max="{{ field.properties.to_number || 100 }}" min="{{ field.properties.from_number || 0 }}">
+  <span class="input-group-addon">%</span>
+</div>
