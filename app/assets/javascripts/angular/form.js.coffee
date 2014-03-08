@@ -50,6 +50,9 @@
         field.field_label = 'Facebook'
         field.field_hint =  'Enter valid facebook page URL'
 
+      when 'file'
+        field.field_label = 'File'
+
       # prepopulate field options if field type is mcq | dropdown
       when 'mcq', 'dropdown', 'checkbox'
         field.field_options = [
@@ -66,6 +69,13 @@
 
       when 'phone'
         field.field_label = 'Phone'
+
+      when 'rating'
+        field.field_label = 'Rating'
+        field.properties =
+          symbol: 'number'
+          max_rating: 5
+          format: 'inline'
 
       when 'price'
         field.field_label = 'Price'
