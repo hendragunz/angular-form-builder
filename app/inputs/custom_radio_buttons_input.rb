@@ -8,7 +8,7 @@ class CustomRadioButtonsInput < SimpleForm::Inputs::CollectionRadioButtonsInput
     #   input_options, input_html_options, &collection_block_for_nested_boolean_style
     # )
 
-    html = template.content_tag(:div, :class => "input-group") do
+    html = template.content_tag(:div, class: "input-group") do
       @builder.collection_radio_buttons(attribute_name, collection, value_method, label_method,
         input_options, input_html_options, &collection_block_for_nested_boolean_style
       )

@@ -47,6 +47,7 @@
         ]
 
       when 'rating'
+        field.field_label = 'Rating'
         field.properties =
           symbol: 'number'
           max_rating: 5
