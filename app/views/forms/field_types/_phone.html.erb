@@ -1,2 +1,5 @@
 <!-- phone -->
-<input type="tel" class="form-control" ng-if="field.field_type == 'phone'" name="{{ field.name }}">
+<div class="input-group date" ng-show="(field.field_type == 'phone')">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+  <input type="tel" class="form-control" name="{{ field.name }}">
+</div>
