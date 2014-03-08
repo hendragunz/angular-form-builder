@@ -77,6 +77,23 @@
           <% end %>
         </div>
 
+        <div class="row"  ng-if="needField(field, 'rating')">
+          <%= ff.fields_for "properties" do |fp| %>
+            <div class="col-xs-4">
+              <%= fp.input :max_rating, as: :integer, input_html: { 'ng-model' => "field.properties.max_rating", min: 1 } %>
+            </div>
+
+            <div class="col-xs-4">
+              <%= fp.input :symbol, as: :select, collection: FontAwesome::AVAILABLE, include_blank: false, input_html: { 'ng-model' => "field.properties.symbol" } %>
+            </div>
+
+            <div class="col-xs-4">
+              <%= fp.input :format, as: :select, collection: [['Horizontal', 'inline'], ['Vertical', 'vertical']], include_blank: false, input_html: { 'ng-model' => "field.properties.format" } %>
+            </div>
+          <% end %>
+        </div><!-- end field rating -->
+
+
         <div  ng-if="needField(field, 'field_options')">
           <h6>FIELD OPTIONS</h6>
           <div ng-repeat="field_option in field.field_options" class="row {{ field_option.deleted ? 'hide' : '' }}">

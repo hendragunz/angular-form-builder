@@ -6,3 +6,12 @@ module Enum
     }
   end
 end
+
+module FontAwesome
+  AVAILABLE = [
+    ['Number', 'number'],
+    ['Heart', 'fa-heart'],
+    ['Thumbs', 'fa-thumbs-up'],
+    ['Star', 'fa-star']
+  ]
+end

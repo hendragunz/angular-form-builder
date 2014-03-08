@@ -11,6 +11,16 @@
       ), 100
     axis: 'y'
 
+  # create range array number with min & max & step
+  $scope.range = (min, max, step) ->
+    step  = ((step == undefined) ? 1 : step)
+    input = []
+    i = min
+    while i <= max
+      input.push(i)
+      i = i+step
+    return input
+
   # method to add more field
   $scope.addField = (field_type) ->
     field = {
@@ -29,12 +39,19 @@
 
     switch field.field_type
       # prepopulate field options if field type is mcq | dropdown
-      when 'mcq', 'dropdown', 'rating', 'checkbox'
+      when 'mcq', 'dropdown', 'checkbox'
         field.field_options = [
           {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
           {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
+
+      when 'rating'
+        field.field_label = 'Rating'
+        field.properties =
+          symbol: 'number'
+          max_rating: 5
+          format: 'inline'
 
       when 'price'
         field.field_label = 'Price'
@@ -110,6 +127,10 @@
   angular.element(document).ready () ->
     $timeout (->
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
+      angular.forEach $scope.fields, (field, index) ->
+        if field.field_type == 'rating'
+          field.properties.max_rating = parseInt(field.properties.max_rating)
+
       # console.log $scope.fields
       # console.log "---------------------------"
       # console.log $scope.form

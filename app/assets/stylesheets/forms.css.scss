@@ -51,3 +51,14 @@
     }
   } // end field section
 } // end panel-default
+
+
+.custom_radio_buttons {
+  .input-group {
+    .radio.radio-inline {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
