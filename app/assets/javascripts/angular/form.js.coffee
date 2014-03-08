@@ -38,6 +38,9 @@
     }
 
     switch field.field_type
+      when 'date'
+        field.field_label = 'Date'
+
       # prepopulate field options if field type is mcq | dropdown
       when 'mcq', 'dropdown', 'checkbox'
         field.field_options = [

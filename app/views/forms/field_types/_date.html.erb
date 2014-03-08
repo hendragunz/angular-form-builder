@@ -1,2 +1,5 @@
 <!-- date -->
-<input type="date" class="form-control" ng-if="field.field_type == 'date'" name="{{ field.name }}">
+<div class="input-group date" ng-show="(field.field_type == 'date')">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+  <input type="date" class="form-control" ng-if="field.field_type == 'date'" name="{{ field.name }}">
+</div>
