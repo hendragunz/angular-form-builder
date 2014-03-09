@@ -35,10 +35,6 @@ module ApplicationHelper
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
-  def icon_tag(icon)
-    "<i class='glyphicon glyphicon-#{icon}'></i>".html_safe
-  end
-
   def get_options_count(form, field)
     entries = form.entries
     results = {}
