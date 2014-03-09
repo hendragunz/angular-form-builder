@@ -46,6 +46,9 @@
           true_label: 'Yes'
           false_label: 'No'
 
+      when 'email'
+        field.field_label = 'Email'
+
       when 'facebook'
         field.field_label = 'Facebook'
         field.field_hint =  'Enter valid facebook page URL'
