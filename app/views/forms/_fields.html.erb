@@ -1,6 +1,6 @@
 <div ui-sortable="sortableOptions" ng-model="fields">
 
-  <div ng-repeat="field in fields" class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}" ng-class="{fieldsection: (field.field_type == 'section')}">
+  <div ng-repeat="field in fields" on-last-repeat class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}" ng-class="{fieldsection: (field.field_type == 'section')}">
     <div class="panel-heading" ng-click="toggleFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
         {{ field.field_label }}

@@ -175,3 +175,17 @@
   # ).error (status) ->
   #   alert "An error occured"
 ]
+
+
+
+# initialize form date picker
+@initFormBuilderDateTimePicker = ->
+  $("#form-container").find(".datepicker").not(".datepicker-initialized").each (idx, item) ->
+    $(this).addClass "datepicker-initialized"
+    $(this).datetimepicker pickTime: false
+
+  $("#form-container").find(".datetimepicker").not(".datetimepicker-initialized").each (idx, item) ->
+    $(this).addClass "datetimepicker-initialized"
+    $(this).datetimepicker()
+
+  return

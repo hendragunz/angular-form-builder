@@ -55,6 +55,8 @@ GEM
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    bootstrap3-datetimepicker-rails (2.1.30)
+      momentjs-rails (~> 2.5.0)
     builder (3.2.2)
     capistrano (2.15.5)
       highline
@@ -132,6 +134,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.3.0)
+    momentjs-rails (2.5.1)
+      railties (>= 3.1)
     multi_json (1.8.2)
     multipart-post (1.2.0)
     nested_form (0.3.2)
@@ -241,6 +245,7 @@ DEPENDENCIES
   annotate
   awesome_print
   better_errors
+  bootstrap3-datetimepicker-rails (~> 2.1.30)
   capistrano (~> 2.15.0)
   capistrano-nc
   coffee-rails (~> 4.0.0)
@@ -257,6 +262,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari-bootstrap
   letter_opener
+  momentjs-rails (~> 2.5.0)
   nested_form
   paperclip
   pg

@@ -8,13 +8,6 @@ ready = ->
     else if(this.value == "boolean")
       $("#boolean-fields").css("display","block");
 
-#    $.ajax(
-#      type: "GET"
-#      url: "/type"
-#      data:
-#        type: this.value
-#    ).done (partial) ->
-#      $("#field-render-area").html(partial)
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

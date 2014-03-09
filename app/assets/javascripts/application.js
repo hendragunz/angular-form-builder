@@ -16,6 +16,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
 //= require jquery_nested_form
 
 
@@ -23,3 +25,17 @@
 //= require angular/modules/sortable
 //= require angular/my_app
 //= require angular/form
+
+
+$(document).ready(function(){
+  initDateTimePicker();
+});
+
+
+
+function initDateTimePicker() {
+  $(".datepicker").datetimepicker({
+    pickTime: false
+  });
+  $(".datetimepicker").datetimepicker();
+}
