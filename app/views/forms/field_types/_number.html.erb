@@ -1,4 +1,2 @@
 <!-- number -->
-<div class="input-group price" ng-show="(field.field_type == 'number')">
-  <input type="number" class="form-control span3">
-</div>
+<input type="number" class="form-control" ng-if="field.field_type == 'number'" name="{{ field.name }}"  max="{{ field.properties.to_number }}" min="{{ field.properties.from_number }}">

@@ -34,14 +34,16 @@ class FormsController < BaseController
   end
 
   def update
-    ap params
-
     respond_to do |format|
       if @form.update(safe_params)
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit', layout: 'form_builder' }
+        if params['notifications'] = true
+          format.html { render action: 'notifications' }
+        else
+          format.html { render action: 'edit', layout: 'form_builder' }
+        end
         format.json { render json: @form.errors, status: :unprocessable_entity }
       end
     end
@@ -83,9 +85,9 @@ class FormsController < BaseController
 
     def safe_params
       params.require(:form).permit(:name, :introduction, :confirmation_message, :max_entries_allowed, :start_date, :end_date, :unique_ip_only, :send_email_confirmation,
-                                   :show_questions_one_by_one, :persons_to_notify,
+                                   :show_questions_one_by_one, :persons_to_notify, :webhook_url,
                                    fields_attributes: [:id, :name, :required, :field_label, :field_hint, :field_type, :scale, :_destroy, :position,
-                                   properties: [ :description, :true_label, :false_label, :currency, :add_on, :from_number, :to_number, :max_rating, :format, :symbol ],
+                                   properties: [ :description, :true_label, :false_label, :currency, :add_on, :from_number, :to_number, :max_rating, :format, :symbol, :max_number, :min_number ],
                                    field_options_attributes: [:id, :name, :_destroy] ])
     end
 

@@ -10,7 +10,7 @@ en:
         datetime:       "DateTime"
         email:          "Email"
         facebook:       "Facebook"
-        file:           "File"
+        file:           "File Upload"
         likert:         "Likert"
         mcq:            "MCQ"
         name:           "Name"
@@ -26,3 +26,4 @@ en:
         time:           "Time"
         twitter:        "Twitter"
         website:        "Website"
+        percentage:     "Percentage"

@@ -3,6 +3,7 @@ module FieldTypeCollection
 
   FieldConfig = {
     address:     {type: 'text',      options: ['label', 'hint', 'required']},
+    percentage:  {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     boolean:     {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
     checkbox:    {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     date:        {type: 'date',      options: ['label', 'hint', 'required']},
@@ -12,7 +13,7 @@ module FieldTypeCollection
     file:        {type: 'file',      options: ['label', 'hint', 'required']},
     mcq:         {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
     name:        {type: 'text',      options: ['label', 'hint', 'required']},
-    number:      {type: 'number',    options: ['label', 'hint', 'required']},
+    number:      {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     paragraph:   {type: 'textarea',  options: ['label', 'hint', 'required']},
     phone:       {type: 'tel',       options: ['label', 'hint', 'required']},
     price:       {type: 'number',    options: ['label', 'hint', 'required', 'currency']},
@@ -33,30 +34,3 @@ module FieldTypeCollection
                             predicates: true
   end
 end
-
-
-# HTML input types
-# --------------------------------------------
-# button
-# checkbox
-# color
-# date
-# datetime
-# datetime-local
-# email
-# file
-# hidden
-# image
-# month
-# number
-# password
-# radio
-# range
-# reset
-# search
-# submit
-# tel
-# text
-# time
-# url
-# week

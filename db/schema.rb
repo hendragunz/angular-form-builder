@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140305051810) do
     t.datetime "end_date"
     t.string   "persons_to_notify"
     t.integer  "entries_count",             default: 0
+    t.string   "webhook_url"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -36,9 +36,10 @@ gem 'sdoc',          group: :doc, require: false
 gem 'spring',        group: :development
 
 gem 'simple_form'
+gem 'country-select'
 gem 'tabs_on_rails',      "~> 2.1.1"
 gem 'font-awesome-rails'
-gem 'rails_bootstrap_helper', github: "olimart/rails_bootstrap_helper", branch: "bs3.1"
+gem 'rails_bootstrap_helper', "~> 1.0.1", github: "olimart/rails_bootstrap_helper", branch: "bs3.1"
 gem 'nested_form'
 gem 'sorcery'
 gem 'six'

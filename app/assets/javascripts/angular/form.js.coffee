@@ -41,6 +41,24 @@
       when 'date'
         field.field_label = 'Date'
 
+      when 'address'
+        field.field_label = 'Address'
+
+      when 'boolean'
+        field.properties =
+          true_label: 'Yes'
+          false_label: 'No'
+
+      when 'email'
+        field.field_label = 'Email'
+
+      when 'facebook'
+        field.field_label = 'Facebook'
+        field.field_hint =  'Enter valid facebook page URL'
+
+      when 'file'
+        field.field_label = 'File'
+
       # prepopulate field options if field type is mcq | dropdown
       when 'mcq', 'dropdown', 'checkbox'
         field.field_options = [
@@ -48,6 +66,15 @@
           {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
+
+      when 'number'
+        field.field_label = 'Number'
+
+      when 'percentage'
+        field.field_label = 'Percentage'
+
+      when 'phone'
+        field.field_label = 'Phone'
 
       when 'rating'
         field.field_label = 'Rating'
@@ -68,14 +95,12 @@
           from_number: 0
           to_number: 0
 
-      when 'boolean'
+      when 'rating'
+        field.field_label = 'Rating'
         field.properties =
-          true_label: 'Yes'
-          false_label: 'No'
-
-      when 'facebook'
-        field.field_label = 'Facebook'
-        field.field_hint =  'Enter valid facebook page URL'
+          symbol: 'number'
+          max_rating: 5
+          format: 'inline'
 
       when 'section'
         field.properties = {
