@@ -1,9 +1,17 @@
 <%= page_title("Notifications") %>
 
 <%= simple_nested_form_for(@form, html: { class: 'form-horizontal' }) do |f| %>
+  <% params['notifications'] = true %>
   <%= f.error_notification %>
 
+  <%= page_section("Email notifications") %>
 	<%= f.input :persons_to_notify %>
+
+  <%= page_section("Webhooks") %>
+  <p class="alert alert-info">
+    We’ll send a <b>POST</b> request to the URL below with details of any subscribed events. More information can be found in our developer documentation.
+  </p>
+	<%= f.input :webhook_url, as: :url %>
 
   <div class="form-actions">
     <%= f.button :submit, "Update", class: 'btn btn-success' %>

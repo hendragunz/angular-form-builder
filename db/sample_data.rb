@@ -33,6 +33,7 @@ puts "creating forms and fields..."
 	  show_questions_one_by_one: [true, false].sample,
 	  send_email_confirmation: [true, false].sample,
 	  persons_to_notify: "@email.com, b@email.com, c@email.com",
+    webhook_url: Faker::Internet.url,
 	  user_id: User.all.map(&:id).sample
 	)
 
@@ -63,6 +64,5 @@ puts "creating forms and fields..."
     #data: "{}" if field['field_type'] == 'website'
     #data: "{}" if field['field_type'] == 'facebook'
     #data: "{}" if field['field_type'] == 'twitter'
-
 end
 
