@@ -12,7 +12,7 @@ Util.onReady = ()->
 
 
 Util.initDateTimePicker = ()->
-  # $("form").find(".datepicker").datetimepicker
-  #   pickTime: false
+  $("form").find(".datepicker").datetimepicker
+    pickTime: false
 
-  # $("form").find(".datetimepicker").datetimepicker()
+  $("form").find(".datetimepicker").datetimepicker()
