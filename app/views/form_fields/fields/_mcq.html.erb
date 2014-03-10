@@ -1,8 +1,2 @@
-<% options = eval(question.properties['data']) %>
-<% options.each do |option, value| %>
-	<div class="checkbox">
-		<label>
-      <%= f.check_box question.id.to_s+"_"+option.to_s, {}, option %> <%= value %>
-		</label>
-	</div>
-<% end %>
+<!-- mcq -->
+<%= f.input question.id.to_s, as: :custom_check_boxes, label: question.field_label, hint: question.field_hint, collection: question.field_options.map(&:name), required: question.required   %>
