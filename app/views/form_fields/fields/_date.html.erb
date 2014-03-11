@@ -1,0 +1,5 @@
+<!-- date -->
+<%= f.input question.id.to_s, label: question.field_label, hint: question.field_hint, required: question.required, wrapper: :prepend do %>
+  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+  <%= f.input_field question.id.to_s, as: :string, class: 'datepicker' %>
+<% end %>

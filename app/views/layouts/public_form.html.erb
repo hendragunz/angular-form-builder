@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @form.name %>| <%= t 'site_name' %></title>
+  <title><%= @form.name %> | <%= t 'site_name' %></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -11,8 +11,9 @@
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
-<body class="public_form">
-  <div class="container form-container">
+
+<body class="public-form">
+  <div class="container">
     <%= yield %>
   </div>
 
@@ -22,4 +23,5 @@
     </div>
   </footer>
 </body>
+
 </html>
