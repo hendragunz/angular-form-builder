@@ -1,4 +1,4 @@
-class CustomRadioButtonsInput < SimpleForm::Inputs::CollectionRadioButtonsInput
+class InlineRadioButtonsInput < SimpleForm::Inputs::CollectionRadioButtonsInput
   def input
     label_method, value_method = detect_collection_methods
     input_html_options[:class] = input_html_options[:class].reject{|x| x == 'form-control' }
@@ -14,4 +14,11 @@ class CustomRadioButtonsInput < SimpleForm::Inputs::CollectionRadioButtonsInput
       )
     end
   end
+
+  private
+
+    def item_wrapper_class
+      "radio-inline"
+    end
+
 end

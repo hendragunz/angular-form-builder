@@ -1,6 +1,4 @@
 <!-- Radio -->
-<div class="radio" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'radio') && ((opt.deleted == undefined) || (opt.deleted == false))">
-  <label>
-    <input type="radio" name="{{ field.name }}"> {{ opt.name }}
-  </label>
-</div>
+<label class="radio-inline" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'radio') && ((opt.deleted == undefined) || (opt.deleted == false))">
+  <input type="radio" name="{{ field.name }}"> {{ opt.name }}
+</label>

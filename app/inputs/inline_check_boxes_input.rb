@@ -1,4 +1,4 @@
-class CustomCheckBoxesInput < SimpleForm::Inputs::CollectionRadioButtonsInput
+class InlineCheckBoxesInput < SimpleForm::Inputs::CollectionRadioButtonsInput
   def input
     label_method, value_method = detect_collection_methods
     input_html_options[:class] = input_html_options[:class].reject{|x| x == 'form-control' }
@@ -24,6 +24,6 @@ class CustomCheckBoxesInput < SimpleForm::Inputs::CollectionRadioButtonsInput
       end
 
       def item_wrapper_class
-        "checkbox"
+        "checkbox-inline"
       end
 end
