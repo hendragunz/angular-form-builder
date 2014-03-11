@@ -7,6 +7,7 @@ module FieldTypeCollection
     boolean:     {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
     checkbox:    {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     date:        {type: 'date',      options: ['label', 'hint', 'required']},
+    datetime:    {type: 'datetime',  options: ['label', 'hint', 'required']},
     dropdown:    {type: 'select',    options: ['label', 'hint', 'required', 'field_options']},
     email:       {type: 'email',     options: ['label', 'hint', 'required']},
     facebook:    {type: 'text',      options: ['label', 'hint', 'required']},
