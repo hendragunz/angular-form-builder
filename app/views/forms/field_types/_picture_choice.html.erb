@@ -4,7 +4,7 @@
   <div class="radio" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
     <label>
       <input type="radio" name="{{ field.name }}" value="{{ opt.id }}">
-      {{ opt.name }}
+      <img class="picture-option" ng-src="{{ opt.picture_thumb_url || opt.picture.dataURL || '/assets/field_options/thumb_missing.jpg'}}"  type="{{ opt.picture.file.type }}" />
     </label>
   </div>
 </div>

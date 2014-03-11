@@ -94,6 +94,7 @@
         </div><!-- end field rating -->
 
 
+        <!-- begin field options -->
         <div  ng-if="needField(field, 'field_options')">
           <h6>FIELD OPTIONS</h6>
           <div ng-repeat="field_option in field.field_options" class="row {{ field_option.deleted ? 'hide' : '' }}">
@@ -109,7 +110,28 @@
             <% end %>
           </div>
           <p><%= link_to "Add option", '', 'ng-click' => "addFieldOption(field)" %></p>
-        </div><!-- end field options -->
+        </div>
+        <!-- end field options -->
+
+
+        <!-- begin picture options -->
+        <div ng-if="needField(field, 'picture_options')">
+          <h6>PICTURE OPTIONS</h6>
+          <div ng-repeat="field_option in field.field_options" class="row {{ field_option.deleted ? 'hide' : '' }}">
+            <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
+              <div class="col-xs-11">
+                <%= fo.input :picture, as: :file, label: false, input_html: { 'accept' => 'image/*', 'image' => "field_option.picture" } %>
+                <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
+                <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
+              </div>
+              <div class="col-xs-1" style='padding-left:0;'>
+                <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>
+              </div>
+            <% end %>
+          </div>
+          <p><%= link_to "Add option", '', 'ng-click' => "addFieldOption(field)" %></p>
+        </div>
+        <!-- end picture options -->
 
       <% end %>
     </div> <!-- end panel footer -->

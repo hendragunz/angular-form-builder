@@ -1,5 +1,5 @@
 bootstrapAngular = ->
-  angular.module('FormBuilder', ['ui.sortable']).directive('onLastRepeat', () ->
+  angular.module('FormBuilder', ['ui.sortable', 'imageupload']).directive('onLastRepeat', () ->
     return (scope, element, attrs) ->
       if (scope.$last)
         setTimeout( ->

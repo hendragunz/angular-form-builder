@@ -67,6 +67,13 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
+      when 'picture_choice'
+        field.field_options = [
+          {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
+          {name: 'Option 2', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
+          {name: 'Option 3', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
+        ]
+
       when 'number'
         field.field_label = 'Number'
 
@@ -159,7 +166,7 @@
         if field.field_type == 'rating'
           field.properties.max_rating = parseInt(field.properties.max_rating)
 
-      # console.log $scope.fields
+      console.log $scope.fields
       # console.log "---------------------------"
       # console.log $scope.form
       # console.log "---------------------------"

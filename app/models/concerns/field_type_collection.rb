@@ -24,7 +24,8 @@ module FieldTypeCollection
     statement:   {type: 'rowcolumn', options: ['label', 'hint', 'required']},
     time:        {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:     {type: 'text',      options: ['label', 'hint', 'required']},
-    website:     {type: 'url',       options: ['label', 'hint', 'required']}
+    website:     {type: 'url',       options: ['label', 'hint', 'required']},
+    picture_choice:  {type: 'radio',     options: ['label', 'hint', 'required', 'picture_options']}
   }
 
   included do
