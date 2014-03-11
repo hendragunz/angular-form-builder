@@ -1,5 +1,13 @@
 window.Util ||= {}
 
+# Initialize Date Time PIcker / Date picker
+Util.initDateTimePicker = ()->
+  $("form").find(".datepicker").datetimepicker
+    pickTime: false
+  $("form").find(".datetimepicker").datetimepicker()
+
+
+# Document Ready should be here
 Util.onReady = ()->
   $("[data-toggle=offcanvas]").click ->
     $(".row-offcanvas").toggleClass "active"
@@ -8,11 +16,11 @@ Util.onReady = ()->
     Turbolinks.visit($(this).data('url'))
 
   $("select[id$='field_type']").change ->
-  return
+    return
+
+  Util.initDateTimePicker()
 
 
-Util.initDateTimePicker = ()->
-  $("form").find(".datepicker").datetimepicker
-    pickTime: false
 
-  $("form").find(".datetimepicker").datetimepicker()
+# Calling document ready
+$(document).on('ready page:load', Util.onReady)

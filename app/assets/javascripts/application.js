@@ -26,7 +26,3 @@
 //= require angular/my_app
 //= require angular/form
 
-
-$(document).ready(function(){
-  Util.initDateTimePicker();
-});
