@@ -38,6 +38,9 @@
     }
 
     switch field.field_type
+      when 'date'
+        field.field_label = 'Date'
+
       when 'address'
         field.field_label = 'Address'
 
@@ -172,3 +175,17 @@
   # ).error (status) ->
   #   alert "An error occured"
 ]
+
+
+
+# initialize form date picker
+@initFormBuilderDateTimePicker = ->
+  $("#form-container").find(".datepicker").not(".datepicker-initialized").each (idx, item) ->
+    $(this).addClass "datepicker-initialized"
+    $(this).datetimepicker pickTime: false
+
+  $("#form-container").find(".datetimepicker").not(".datetimepicker-initialized").each (idx, item) ->
+    $(this).addClass "datetimepicker-initialized"
+    $(this).datetimepicker()
+
+  return
