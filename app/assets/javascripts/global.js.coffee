@@ -1,10 +1,10 @@
 window.Util ||= {}
 
-# Initialize Date Time PIcker / Date picker
+# Initialize Date Time Picker / Date picker
 Util.initDateTimePicker = ()->
-  $("form").find(".datepicker").datetimepicker
+  $(".datepicker").datetimepicker
     pickTime: false
-  $("form").find(".datetimepicker").datetimepicker()
+  $(".datetimepicker").datetimepicker()
 
 
 # Document Ready should be here
