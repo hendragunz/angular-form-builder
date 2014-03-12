@@ -1,2 +1,2 @@
 <!-- checkbox -->
-<%= f.input question.id.to_s, as: :inline_check_boxes, label: question.field_label, hint: question.field_hint, collection: question.field_options.map(&:name), required: question.required %>
+<%= f.input question.id.to_s, as: :custom_check_boxes, label: question.field_label, hint: question.field_hint, collection: question.field_options.map(&:name), required: question.required %>

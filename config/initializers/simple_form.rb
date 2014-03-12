@@ -155,9 +155,7 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end
 
-
   config.wrappers :multi_checkbox, tag: :div, class: "checkbox", error_class: "has-error" do |b|
-
     # Form extensions
     b.use :html5
 
@@ -168,6 +166,6 @@ SimpleForm.setup do |config|
     end
 
     b.use :hint,  wrap_with: { tag: :p, class: "help-block" }
-    b.use :error, wrap_with: { tag: :span, class: "help-block text-danger" }
+    b.use :error, wrap_with: { tag: :span, class: "help-block has-error" }
   end
 end
