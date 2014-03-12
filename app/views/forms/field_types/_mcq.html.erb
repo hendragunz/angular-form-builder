@@ -1,4 +1,6 @@
 <!-- MCQ -->
-<label class="checkbox-inline" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'mcq') && ((opt.deleted == undefined) || (opt.deleted == false))">
-  <input type="checkbox"> {{ opt.name }}
-</label>
+<div class="checkbox" ng-repeat="opt in field.field_options" ng-if="(field.field_type == 'mcq') && ((opt.deleted == undefined) || (opt.deleted == false))">
+  <label>
+    <input type="checkbox"> {{ opt.name }}
+  </label>
+</div>
