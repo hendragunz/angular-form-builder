@@ -33,7 +33,9 @@ class FieldOption < ActiveRecord::Base
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
-  validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :picture,
+                                    :allow_blank => true,
+                                    :content_type => /\Aimage\/.*\Z/
 
   # add persisted => true
   # when call method to_json
