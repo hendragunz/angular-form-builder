@@ -60,7 +60,7 @@
         field.field_label = 'File'
 
       # prepopulate field options if field type is mcq | dropdown
-      when 'mcq', 'dropdown', 'checkbox'
+      when 'mcq', 'dropdown', 'checkbox', 'radio'
         field.field_options = [
           {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false}
           {name: 'Option 2', id: $scope.unique_id() + 2, persisted: false, deleted: false}
