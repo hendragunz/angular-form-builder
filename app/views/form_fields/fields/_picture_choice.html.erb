@@ -1,2 +1,2 @@
 <!-- picture choice -->
-<%= f.input question.id.to_s, as: :custom_radio_buttons, collection: question.field_options.map{|x| [ image_tag(x.picture.url(:thumb)).html_safe , x.id]}, label: question.field_label, hint: question.field_hint, required: question.required %>
+<%= f.input question.id.to_s, as: :inline_radio_buttons, collection: question.field_options.map{|x| [ image_tag(x.picture.url(:thumb)).html_safe , x.id]}, label: question.field_label, hint: question.field_hint, required: question.required, class: 'thumbnail' %>

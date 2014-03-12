@@ -19,8 +19,9 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jasny-bootstrap
-//= require jquery_nested_form
+// require jquery_nested_form
 //= require global
+//= require holder
 
 
 //= require angular
