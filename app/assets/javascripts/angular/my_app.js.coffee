@@ -5,6 +5,15 @@ bootstrapAngular = ->
         setTimeout( ->
           initFormBuilderDateTimePicker()
         , 1)
+  ).directive('stopEvent', ->
+    return {
+      restrict: 'A',
+      link: (scope, element, attr) ->
+        element.bind(attr.stopEvent, (e) ->
+          e.stopPropagation()
+        )
+    }
+
   )
   angular.bootstrap(document.body, ['FormBuilder'])
 
