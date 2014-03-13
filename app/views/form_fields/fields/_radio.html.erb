@@ -1,0 +1,2 @@
+<!-- radio -->
+<%= f.input question.id.to_s, as: :custom_radio_buttons, collection: question.field_options.map{|x| [x.name, x.id]}, label: question.field_label, hint: question.field_hint, collection: question.field_options.map(&:name), required: question.required %>
