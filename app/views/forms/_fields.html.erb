@@ -4,7 +4,7 @@
     <div class="panel-heading" ng-click="toggleFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
         {{ field.field_label }}
-        <%= link_to '', "ng-click" => "removeField(field)", class: 'pull-right link-delete', title: "Click to delete this field" do %>
+        <%= link_to '', "ng-click" => "removeField(field)", class: 'pull-right link-delete', title: "Click to delete this field", "stop-event" => "click" do %>
           <i class='fa fa-trash-o'></i>
         <% end %>
       </h3>
