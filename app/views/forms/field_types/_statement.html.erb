@@ -2,12 +2,10 @@
   <thead>
     <tr>
       <th></th>
-      <th ng-repeat="column in field.properties.columns">
-        {{ column }}
-      </th>
-
+      <th ng-repeat="column in field.properties.columns"> {{ column }} </th>
     </tr>
   </thead>
+
   <tbody>
     <tr ng-repeat="statement in field.properties.statements">
       <td> {{ statement }} </td>
@@ -18,8 +16,6 @@
           </label>
         </div>
       </td>
-
     </tr>
-
   </tbody>
 </table>

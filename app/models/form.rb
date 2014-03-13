@@ -42,7 +42,8 @@ class Form < ActiveRecord::Base
   validates :name,  presence: true,
                     uniqueness: { scope: 'user_id', case_sensitve: false }
   validates_length_of :persons_to_notify, maximum: 255, allow_blank: true
-  validates_format_of :webhook_url, with: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, multiline: true, message: 'Invalid URL. Only http(s) supported'
+  validates_format_of :webhook_url, with: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, multiline: true,
+                      message: 'Invalid URL. Only http(s) supported', allow_blank: true
 
 
   # CALLBACKS
