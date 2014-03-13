@@ -1,12 +1,17 @@
 <!-- picture choice -->
-<div ng-if="(field.field_type == 'picture_choice')">
+<div class="row" ng-if="(field.field_type == 'picture_choice')">
   <div class="radio radio-inline" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
-    <label>
-      <input type="radio" name="{{ field.name }}" value="{{ opt.id }}">
-      <img class="picture-option img-thumbnail" ng-src="{{ opt.picture_thumb_url || opt.picture.dataURL || 'holder.js/250x250'}}" type="{{ opt.picture.file.type }}" />
-      <br />
-      {{ opt.name }}
-    </label>
+    <a href="" class="thumbnail">
+      <input type="radio" name="{{ field.name }}" value="{{ opt.id }}" style="display: none;">
+      <img ng-src="{{ opt.picture_thumb_url || opt.picture.dataURL || 'holder.js/144x150'}}" type="{{ opt.picture.file.type }}" />
+    </a>
+    <p class="center"><small>{{ opt.name }}</small></p>
   </div>
 </div>
 
+<script>
+   $('.thumbnail').click(function() {
+    $(this).closest('.row').find('.thumbnail').removeClass('active');
+    $(this).addClass('active');
+  });
+</script>
