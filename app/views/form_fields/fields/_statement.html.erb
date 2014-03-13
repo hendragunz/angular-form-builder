@@ -1,4 +1,4 @@
-<!-- state,emt -->
+<!-- statement -->
 <div class="input string <%= question.required %>">
   <%= f.label question.id.to_s, class: 'control-label' do %>
     <% if question.required %>
@@ -14,21 +14,19 @@
           <tr>
             <th></th>
             <% question.properties_columns.each do |column| %>
-              <th> <%= column %> </th>
+              <th class="center"><%= column %></th>
             <% end %>
           </tr>
         </thead>
         <tbody>
           <% question.properties_statements.each do |statement| %>
             <tr>
-              <td><%= statement %></td>
+              <td class="tright"><%= statement %></td>
               <% question.properties_columns.each do |column| %>
-                <td>
-                  <div class="radio">
-                    <label>
-                        <%= f.radio_button question.id, [statement, column].join(' - ') %>
-                    </label>
-                  </div>
+                <td class="center">
+                  <label>
+                    <%= f.radio_button question.id, [statement, column].join(' - ') %>
+                  </label>
                 </td>
               <% end %>
             </tr>
