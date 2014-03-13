@@ -93,6 +93,47 @@
           <% end %>
         </div><!-- end field rating -->
 
+        <div ng-if="needField(field, 'statements')" >
+          <%= ff.fields_for "properties" do |fp| %>
+            <div class="row">
+              <div class="col-xs-12">
+                <%= fp.input :max_rows, as: :integer, input_html: { 'ng-model' => "field.properties.max_rows", min: 1 } %>
+              </div>
+            </div>
+
+            <h6>Statements</h6>
+            <div ng-repeat="statement in field.properties.statements" class="row">
+              <div class="col-xs-11">
+                <%= fp.fields_for "{{ statement.position }}" do |f_statement| %>
+                  <%= f_statement.hidden_field :position, value: "{{ statement.position }}" %>
+                  <%= f_statement.input :name, as: :string, label: false, input_html: { 'ng-model' => 'statement.name' }, placeholder: 'Statement' %>
+                <% end %>
+              </div>
+
+              <div class="col-xs-1" style='padding-left:0;'>
+                <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesStatement(field, statement)", class: 'link-danger' %>
+              </div>
+            </div>
+            <p><%= link_to "Add statement", '', 'ng-click' => "addFieldPropertiesStatement(field)" %></p>
+
+
+            <h6>Columns</h6>
+            <div ng-repeat="column in field.properties.columns" class="row">
+              <div class="col-xs-11">
+                <%= fp.fields_for "{{ column.position }}" do |f_statement| %>
+                  <%= f_statement.hidden_field :position, value: "{{ column.position }}" %>
+                  <%= f_statement.input :name, as: :string, label: false, input_html: { 'ng-model' => 'column.name' }, placeholder: 'Column' %>
+                <% end %>
+              </div>
+
+              <div class="col-xs-1" style='padding-left:0;'>
+                <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesColumn(field, column)", class: 'link-danger' %>
+              </div>
+            </div>
+            <p><%= link_to "Add column", '', 'ng-click' => "addFieldPropertiesColumn(field)" %></p>
+          <% end %>
+        </div>
+
 
         <div  ng-if="needField(field, 'field_options')">
           <h6>FIELD OPTIONS</h6>

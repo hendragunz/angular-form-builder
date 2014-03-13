@@ -113,6 +113,20 @@
 
       when 'website'
         field.field_label = 'URL'
+
+      when 'statement'
+        field.field_label = 'Statement'
+        field.properties.max_rows = 0
+        field.properties.statements = [
+          {name: 'Statement 1', position: 0}
+          {name: 'Statement 2', position: 1}
+          {name: 'Statement 3', position: 2}
+        ]
+        field.properties.columns = [
+          {name: 'Column 1', position: 0}
+          {name: 'Column 2', position: 1}
+          {name: 'Column 3', position: 2}
+        ]
     # end of switch
 
     $scope.fields.push( field )
@@ -135,6 +149,30 @@
     else
       field.field_options.splice( field.field_options.indexOf(field_option), 1 )
 
+
+  $scope.addFieldPropertiesStatement = (field) ->
+    field.properties.statements.push({name: 'New statement', position: field.properties.statements.length + 1,  persisted: false})
+
+
+  $scope.removeFieldPropertiesStatement = (field, statement)->
+    if statement.persisted
+      if confirm( I18n.t('form').confirm_remove_field )
+        field.properties.statements.splice( field.properties.statements.indexOf(statement), 1 )
+    else
+      field.properties.statements.splice( field.properties.statements.indexOf(statement), 1 )
+
+
+  $scope.addFieldPropertiesColumn = (field) ->
+    field.properties.columns.push({name: 'New column', position: field.properties.columns.length + 1,  persisted: false})
+
+
+  $scope.removeFieldPropertiesColumn = (field, column)->
+    if column.persisted
+      if confirm( I18n.t('form').confirm_remove_field )
+        field.properties.columns.splice( field.properties.columns.indexOf(column), 1 )
+    else
+      field.properties.columns.splice( field.properties.columns.indexOf(column), 1 )
+
   # will return unique_id
   $scope.unique_id = () ->
     (new Date()).getTime()
@@ -156,6 +194,11 @@
     $timeout (->
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
       angular.forEach $scope.fields, (field, index) ->
+        field.properties ||= {
+          statements: []
+          columns: []
+        }
+
         if field.field_type == 'rating'
           field.properties.max_rating = parseInt(field.properties.max_rating)
 
