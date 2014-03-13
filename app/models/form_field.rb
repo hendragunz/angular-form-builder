@@ -69,7 +69,23 @@ class FormField < ActiveRecord::Base
 
   def as_json(options = {})
     # this example ignores the user's options
+    if properties['columns'].present?
+      properties['columns'] = JSON.parse properties['columns']
+    end
+
+    if properties['statements'].present?
+      properties['statements'] = JSON.parse properties['statements']
+    end
+
     super(options).merge(persisted: persisted?, field_options: field_options.map{|x| x.as_json})
+  end
+
+  def properties_columns
+    JSON.parse(properties['columns']) rescue nil
+  end
+
+  def properties_statements
+    JSON.parse(properties['statements']) rescue nil
   end
 
   private

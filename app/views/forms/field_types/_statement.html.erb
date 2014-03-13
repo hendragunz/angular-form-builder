@@ -1,0 +1,25 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th ng-repeat="column in field.properties.columns">
+        {{ column }}
+      </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="statement in field.properties.statements">
+      <td> {{ statement }} </td>
+      <td ng-repeat="column in field.properties.columns">
+        <div class="radio">
+          <label>
+            <input type="radio" name="{{ field.name }}" id="optionsRadios2" value="{{ statement.name }}-{{ column.name }}">
+          </label>
+        </div>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>

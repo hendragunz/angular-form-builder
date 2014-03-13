@@ -1,0 +1,46 @@
+<!-- state,emt -->
+<div class="input string <%= question.required %>">
+  <%= f.label question.id.to_s, class: 'control-label' do %>
+    <% if question.required %>
+      <abbr title="required">*</abbr>
+    <% end %>
+    <%= question.field_label %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <% question.properties_columns.each do |column| %>
+              <th> <%= column %> </th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% question.properties_statements.each do |statement| %>
+            <tr>
+              <td><%= statement %></td>
+              <% question.properties_columns.each do |column| %>
+                <td>
+                  <div class="radio">
+                    <label>
+                        <%= f.radio_button question.id, [statement, column].join(' - ') %>
+                    </label>
+                  </div>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="help-block"> <%= question.field_hint %> </p>
+    </div>
+  </div>
+</div>
