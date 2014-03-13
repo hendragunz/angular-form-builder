@@ -119,10 +119,13 @@
           <h6>PICTURE OPTIONS</h6>
           <div ng-repeat="field_option in field.field_options" class="row {{ field_option.deleted ? 'hide' : '' }}">
             <%= ff.fields_for "field_options_attributes[{{ field_option.id }}]" do |fo| %>
-              <div class="col-xs-11">
+              <div class="col-xs-5">
                 <%= fo.input :picture, as: :file, label: false, input_html: { 'accept' => 'image/*', 'image' => "field_option.picture" } %>
                 <%= fo.hidden_field :id, 'value' => '{{ field_option.id }}', 'ng-if' => "field_option.persisted == true" %>
                 <%= fo.hidden_field :_destroy, 'value' => '{{ field_option.deleted }}', 'ng-if' => "field_option.persisted == true" %>
+              </div>
+              <div class="col-xs-6">
+                <%= fo.input :name, as: :string, label: false, input_html: { placeholder: "Picture caption", 'ng-model' => "field_option.name" } %>
               </div>
               <div class="col-xs-1" style='padding-left:0;'>
                 <%= link_to 'remove', '', 'ng-click' => "removeFieldOption(field, field_option)", class: 'link-danger' %>

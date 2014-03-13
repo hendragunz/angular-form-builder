@@ -69,9 +69,9 @@
 
       when 'picture_choice'
         field.field_options = [
-          {name: 'Option 1', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
-          {name: 'Option 2', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
-          {name: 'Option 3', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
+          {name: 'Caption 1', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
+          {name: 'Caption 2', id: $scope.unique_id() + 2, persisted: false, deleted: false, picture: undefined}
+          {name: 'Caption 3', id: $scope.unique_id() + 3, persisted: false, deleted: false, picture: undefined}
         ]
 
       when 'number'

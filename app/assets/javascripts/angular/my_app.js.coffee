@@ -4,6 +4,7 @@ bootstrapAngular = ->
       if (scope.$last)
         setTimeout( ->
           initFormBuilderDateTimePicker()
+          Holder.run()
         , 1)
   ).directive('stopEvent', ->
     return {
