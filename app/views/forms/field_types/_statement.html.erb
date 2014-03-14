@@ -2,13 +2,13 @@
   <thead>
     <tr>
       <th></th>
-      <th ng-repeat="column in field.properties.columns"> {{ column }} </th>
+      <th ng-repeat="column in field.properties.columns"> {{ column.name }} </th>
     </tr>
   </thead>
 
   <tbody>
     <tr ng-repeat="statement in field.properties.statements">
-      <td> {{ statement }} </td>
+      <td> {{ statement.name }} </td>
       <td ng-repeat="column in field.properties.columns">
         <div class="radio">
           <label>

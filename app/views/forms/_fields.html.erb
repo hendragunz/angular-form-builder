@@ -96,9 +96,11 @@
         <div ng-if="needField(field, 'statements')" >
 
           <h6>Statements</h6>
-          <div ng-repeat="statement in field.properties.statements" class="row">
+          <div ng-repeat="st in field.properties.statements" class="row">
             <div class="col-xs-11">
-              <%= ff.input "properties[statements]", as: :string, label: false, input_html: { 'ng-model' => 'statement', placeholder: 'Statement', id: nil, multiple: true } %>
+              <%= ff.fields_for "properties" do |fp| %>
+                <%= fp.input "statements[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'st.name', placeholder: 'Column', id: nil } %>
+              <% end %>
             </div>
 
             <div class="col-xs-1" style='padding-left:0;'>
@@ -109,9 +111,11 @@
 
 
           <h6>Columns</h6>
-          <div ng-repeat="column in field.properties.columns" class="row">
+          <div ng-repeat="cl in field.properties.columns" class="row">
             <div class="col-xs-11">
-              <%= ff.input "properties[columns]", as: :string, label: false, input_html: { 'ng-model' => 'column', placeholder: 'Column', id: nil, multiple: true } %>
+              <%= ff.fields_for "properties" do |fp| %>
+                <%= fp.input "columns[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'cl.name', placeholder: 'Column', id: nil } %>
+              <% end %>
             </div>
 
             <div class="col-xs-1" style='padding-left:0;'>

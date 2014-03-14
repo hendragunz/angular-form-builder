@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0.beta1'
+gem 'rails', git: "git@github.com:rails/rails.git", branch: "4-1-stable"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -55,6 +55,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
 
 # Tools
 gem 'enumerize'
+gem 'nested-hstore'
 
 group :development, :test do
   gem 'faker', '1.0.1'

@@ -13,19 +13,19 @@
         <thead>
           <tr>
             <th></th>
-            <% question.properties_columns.each do |column| %>
-              <th class="center"><%= column %></th>
+            <% question.properties['columns'].each do |key, column| %>
+              <th class="center"><%= column['name'] %></th>
             <% end %>
           </tr>
         </thead>
         <tbody>
-          <% question.properties_statements.each do |statement| %>
+          <% question.properties['statements'].each do |key, statement| %>
             <tr>
-              <td class="tright"><%= statement %></td>
-              <% question.properties_columns.each do |column| %>
+              <td class="tright"><%= statement['name'] %></td>
+              <% question.properties['columns'].each do |key2, column| %>
                 <td class="center">
                   <label>
-                    <%= f.radio_button question.id, [statement, column].join(' - ') %>
+                    <%= f.radio_button question.id, [statement['name'], column['name']].join(' - ') %>
                   </label>
                 </td>
               <% end %>
@@ -36,9 +36,11 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <p class="help-block"> <%= question.field_hint %> </p>
+  <% if question.field_hint.present? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="help-block"> <%= question.field_hint %> </p>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

@@ -117,8 +117,16 @@
       when 'statement'
         field.field_label = 'Statement'
         field.properties.max_rows = 0
-        field.properties.statements = ['Statement 1', 'Statement 2', 'Statement 3']
-        field.properties.columns = ['Column 1', 'Column 2', 'Column 3']
+        field.properties.statements = [
+          {name: 'Statement 1'}
+          {name: 'Statement 2'}
+          {name: 'Statement 3'}
+        ]
+        field.properties.columns = [
+          {name: 'Column 1'}
+          {name: 'Column 2'}
+          {name: 'Column 3'}
+        ]
     # end of switch
 
     $scope.fields.push( field )
