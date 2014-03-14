@@ -166,12 +166,16 @@
 
   angular.element(document).ready () ->
     $timeout (->
+      $('#form-container').on 'click', '.thumbnail', ()->
+        $(this).closest('.row').find('.thumbnail').removeClass('active')
+        $(this).addClass('active')
+
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
       angular.forEach $scope.fields, (field, index) ->
         if field.field_type == 'rating'
           field.properties.max_rating = parseInt(field.properties.max_rating)
 
-      console.log $scope.fields
+      # console.log $scope.fields
       # console.log "---------------------------"
       # console.log $scope.form
       # console.log "---------------------------"
