@@ -25,7 +25,7 @@
               <% question.properties['columns'].each do |key2, column| %>
                 <td class="center">
                   <label>
-                    <%= f.radio_button question.id, [statement['name'], column['name']].join(' - ') %>
+                    <%= f.radio_button "#{question.id}_#{statement['name']}", [statement['name'], column['name']].join(' - ') %>
                   </label>
                 </td>
               <% end %>

@@ -12,7 +12,7 @@
       <td ng-repeat="column in field.properties.columns">
         <div class="radio">
           <label>
-            <input type="radio" name="{{ field.name }}" id="optionsRadios2" value="{{ statement.name }}-{{ column.name }}">
+            <input type="radio" name="{{ field.name }}_{{ statement.name }}" id="optionsRadios2" value="{{ statement.name }}-{{ column.name }}">
           </label>
         </div>
       </td>
