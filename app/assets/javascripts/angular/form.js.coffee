@@ -117,16 +117,17 @@
       when 'statement'
         field.field_label = 'Statement'
         field.properties.max_rows = 0
-        field.properties.statements = [
-          {name: 'Statement 1'}
-          {name: 'Statement 2'}
-          {name: 'Statement 3'}
-        ]
-        field.properties.columns = [
-          {name: 'Column 1'}
-          {name: 'Column 2'}
-          {name: 'Column 3'}
-        ]
+        field.properties.statements = {
+          0: {name: 'Statement 1'}
+          1: {name: 'Statement 2'}
+          2: {name: 'Statement 3'}
+        }
+
+        field.properties.columns = {
+          0: {name: 'Column 1'}
+          1: {name: 'Column 2'}
+          2: {name: 'Column 3'}
+        }
     # end of switch
 
     $scope.fields.push( field )
@@ -151,27 +152,32 @@
 
 
   $scope.addFieldPropertiesStatement = (field) ->
-    field.properties.statements.push({name: 'New statement', position: field.properties.statements.length + 1,  persisted: false})
+    obj = {name: 'New statement',  persisted: false}
+    idx = Object.keys(field.properties.statements).length + 1
+    field.properties.statements[idx] = obj
 
 
-  $scope.removeFieldPropertiesStatement = (field, statement)->
+  $scope.removeFieldPropertiesStatement = (field, statement, idx)->
     if statement.persisted
       if confirm( I18n.t('form').confirm_remove_field )
-        field.properties.statements.splice( field.properties.statements.indexOf(statement), 1 )
+        delete field.properties.statements[idx]
     else
-      field.properties.statements.splice( field.properties.statements.indexOf(statement), 1 )
+      delete field.properties.statements[idx]
+
 
 
   $scope.addFieldPropertiesColumn = (field) ->
-    field.properties.columns.push({name: 'New column', position: field.properties.columns.length + 1,  persisted: false})
+    obj = {name: 'New Column', persisted: false}
+    idx = Object.keys(field.properties.columns).length + 1
+    field.properties.columns[idx] = obj
 
 
-  $scope.removeFieldPropertiesColumn = (field, column)->
+  $scope.removeFieldPropertiesColumn = (field, column, idx)->
     if column.persisted
       if confirm( I18n.t('form').confirm_remove_field )
-        field.properties.columns.splice( field.properties.columns.indexOf(column), 1 )
+        delete field.properties.columns[idx]
     else
-      field.properties.columns.splice( field.properties.columns.indexOf(column), 1 )
+      delete field.properties.columns[idx]
 
   # will return unique_id
   $scope.unique_id = () ->

@@ -104,7 +104,7 @@
             </div>
 
             <div class="col-xs-1" style='padding-left:0;'>
-              <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesStatement(field, statement)", class: 'link-danger' %>
+              <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesStatement(field, st, $index)", class: 'link-danger' %>
             </div>
           </div>
           <p><%= link_to "Add statement", '', 'ng-click' => "addFieldPropertiesStatement(field)" %></p>
@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-xs-1" style='padding-left:0;'>
-              <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesColumn(field, column)", class: 'link-danger' %>
+              <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesColumn(field, cl, $index)", class: 'link-danger' %>
             </div>
           </div>
           <p><%= link_to "Add column", '', 'ng-click' => "addFieldPropertiesColumn(field)" %></p>
