@@ -5,6 +5,7 @@
   Sorry, but this form is limited to one submission per user.
 <% else %>
   <%= page_title("#{@form.name}") %>
+  <%= simple_format(@form.introduction, class: 'lead') %>
 
 	<%= simple_form_for([@form, @entry], url: create_public_form_path) do |f| %>
 	  <%= f.error_notification %>
