@@ -1,5 +1,22 @@
 <!-- datetime -->
-<%= f.input question.id.to_s, label: question.field_label, hint: question.field_hint, required: question.required, wrapper: :prepend do %>
-  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-  <%= f.input_field question.id.to_s, as: :string, class: 'datetimepicker' %>
-<% end %>
+<div class="datetime-field">
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.input question.id.to_s, label: question.field_label, hint: question.field_hint, required: question.required, wrapper: :prepend do %>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        <%= f.input_field question.id.to_s, as: :string, class: 'datetimepicker' %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="input-group hour-field pull-left">
+        <%= f.input :hour, collection: ((0..23).to_a.map{|x| '%02d' % x }), class: "form-control" %>
+      </div>
+      <div class="input-group minute-field pull-left">
+        <%= f.input :minutes, collection: ((0..45).step(15).to_a.map{|x| '%02d' % x}),  class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+</div>
+

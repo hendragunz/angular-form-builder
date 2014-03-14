@@ -1,5 +1,23 @@
 <!-- datetime -->
-<div class="input-group datetime" ng-show="(field.field_type == 'datetime')">
-  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-  <input type="text" class="form-control datetimepicker" data-minuteStepping="15" name="{{ field.name }}">
+<div class="datetime-field" ng-show="(field.field_type == 'datetime')">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="input-group date">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        <input type="text" class="form-control datepicker" data-minuteStepping="15" name="{{ field.id }_date">
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="input-group hour-field pull-left">
+        <%= select_tag :hour, options_for_select((0..23).to_a.map{|x| '%02d' % x }), class: "form-control" %>
+      </div>
+      <div class="input-group separator-field pull-left">:</div>
+      <div class="input-group minute-field pull-left">
+        <%= select_tag :minutes, options_for_select((0..45).step(15).to_a.map{|x| '%02d' % x}), class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
 </div>
+
