@@ -68,6 +68,7 @@
         ]
 
       when 'picture_choice'
+        field.field_label = "Picture Choice"
         field.field_options = [
           {name: 'Caption 1', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
           {name: 'Caption 2', id: $scope.unique_id() + 2, persisted: false, deleted: false, picture: undefined}
