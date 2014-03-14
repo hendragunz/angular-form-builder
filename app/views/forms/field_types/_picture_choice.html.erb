@@ -3,7 +3,7 @@
   <div class="radio radio-inline" ng-repeat="opt in field.field_options" ng-if="((opt.deleted == undefined) || (opt.deleted == false))">
     <label>
       <input type="radio" name="{{ field.name }}" value="{{ opt.id }}">
-      <img class="picture-option img-thumbnail" ng-src="{{ opt.picture_thumb_url || opt.picture.dataURL || 'holder.js/250x250'}}" type="{{ opt.picture.file.type }}" />
+      <img class="picture-option img-thumbnail" alt="{{ opt.name || '' }}" ng-src="{{ opt.picture_thumb_url || opt.picture.dataURL || '/assets/holder.js/250x250'}}" type="{{ opt.picture.file.type }}" />
       <br />
       {{ opt.name }}
     </label>

@@ -134,6 +134,10 @@
 
   $scope.addFieldOption = (field) ->
     field.field_options.push({name: 'New option', id: $scope.unique_id(), persisted: false, deleted: false})
+    $timeout (->
+      if field.field_type == 'picture_choice'
+        Holder.run()
+    )
 
   $scope.removeFieldOption = (field, field_option)->
     if field_option.persisted
