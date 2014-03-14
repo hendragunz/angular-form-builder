@@ -74,3 +74,15 @@
 .thumbnail.active {
   border: 1px solid #428bca;
 }
+
+.new_form_entry {
+  .input {
+    .input-group {
+      .radio-inline {
+        .img-thumbnail.active {
+          border: 1px solid #428bca;
+        }
+      }
+    }
+  }
+}
