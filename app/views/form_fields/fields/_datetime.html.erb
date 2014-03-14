@@ -10,10 +10,13 @@
 
     <div class="col-xs-4">
       <div class="input-group hour-field pull-left">
-        <%= f.input :hour, collection: ((0..23).to_a.map{|x| '%02d' % x }), class: "form-control" %>
+        <label class="select control-label" for="form_entry_answers_minutes">Hour</label>
+        <%= f.input_field :hour, collection: ((0..23).to_a.map{|x| '%02d' % x }), class: "form-control" %>
       </div>
+      <div class="input-group separator-field pull-left"><span>:</span></div>
       <div class="input-group minute-field pull-left">
-        <%= f.input :minutes, collection: ((0..45).step(15).to_a.map{|x| '%02d' % x}),  class: "form-control" %>
+        <label class="select control-label" for="form_entry_answers_minutes">Minute</label>
+        <%= f.input_field :minutes, collection: ((0..45).step(15).to_a.map{|x| '%02d' % x}), class: "form-control" %>
       </div>
     </div>
   </div>

@@ -74,8 +74,12 @@
 
       .separator-field {
         padding-top: 5px;
+
+        span {
+          margin-top: 27px;
+          display: inline-block;
+        }
       }
     }
   }
-
 }
