@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= @form.name %> | <%= t 'site_name' %></title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <!--[if lt IE 9]>
-    <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title><%= @form.name %> | <%= t 'site_name' %></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
 
-<body class="public-form">
-  <div class="container">
-    <%= yield %>
-  </div>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      html {
+        position: relative;
+        min-height: 100%;
+      }
+    </style>
+  </head>
 
-  <footer>
+  <body class="public-form">
     <div class="container">
-      <p class="text-muted">Made with <%= link_to "#{t 'site_name'}", public_home_path %> <%= icon_tag("heart") %> Create free form / survey</p>
+      <%= yield %>
     </div>
-  </footer>
-</body>
 
+    <footer>
+      <div class="container">
+        <p class="text-muted">Made with <%= link_to "#{t 'site_name'}", public_home_path %> <%= icon_tag("heart") %> Create free form / survey</p>
+      </div>
+    </footer>
+  </body>
 </html>
