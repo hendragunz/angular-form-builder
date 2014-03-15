@@ -1,5 +1,12 @@
 <!-- question_group -->
 <div>
+  <%= f.label question.id, class: 'control-label' do %>
+    <% if question.required %>
+      <abbr title="required">*</abbr>
+    <% end %>
+    <%= question.field_label %>
+  <% end %>
+
   <table class="table table-bordered question-group-table">
     <thead>
       <tr>
@@ -37,4 +44,11 @@
   </table>
 
   <p><%= link_to 'Add row', '#',  class: 'btn btn-xs btn-primary' %></p>
+  <% if question.field_hint.present? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="help-block"> <%= question.field_hint %> </p>
+      </div>
+    </div>
+  <% end %>
 </div>
