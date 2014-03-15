@@ -22,7 +22,7 @@
     <!-- field options -->
     <div class='panel-footer hide field-config-container'>
       <h6>FIELD SETTINGS</h6>
-      <%= f.fields_for 'fields_attributes[{{field.id}}]' do |ff| %>
+      <%= f.fields_for "fields_attributes[{{field.id}}]" do |ff| %>
         <%= ff.hidden_field :id, value: "{{ field.id }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :_destroy, value: "{{ field.deleted }}", 'ng-if' => "field.persisted == true" %>
         <%= ff.hidden_field :field_type, value: "{{ field.field_type }}" %>
@@ -94,7 +94,6 @@
         </div><!-- end field rating -->
 
         <div ng-if="needField(field, 'statements')" >
-
           <h6>Statements</h6>
           <div ng-repeat="st in field.properties.statements" class="row">
             <div class="col-xs-11">
@@ -123,6 +122,38 @@
             </div>
           </div>
           <p><%= link_to "Add column", '', 'ng-click' => "addFieldPropertiesColumn(field)" %></p>
+        </div>
+
+
+        <div ng-if="needField(field, 'groups')" >
+          <%= ff.fields_for "properties" do |fp| %>
+            <div class="row">
+              <div class="col-xs-12">
+                <%= fp.input :max_rows, as: :integer, input_html: { 'ng-model' => "field.properties.max_rows", min: 1 } %>
+              </div>
+            </div>
+
+            <h6>Columns</h6>
+            <div ng-repeat="group in field.properties.groups" class="row">
+              <div class="col-xs-3">
+                <%= fp.input "groups[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'group.name', placeholder: 'Column', id: nil } %>
+              </div>
+
+              <div class="col-xs-2">
+                <%= fp.input "groups[{{$index}}]add_on", collection: ['none', 'prepend', 'append'], label: false, input_html: { 'ng-model' => 'group.add_on', placeholder: 'Column', id: nil } %>
+              </div>
+
+              <div class="col-xs-2">
+                <%= fp.input "groups[{{$index}}]add_on_value", as: :string, label: false, input_html: { 'ng-model' => 'group.add_on_value', placeholder: 'Add On', id: nil } %>
+              </div>
+
+              <div class="col-xs-1" style='padding-left:0;'>
+                <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesGroup(field, group, $index)", class: 'link-danger' %>
+              </div>
+            </div>
+            <p><%= link_to "Add group", '', 'ng-click' => "addFieldPropertiesGroup(field)" %></p>
+
+          <% end %>
         </div>
 
 

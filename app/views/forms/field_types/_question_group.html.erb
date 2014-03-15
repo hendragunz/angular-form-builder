@@ -1,0 +1,28 @@
+<!-- question_group -->
+<div ng-if="field.field_type == 'question_group'">
+  <table class="table table-bordered question-group-table">
+    <thead>
+      <tr>
+        <th ng-repeat="group in field.properties.groups">{{ group.name }}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="n in range(1, field.properties.dummy_group_rows || 1)">
+        <td ng-repeat="group in field.properties.groups">
+          <div class="{{ ((group.add_on == 'prepend') || (group.add_on == 'append')) ? 'input-group' : 'input'  }}  string">
+            <span class="input-group-addon" ng-if="group.add_on == 'prepend'">{{ group.add_on_value }}</span>
+            <%= text_field_tag "field", '', class: 'form-control' %>
+            <span class="input-group-addon" ng-if="group.add_on == 'append'">{{ group.add_on_value }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+
+    <tfoot></tfoot>
+  </table>
+
+  <p>
+      <%= link_to 'Add row', '', 'ng-click' => "addQuestionGroupRow(field)",  class: 'btn btn-xs btn-primary' %>
+    </p>
+</div>

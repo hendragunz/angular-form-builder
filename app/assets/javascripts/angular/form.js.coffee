@@ -128,6 +128,15 @@
           1: {name: 'Column 2'}
           2: {name: 'Column 3'}
         }
+
+      when 'question_group'
+        field.field_label = 'Question Group'
+        field.properties.max_rows = 1
+        field.properties.groups = {
+          0: {name: 'Column 1', add_on: 'none'}
+          1: {name: 'Column 2', add_on: 'none'}
+          2: {name: 'Column 3', add_on: 'none'}
+        }
     # end of switch
 
     $scope.fields.push( field )
@@ -178,6 +187,11 @@
         delete field.properties.columns[idx]
     else
       delete field.properties.columns[idx]
+
+
+  $scope.addQuestionGroupRow = (field)->
+    field.properties.dummy_group_rows ||= 1
+    field.properties.dummy_group_rows += 1
 
   # will return unique_id
   $scope.unique_id = () ->
