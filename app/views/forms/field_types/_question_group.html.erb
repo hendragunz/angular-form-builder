@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th ng-repeat="group in field.properties.groups">{{ group.name }}</th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -15,6 +16,10 @@
             <%= text_field_tag "field", '', class: 'form-control' %>
             <span class="input-group-addon" ng-if="group.add_on == 'append'">{{ group.add_on_value }}</span>
           </div>
+        </td>
+
+        <td>
+          <%= link_to 'Remove', '', 'ng-click' => "removeQuestionGroupRow(field)", "ng-show" => "n != 1" %>
         </td>
       </tr>
     </tbody>

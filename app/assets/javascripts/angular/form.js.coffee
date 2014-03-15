@@ -193,6 +193,10 @@
     field.properties.dummy_group_rows ||= 1
     field.properties.dummy_group_rows += 1
 
+  $scope.removeQuestionGroupRow = (field)->
+    field.properties.dummy_group_rows ||= 1
+    field.properties.dummy_group_rows -= 1 if (field.properties.dummy_group_rows > 1)
+
   # will return unique_id
   $scope.unique_id = () ->
     (new Date()).getTime()
