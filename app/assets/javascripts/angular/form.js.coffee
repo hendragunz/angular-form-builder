@@ -182,11 +182,33 @@
 
 
   $scope.removeFieldPropertiesColumn = (field, column, idx)->
-    if column.persisted
+    if column.persisted || (column.persisted == undefined)
       if confirm( I18n.t('form').confirm_remove_field )
         delete field.properties.columns[idx]
     else
       delete field.properties.columns[idx]
+
+
+  $scope.checkLimitGroupQuesiton = (field)->
+    if field.properties
+      if field.properties.groups
+        return Object.keys(field.properties.groups).length < 5
+
+  $scope.removeFieldPropertiesGroup = (field, group, idx)->
+    if group.persisted || (group.persisted == undefined)
+      if confirm( I18n.t('form').confirm_remove_field )
+        delete field.properties.groups[idx]
+    else
+      delete field.properties.groups[idx]
+
+
+  $scope.addFieldPropertiesGroup = (field)->
+    if Object.keys(field.properties.groups).length < 5
+      obj = {name: 'New Column', add_on: 'none', persisted: false}
+      idx = Object.keys(field.properties.groups).length
+      field.properties.groups[idx] = obj
+
+    console.log field.properties.groups
 
 
   $scope.addQuestionGroupRow = (field)->

@@ -1,0 +1,40 @@
+<!-- question_group -->
+<div>
+  <table class="table table-bordered question-group-table">
+    <thead>
+      <tr>
+        <% question.properties['groups'].each do |key, group| %>
+          <th><%= group['name'] %></th>
+        <% end %>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= f.fields_for :group_answers, OpenStruct.new() do |fp| %>
+        <tr>
+          <% question.properties['groups'].each do |key, group| %>
+            <td>
+              <div class="<%= group['add_on'] == 'prepend' || group['add_on'] == 'append' ? 'input-group' : 'input' %> string">
+                <% if group['add_on'] == 'prepend' %>
+                  <span class="input-group-addon"><%= group['add_on_value'] %></span>
+                <% end %>
+
+                <%= fp.text_field key.to_s, class: 'form-control' %>
+
+                <% if group['add_on'] == 'append' %>
+                  <span class="input-group-addon"><%= group['add_on_value'] %></span>
+                <% end %>
+              </div>
+            </td>
+          <% end %>
+          <td><%= link_to 'Remove', '#' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    <tfoot></tfoot>
+  </table>
+
+  <p><%= link_to 'Add row', '#',  class: 'btn btn-xs btn-primary' %></p>
+</div>

@@ -12,12 +12,15 @@
 
 class FormEntry < ActiveRecord::Base
 
+  # CAPABILITIES
+  # ------------------------------------------------------------------------------------------------------
+  serialize :answers, ActiveRecord::Coders::NestedHstore
+
+
 	# ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :form, counter_cache: :entries_count
   has_many :questions, through: :form
-
-  #belongs_to_hstore :answers, :question
 
 
   # ATTRIBUTES
@@ -37,10 +40,6 @@ class FormEntry < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   validates_presence_of :form_id #, :resident_id, :procedure_id
   validate :validate_answers
-
-
-  # CALLBACKS
-  # ------------------------------------------------------------------------------------------------------
 
 
 	# INSTANCE METHODS

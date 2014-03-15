@@ -134,7 +134,7 @@
             </div>
 
             <h6>Columns</h6>
-            <div ng-repeat="group in field.properties.groups" class="row">
+            <div ng-repeat="(group_id, group) in field.properties.groups" class="row">
               <div class="col-xs-3">
                 <%= fp.input "groups[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'group.name', placeholder: 'Column', id: nil } %>
               </div>
@@ -148,10 +148,12 @@
               </div>
 
               <div class="col-xs-1" style='padding-left:0;'>
-                <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesGroup(field, group, $index)", class: 'link-danger' %>
+                <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesGroup(field, group, group_id)", class: 'link-danger' %>
               </div>
             </div>
-            <p><%= link_to "Add group", '', 'ng-click' => "addFieldPropertiesGroup(field)" %></p>
+            <p ng-if="checkLimitGroupQuesiton(field)">
+              <%= link_to "Add group", '', 'ng-click' => "addFieldPropertiesGroup(field)" %>
+            </p>
 
           <% end %>
         </div>

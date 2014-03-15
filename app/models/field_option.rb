@@ -2,11 +2,15 @@
 #
 # Table name: field_options
 #
-#  id            :integer          not null, primary key
-#  form_field_id :integer
-#  name          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id                   :integer          not null, primary key
+#  form_field_id        :integer
+#  name                 :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  picture_file_name    :string(255)
+#  picture_content_type :string(255)
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
 #
 
 class FieldOption < ActiveRecord::Base
