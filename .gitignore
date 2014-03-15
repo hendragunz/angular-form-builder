@@ -10,6 +10,7 @@
 /tmp
 tmp/*
 public/assets/
+public/system/
 .rvmrc
 /public/cache
 **/.DS_Store

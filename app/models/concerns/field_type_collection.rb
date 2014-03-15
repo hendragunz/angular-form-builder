@@ -22,7 +22,7 @@ module FieldTypeCollection
     rating:      {type: 'radio',     options: ['label', 'hint', 'required', 'rating']},
     section:     {type: 'section',   options: ['label', 'description']},
     single_line: {type: 'text',      options: ['label', 'hint', 'required']},
-    statement:   {type: 'rowcolumn', options: ['label', 'hint', 'required']},
+    statement:   {type: 'rowcolumn', options: ['label', 'hint', 'required', 'statements']},
     time:        {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:     {type: 'text',      options: ['label', 'hint', 'required']},
     website:     {type: 'url',       options: ['label', 'hint', 'required']}

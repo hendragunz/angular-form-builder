@@ -113,6 +113,21 @@
 
       when 'website'
         field.field_label = 'URL'
+
+      when 'statement'
+        field.field_label = 'Statement'
+        field.properties.max_rows = 0
+        field.properties.statements = {
+          0: {name: 'Statement 1'}
+          1: {name: 'Statement 2'}
+          2: {name: 'Statement 3'}
+        }
+
+        field.properties.columns = {
+          0: {name: 'Column 1'}
+          1: {name: 'Column 2'}
+          2: {name: 'Column 3'}
+        }
     # end of switch
 
     $scope.fields.push( field )
@@ -135,6 +150,35 @@
     else
       field.field_options.splice( field.field_options.indexOf(field_option), 1 )
 
+
+  $scope.addFieldPropertiesStatement = (field) ->
+    obj = {name: 'New statement',  persisted: false}
+    idx = Object.keys(field.properties.statements).length + 1
+    field.properties.statements[idx] = obj
+
+
+  $scope.removeFieldPropertiesStatement = (field, statement, idx)->
+    if statement.persisted
+      if confirm( I18n.t('form').confirm_remove_field )
+        delete field.properties.statements[idx]
+    else
+      delete field.properties.statements[idx]
+
+
+
+  $scope.addFieldPropertiesColumn = (field) ->
+    obj = {name: 'New Column', persisted: false}
+    idx = Object.keys(field.properties.columns).length + 1
+    field.properties.columns[idx] = obj
+
+
+  $scope.removeFieldPropertiesColumn = (field, column, idx)->
+    if column.persisted
+      if confirm( I18n.t('form').confirm_remove_field )
+        delete field.properties.columns[idx]
+    else
+      delete field.properties.columns[idx]
+
   # will return unique_id
   $scope.unique_id = () ->
     (new Date()).getTime()
@@ -156,10 +200,15 @@
     $timeout (->
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
       angular.forEach $scope.fields, (field, index) ->
+        field.properties ||= {
+          statements: []
+          columns: []
+        }
+
         if field.field_type == 'rating'
           field.properties.max_rating = parseInt(field.properties.max_rating)
 
-      # console.log $scope.fields
+      console.log $scope.fields
       # console.log "---------------------------"
       # console.log $scope.form
       # console.log "---------------------------"

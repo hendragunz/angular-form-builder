@@ -39,7 +39,7 @@ class FormField < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   # hstore
   # store_accessor :properties, :currency, :scale_rate, :scale_type, :true_label, :false_label, :options, :likert_rows, :likert_columns
-  store_accessor :properties
+  serialize :properties, ActiveRecord::Coders::NestedHstore
 
 
   # SCOPES
@@ -68,8 +68,15 @@ class FormField < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    # this example ignores the user's options
     super(options).merge(persisted: persisted?, field_options: field_options.map{|x| x.as_json})
+  end
+
+  def properties_columns
+    JSON.parse(properties['columns']) rescue []
+  end
+
+  def properties_statements
+    JSON.parse(properties['statements']) rescue []
   end
 
   private
