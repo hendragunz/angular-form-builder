@@ -27,13 +27,14 @@ module FieldTypeCollection
     time:           {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:        {type: 'text',      options: ['label', 'hint', 'required']},
     website:        {type: 'url',       options: ['label', 'hint', 'required']},
+    website:        {type: 'url',       options: ['label', 'hint', 'required']},
     picture_choice: {type: 'radio',     options: ['label', 'hint', 'required', 'picture_options']},
   }
 
   included do
     extend Enumerize
-    enumerize :field_type,  in: Enum::FormField::FIELD_TYPE[:options],
-                            default: Enum::FormField::FIELD_TYPE[:default],
-                            predicates: true
+    enumerize :field_type, in: Enum::FormField::FIELD_TYPE[:options],
+                           default: Enum::FormField::FIELD_TYPE[:default],
+                           predicates: true
   end
 end
