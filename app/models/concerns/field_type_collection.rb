@@ -32,8 +32,8 @@ module FieldTypeCollection
 
   included do
     extend Enumerize
-    enumerize :field_type,  in: Enum::FormField::FIELD_TYPE[:options],
-                            default: Enum::FormField::FIELD_TYPE[:default],
-                            predicates: true
+    enumerize :field_type, in: Enum::FormField::FIELD_TYPE[:options],
+                           default: Enum::FormField::FIELD_TYPE[:default],
+                           predicates: true
   end
 end

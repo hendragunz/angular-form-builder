@@ -46,9 +46,6 @@
     }
 
     switch field.field_type
-      when 'date'
-        field.field_label = 'Date'
-
       when 'address'
         field.field_label = 'Address'
 
@@ -56,6 +53,12 @@
         field.properties =
           true_label: 'Yes'
           false_label: 'No'
+
+      when 'date'
+        field.field_label = 'Date'
+
+      when 'datetime'
+        field.field_label = "Date & Time"
 
       when 'email'
         field.field_label = 'Email'
