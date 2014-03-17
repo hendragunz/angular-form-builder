@@ -149,7 +149,7 @@
                 </div>
 
                 <div class="col-xs-1" style='padding-left:0;'>
-                  <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesGroup(field, group, group_id)", class: 'link-danger' %>
+                  <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesGroup(field, group, group_id)", class: 'link-danger', 'ng-if' => "isTheLastGroupQuestion(field)" %>
                 </div>
               </div>
             </div>

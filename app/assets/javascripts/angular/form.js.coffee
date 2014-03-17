@@ -228,10 +228,10 @@
   $scope.addFieldPropertiesGroup = (field)->
     if Object.keys(field.properties.groups).length < 5
       obj = {name: 'New Column', add_on: 'none', persisted: false}
-      idx = Object.keys(field.properties.groups).length
+      idx = Object.keys(field.properties.groups).length + 1
+      while field.properties.groups[idx] != undefined
+        idx += 1
       field.properties.groups[idx] = obj
-
-    console.log field.properties.groups
 
 
   $scope.addQuestionGroupRow = (field)->
@@ -241,6 +241,9 @@
   $scope.removeQuestionGroupRow = (field)->
     field.properties.dummy_group_rows ||= 1
     field.properties.dummy_group_rows -= 1 if (field.properties.dummy_group_rows > 1)
+
+  $scope.isTheLastGroupQuestion = (field)->
+    !(Object.keys(field.properties.groups).length  <= 1)
 
   # will return unique_id
   $scope.unique_id = () ->
@@ -257,6 +260,17 @@
   $scope.needField = (field, field_needed) ->
     field_type = $scope.field_types[field.field_type]
     return ( field_type.options.indexOf(field_needed) >= 0 )
+
+
+  $scope.getGroupColumnWidthClass = (field)->
+    default_class = ''
+    switch  Object.keys(field.properties.groups).length
+      when 1 then "col-xs-10"
+      when 2 then "col-xs-5"
+      when 3 then "col-xs-3"
+      when 4 then "col-xs-2"
+      when 5 then "col-xs-2"
+
 
 
   angular.element(document).ready () ->
