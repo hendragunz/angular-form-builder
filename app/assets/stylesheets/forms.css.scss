@@ -64,7 +64,7 @@
 }
 
 .radio {
-  img.picture-option {
+  .picture-option {
     max-width: 100px;
     max-height: 100px;
     line-height: 20px;
@@ -75,14 +75,3 @@
   border: 1px solid #428bca;
 }
 
-.new_form_entry {
-  .input {
-    .input-group {
-      .radio-inline {
-        .img-thumbnail.active {
-          border: 1px solid #428bca;
-        }
-      }
-    }
-  }
-}

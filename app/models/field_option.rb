@@ -19,7 +19,7 @@ class FieldOption < ActiveRecord::Base
   has_attached_file :picture, styles: {
     thumb:  "150x150#",
     medium: "250x250",
-  }, default_url: "/assets/holder.js/250x250"
+  }, default_url: "/assets/holder.js/170x180"
 
 
   # ASSOCIATIONS
