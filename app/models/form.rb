@@ -15,6 +15,7 @@
 #  end_date                  :datetime
 #  persons_to_notify         :string(255)
 #  entries_count             :integer          default(0)
+#  webhook_url               :string(255)
 #  user_id                   :integer
 #  created_at                :datetime
 #  updated_at                :datetime

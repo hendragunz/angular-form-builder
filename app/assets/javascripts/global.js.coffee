@@ -20,6 +20,10 @@ Util.onReady = ()->
 
   Util.initDateTimePicker()
 
+  $('.new_form_entry').on 'click', '.img-thumbnail', ()->
+    $(this).closest('.input-group').find('.img-thumbnail').removeClass('active')
+    $(this).addClass('active')
+
 
 
 # Calling document ready

@@ -67,6 +67,14 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
+      when 'picture_choice'
+        field.field_label = "Picture Choice"
+        field.field_options = [
+          {name: 'Caption 1', id: $scope.unique_id() + 1, persisted: false, deleted: false, picture: undefined}
+          {name: 'Caption 2', id: $scope.unique_id() + 2, persisted: false, deleted: false, picture: undefined}
+          {name: 'Caption 3', id: $scope.unique_id() + 3, persisted: false, deleted: false, picture: undefined}
+        ]
+
       when 'number'
         field.field_label = 'Number'
 
@@ -127,6 +135,10 @@
 
   $scope.addFieldOption = (field) ->
     field.field_options.push({name: 'New option', id: $scope.unique_id(), persisted: false, deleted: false})
+    $timeout (->
+      if field.field_type == 'picture_choice'
+        Holder.run()
+    )
 
   $scope.removeFieldOption = (field, field_option)->
     if field_option.persisted
@@ -154,6 +166,10 @@
 
   angular.element(document).ready () ->
     $timeout (->
+      $('#form-container').on 'click', '.thumbnail', ()->
+        $(this).closest('.row').find('.thumbnail').removeClass('active')
+        $(this).addClass('active')
+
       $scope.form.introduction ||= I18n.t('form').content_should_go_in_text_area
       angular.forEach $scope.fields, (field, index) ->
         if field.field_type == 'rating'
