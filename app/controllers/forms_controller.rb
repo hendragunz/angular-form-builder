@@ -91,7 +91,7 @@ class FormsController < BaseController
                                    :show_questions_one_by_one, :persons_to_notify, :webhook_url,
                                    fields_attributes: [:id, :name, :required, :field_label, :field_hint, :field_type, :scale, :_destroy, :position,
                                    properties: [ :description, :true_label, :false_label, :currency, :add_on, :from_number, :to_number, :max_rating, :format, :symbol, :max_number, :min_number, :max_rows, :groups => [:name, :add_on, :add_on_value], :statements => [:name], :columns => [:name]],
-                                   field_options_attributes: [:id, :name, :_destroy] ])
+                                   field_options_attributes: [:id, :name, :_destroy, :picture] ])
     end
 
 end

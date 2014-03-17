@@ -4,7 +4,13 @@
 
 	.container {
 		margin-top: 100px;
-		margin-bottom: 40px;
+	  margin-bottom: 40px;
+
+	  .img-thumbnail:hover,
+	  .img-thumbnail:active,
+	  .img-thumbnail.active {
+      border: 1px solid #428bca;
+    }
 	}
 
 	footer {

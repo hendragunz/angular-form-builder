@@ -15,18 +15,38 @@
 
 class FieldOption < ActiveRecord::Base
 
+  # CAPABILITIES
+  # ------------------------------------------------------------------------------------------------------
+  has_attached_file :picture, styles: {
+    thumb:  "150x150#",
+    medium: "250x250",
+  }, default_url: "/assets/holder.js/170x180"
+
+
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :form_field
 
+
+  # CALLBACKS
+  # ------------------------------------------------------------------------------------------------------
   before_destroy :check_for_entries
+
+
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
+  validates_attachment_content_type :picture,
+                                    less_than: 5.megabytes,
+                                    allow_blank: true,
+                                    content_type: /\Aimage\/.*\Z/
+
 
   # add persisted => true
   # when call method to_json
   #
   def as_json(options = {})
     # this example ignores user's options
-    super(options).merge(persisted: persisted?)
+    super(options).merge(persisted: persisted?, picture_thumb_url: picture.url(:thumb), picture_medium_url: picture.url(:medium))
   end
 
   private
