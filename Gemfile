@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', git: "git@github.com:rails/rails.git", branch: "4-1-stable"
+gem 'rails', github: "rails/rails", branch: "4-1-stable"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'sdoc',          group: :doc, require: false
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
-gem 'spring',        group: :development
+gem 'spring', '~> 1.1.2',       group: :development
 
 gem 'simple_form'
 gem 'country-select'
@@ -44,7 +44,7 @@ gem 'nested_form'
 gem 'sorcery'
 gem 'six'
 gem 'kaminari-bootstrap'
-gem 'useragent',              github: 'josh/useragent'
+gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
 gem 'paperclip'
 gem 'angularjs-rails', '~> 1.2.13'
