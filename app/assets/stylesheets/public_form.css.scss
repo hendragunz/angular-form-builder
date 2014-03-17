@@ -1,10 +1,24 @@
-.public_form {
-	.form-container {
+.public-form {
+	/* Margin bottom by footer height */
+  margin-bottom: 60px;
+
+	.container {
 		margin-top: 100px;
 	  margin-bottom: 40px;
+
+	  .img-thumbnail:hover,
+	  .img-thumbnail:active,
+	  .img-thumbnail.active {
+      border: 1px solid #428bca;
+    }
 	}
 
 	footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		/* Set the fixed height of the footer here */
+		height: 60px;
 		text-align: center;
 		padding: 10px;
 		border-top: 1px solid #ededed;

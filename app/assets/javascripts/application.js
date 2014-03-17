@@ -18,11 +18,15 @@
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
-//= require jquery_nested_form
+//= require jasny-bootstrap
+// require jquery_nested_form
 //= require global
+//= require holder
+
 
 //= require angular
 //= require angular/modules/sortable
+//= require angular/modules/imageupload
 //= require angular/my_app
 //= require angular/form
 

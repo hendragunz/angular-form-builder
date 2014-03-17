@@ -10,9 +10,7 @@
 #  properties  :hstore
 #  scale       :integer
 #  options     :string(255)
-#  true_label  :string(255)
-#  false_label :string(255)
-#  required    :boolean          default(TRUE)
+#  required    :boolean          default(FALSE)
 #  position    :integer          default(0)
 #  form_id     :integer
 #  created_at  :datetime
