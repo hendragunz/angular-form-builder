@@ -75,3 +75,23 @@
   border: 1px solid #428bca;
 }
 
+.datetime-field {
+  .row {
+    div {
+      .hour-field,
+      .separator-field,
+      .minute-field {
+        margin-left: 3px;
+      }
+
+      .separator-field {
+        padding-top: 5px;
+
+        span {
+          margin-top: 27px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
