@@ -11,6 +11,14 @@
       ), 100
     axis: 'y'
 
+
+  $scope.sortableGroupOptions =
+    update: (e, ui) ->
+      $timeout (->
+        # console.log 'yay !!'
+      ), 100
+    axis: 'y'
+
   # create range array number with min & max & step
   $scope.range = (min, max, step) ->
     step  = ((step == undefined) ? 1 : step)
@@ -261,10 +269,17 @@
           columns: []
         }
 
-        if field.field_type == 'rating'
-          field.properties.max_rating = parseInt(field.properties.max_rating)
+        switch field.field_type
+          when 'rating'
+            field.properties.max_rating = parseInt(field.properties.max_rating)
 
-      console.log $scope.fields
+          when 'question_group'
+            field.properties.groups =  $.map(field.properties.groups, (value, index)->
+              value
+            )
+
+
+      # console.log $scope.fields
       # console.log "---------------------------"
       # console.log $scope.form
       # console.log "---------------------------"

@@ -134,21 +134,23 @@
             </div>
 
             <h6>Columns</h6>
-            <div ng-repeat="(group_id, group) in field.properties.groups" class="row">
-              <div class="col-xs-3">
-                <%= fp.input "groups[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'group.name', placeholder: 'Column', id: nil } %>
-              </div>
+            <div ui-sortable="sortableGroupOptions" ng-model="field.properties.groups" id="group-options-container">
+              <div ng-repeat="(group_id, group) in field.properties.groups" class="row">
+                <div class="col-xs-3">
+                  <%= fp.input "groups[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'group.name', placeholder: 'Column', id: nil } %>
+                </div>
 
-              <div class="col-xs-2">
-                <%= fp.input "groups[{{$index}}]add_on", collection: ['none', 'prepend', 'append'], label: false, input_html: { 'ng-model' => 'group.add_on', placeholder: 'Column', id: nil } %>
-              </div>
+                <div class="col-xs-2">
+                  <%= fp.input "groups[{{$index}}]add_on", collection: ['none', 'prepend', 'append'], label: false, input_html: { 'ng-model' => 'group.add_on', placeholder: 'Column', id: nil } %>
+                </div>
 
-              <div class="col-xs-2">
-                <%= fp.input "groups[{{$index}}]add_on_value", as: :string, label: false, input_html: { 'ng-model' => 'group.add_on_value', placeholder: 'Add On', id: nil } %>
-              </div>
+                <div class="col-xs-2">
+                  <%= fp.input "groups[{{$index}}]add_on_value", as: :string, label: false, input_html: { 'ng-model' => 'group.add_on_value', placeholder: 'Add On', id: nil } %>
+                </div>
 
-              <div class="col-xs-1" style='padding-left:0;'>
-                <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesGroup(field, group, group_id)", class: 'link-danger' %>
+                <div class="col-xs-1" style='padding-left:0;'>
+                  <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesGroup(field, group, group_id)", class: 'link-danger' %>
+                </div>
               </div>
             </div>
             <p ng-if="checkLimitGroupQuesiton(field)">
