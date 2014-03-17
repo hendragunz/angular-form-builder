@@ -93,6 +93,38 @@
           <% end %>
         </div><!-- end field rating -->
 
+        <div ng-if="needField(field, 'statements')" >
+
+          <h6>Statements</h6>
+          <div ng-repeat="st in field.properties.statements" class="row">
+            <div class="col-xs-11">
+              <%= ff.fields_for "properties" do |fp| %>
+                <%= fp.input "statements[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'st.name', placeholder: 'Column', id: nil } %>
+              <% end %>
+            </div>
+
+            <div class="col-xs-1" style='padding-left:0;'>
+              <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesStatement(field, st, $index)", class: 'link-danger' %>
+            </div>
+          </div>
+          <p><%= link_to "Add statement", '', 'ng-click' => "addFieldPropertiesStatement(field)" %></p>
+
+
+          <h6>Columns</h6>
+          <div ng-repeat="cl in field.properties.columns" class="row">
+            <div class="col-xs-11">
+              <%= ff.fields_for "properties" do |fp| %>
+                <%= fp.input "columns[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'cl.name', placeholder: 'Column', id: nil } %>
+              <% end %>
+            </div>
+
+            <div class="col-xs-1" style='padding-left:0;'>
+              <%= link_to 'remove', '', 'ng-click' => "removeFieldPropertiesColumn(field, cl, $index)", class: 'link-danger' %>
+            </div>
+          </div>
+          <p><%= link_to "Add column", '', 'ng-click' => "addFieldPropertiesColumn(field)" %></p>
+        </div>
+
 
         <!-- begin field options -->
         <div  ng-if="needField(field, 'field_options')">

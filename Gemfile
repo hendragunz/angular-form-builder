@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0.beta1'
+gem 'rails', github: "rails/rails", branch: "4-1-stable"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -32,9 +32,6 @@ gem 'jbuilder', '~> 1.2'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc',          group: :doc, require: false
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
-gem 'spring',        group: :development
-
 gem 'simple_form'
 gem 'country-select'
 gem 'tabs_on_rails',      "~> 2.1.1"
@@ -44,7 +41,7 @@ gem 'nested_form'
 gem 'sorcery'
 gem 'six'
 gem 'kaminari-bootstrap'
-gem 'useragent',              github: 'josh/useragent'
+gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
 gem 'paperclip'
 gem 'angularjs-rails', '~> 1.2.13'
@@ -55,6 +52,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
 
 # Tools
 gem 'enumerize'
+gem 'nested-hstore'
 
 group :development, :test do
   gem 'faker', '1.0.1'
@@ -67,11 +65,14 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano', '~> 2.15.0'
+  gem 'capistrano',   '~> 2.15.0'
   gem 'capistrano-nc'
   gem 'rack-mini-profiler'
   gem 'thin'
   gem 'better_errors'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
+  gem 'spring',       '~> 1.1.2'
 end
 
 group :production do

@@ -37,6 +37,10 @@ GEM
       activemodel (= 4.1.0.beta1)
       activesupport (= 4.1.0.beta1)
       arel (~> 5.0.0)
+    activerecord-postgres-hstore (0.7.7)
+      activerecord (>= 3.1)
+      pg-hstore (>= 1.1.5)
+      rake
     activesupport (4.1.0.beta1)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -133,11 +137,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    minitest (5.3.0)
+    minitest (5.3.1)
     momentjs-rails (2.5.1)
       railties (>= 3.1)
     multi_json (1.8.2)
     multipart-post (1.2.0)
+    nested-hstore (0.0.2)
+      activerecord
+      activerecord-postgres-hstore
+      activesupport
     nested_form (0.3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -159,7 +167,8 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
-    polyglot (0.3.3)
+    pg-hstore (1.2.0)
+    polyglot (0.3.4)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -202,7 +211,7 @@ GEM
       bcrypt-ruby (>= 3.0)
       oauth (~> 0.4.4)
       oauth2 (>= 0.8.0, < 1.0.0)
-    spring (1.0.0)
+    spring (1.1.2)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -263,6 +272,7 @@ DEPENDENCIES
   kaminari-bootstrap
   letter_opener
   momentjs-rails (~> 2.5.0)
+  nested-hstore
   nested_form
   paperclip
   pg
@@ -275,7 +285,7 @@ DEPENDENCIES
   simple_form
   six
   sorcery
-  spring
+  spring (~> 1.1.2)
   tabs_on_rails (~> 2.1.1)
   thin
   turbolinks
