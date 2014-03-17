@@ -7,7 +7,7 @@
   <%= page_title("#{@form.name}") %>
   <%= simple_format(@form.introduction, class: 'lead') %>
 
-  <%= simple_nested_form_for(@entry, url: create_public_form_path) do |f| %>
+  <%= simple_form_for([@form, @entry], url: create_public_form_path) do |f| %>
     <%= f.error_notification %>
     <%= render 'form_entries/fields', f: f, form: @form, entry: @entry %>
   <% end %>

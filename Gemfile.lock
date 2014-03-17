@@ -211,7 +211,7 @@ GEM
       bcrypt-ruby (>= 3.0)
       oauth (~> 0.4.4)
       oauth2 (>= 0.8.0, < 1.0.0)
-    spring (1.0.0)
+    spring (1.1.2)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -285,7 +285,7 @@ DEPENDENCIES
   simple_form
   six
   sorcery
-  spring
+  spring (~> 1.1.2)
   tabs_on_rails (~> 2.1.1)
   thin
   turbolinks
