@@ -63,6 +63,7 @@
   }
 }
 
+
 .datetime-field {
   .row {
     div {
@@ -82,4 +83,16 @@
       }
     }
   }
+}
+
+.radio {
+  .picture-option {
+    max-width: 100px;
+    max-height: 100px;
+    line-height: 20px;
+  }
+}
+
+.thumbnail.active {
+  border: 1px solid #428bca;
 }

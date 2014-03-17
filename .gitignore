@@ -13,6 +13,7 @@ public/assets/
 public/system/
 .rvmrc
 /public/cache
+/public/system/*
 **/.DS_Store
 .DS_Store
 /config/application.yml
