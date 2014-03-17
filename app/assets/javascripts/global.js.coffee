@@ -4,7 +4,10 @@ window.Util ||= {}
 Util.initDateTimePicker = ()->
   $(".datepicker").datetimepicker
     pickTime: false
-  $(".datetimepicker").datetimepicker()
+
+  $(".datetimepicker").datetimepicker
+    minuteStepping: 15
+    useSeconds: false
 
 
 # Document Ready should be here
