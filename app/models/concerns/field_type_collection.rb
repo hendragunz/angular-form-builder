@@ -7,6 +7,7 @@ module FieldTypeCollection
     boolean:        {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
     checkbox:       {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     date:           {type: 'date',      options: ['label', 'hint', 'required']},
+    datetime:       {type: 'datetime',  options: ['label', 'hint', 'required']},
     dropdown:       {type: 'select',    options: ['label', 'hint', 'required', 'field_options']},
     email:          {type: 'email',     options: ['label', 'hint', 'required']},
     facebook:       {type: 'text',      options: ['label', 'hint', 'required']},
@@ -17,7 +18,6 @@ module FieldTypeCollection
     number:         {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     paragraph:      {type: 'textarea',  options: ['label', 'hint', 'required']},
     phone:          {type: 'tel',       options: ['label', 'hint', 'required']},
-    picture_choice: {type: 'radio',     options: ['label', 'hint', 'required', 'picture_options']},
     price:          {type: 'number',    options: ['label', 'hint', 'required', 'currency']},
     range:          {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     rating:         {type: 'radio',     options: ['label', 'hint', 'required', 'rating']},
@@ -27,7 +27,8 @@ module FieldTypeCollection
     time:           {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:        {type: 'text',      options: ['label', 'hint', 'required']},
     website:        {type: 'url',       options: ['label', 'hint', 'required']},
-    question_group:   {type: 'text',       options: ['label', 'hint', 'required', 'groups']}
+    picture_choice: {type: 'radio',     options: ['label', 'hint', 'required', 'picture_options']},
+    question_group: {type: 'text',      options: ['label', 'hint', 'required', 'groups']}
   }
 
   included do
