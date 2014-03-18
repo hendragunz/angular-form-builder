@@ -1,8 +1,8 @@
 <!-- question_group -->
 <div class="question-group-table" ng-if="field.field_type == 'question_group'">
   <div clas="row">
-    <div class="{{ getGroupColumnWidthClass(field) }}" ng-repeat="group in field.properties.groups">{{ group.name }}</div>
-    <div class="col-xs-1">Action</div>
+    <div class="{{ getGroupColumnWidthClass(field) }}" ng-repeat="group in field.properties.groups" style="word-wrap:break-word;">{{ group.name }}</div>
+    <div class="col-xs-1">&nbsp;</div>
   </div>
 
   <div class="group-fields-list-container">
@@ -16,11 +16,10 @@
       </div>
 
       <div class="col-xs-1">
-        <%= link_to 'Remove', '', 'ng-click' => "removeQuestionGroupRow(field)", "ng-show" => "n != 1" %>
+        <%= link_to 'remove', '', 'ng-click' => "removeQuestionGroupRow(field)", "ng-show" => "n != 1", class: 'link-danger' %>
       </div>
     </div> <!-- end row -->
   </div><!-- end container -->
-
 
   <p><%= link_to 'Add row', '', 'ng-click' => "addQuestionGroupRow(field)",  class: 'btn btn-xs btn-primary' %></p>
 </div>

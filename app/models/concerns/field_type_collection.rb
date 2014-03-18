@@ -18,7 +18,9 @@ module FieldTypeCollection
     number:         {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     paragraph:      {type: 'textarea',  options: ['label', 'hint', 'required']},
     phone:          {type: 'tel',       options: ['label', 'hint', 'required']},
+    picture_choice: {type: 'radio',     options: ['label', 'hint', 'required', 'picture_options']},
     price:          {type: 'number',    options: ['label', 'hint', 'required', 'currency']},
+    question_group: {type: 'text',      options: ['label', 'hint', 'required', 'groups']},
     range:          {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     rating:         {type: 'radio',     options: ['label', 'hint', 'required', 'rating']},
     section:        {type: 'section',   options: ['label', 'description']},
@@ -26,9 +28,7 @@ module FieldTypeCollection
     statement:      {type: 'rowcolumn', options: ['label', 'hint', 'required', 'statements']},
     time:           {type: 'time',      options: ['label', 'hint', 'required']},
     twitter:        {type: 'text',      options: ['label', 'hint', 'required']},
-    website:        {type: 'url',       options: ['label', 'hint', 'required']},
-    picture_choice: {type: 'radio',     options: ['label', 'hint', 'required', 'picture_options']},
-    question_group: {type: 'text',      options: ['label', 'hint', 'required', 'groups']}
+    website:        {type: 'url',       options: ['label', 'hint', 'required']}
   }
 
   included do

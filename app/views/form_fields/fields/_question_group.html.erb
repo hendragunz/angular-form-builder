@@ -14,9 +14,8 @@
           <strong><%= group['name'] %></strong>
         </div>
       <% end %>
-      <div class="col-xs-2"><strong>Actions</strong></div>
+      <div class="col-xs-2">&nbsp;</div>
     </div>
-
 
     <%= f.fields_for :group_answers, OpenStruct.new() do |fp| %>
       <div class="row">
@@ -33,7 +32,7 @@
             </div>
           </div>
         <% end %>
-        <div class="col-xs-2"><%= link_to 'Remove', '#' %></div>
+        <div class="col-xs-2"><%= link_to 'remove', '#', class: 'link-danger' %></div>
       </div>
     <% end %>
   </div>

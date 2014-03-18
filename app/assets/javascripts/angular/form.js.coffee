@@ -78,6 +78,12 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
+      when 'number'
+        field.field_label = 'Number'
+
+      when 'percentage'
+        field.field_label = 'Percentage'
+
       when 'picture_choice'
         field.field_label = "Picture Choice"
         field.field_options = [
@@ -85,12 +91,6 @@
           {name: 'Caption 2', id: $scope.unique_id() + 2, persisted: false, deleted: false, picture: undefined}
           {name: 'Caption 3', id: $scope.unique_id() + 3, persisted: false, deleted: false, picture: undefined}
         ]
-
-      when 'number'
-        field.field_label = 'Number'
-
-      when 'percentage'
-        field.field_label = 'Percentage'
 
       when 'phone'
         field.field_label = 'Phone'
@@ -107,6 +107,15 @@
         field.properties =
           currency: '$'
           add_on: 'prepend'
+
+      when 'question_group'
+        field.field_label = 'Question Group'
+        field.properties.max_rows = 1
+        field.properties.groups = {
+          0: {name: 'Column 1', add_on: 'none'}
+          1: {name: 'Column 2', add_on: 'none'}
+          2: {name: 'Column 3', add_on: 'none'}
+        }
 
       when 'range'
         field.field_label = 'Range'
@@ -126,13 +135,6 @@
           description: "Section detail here..."
         }
 
-      when 'twitter'
-        field.field_label = 'Twitter'
-        field.field_hint  = 'Enter twitter username'
-
-      when 'website'
-        field.field_label = 'URL'
-
       when 'statement'
         field.field_label = 'Statement'
         field.properties.max_rows = 0
@@ -148,14 +150,12 @@
           2: {name: 'Column 3'}
         }
 
-      when 'question_group'
-        field.field_label = 'Question Group'
-        field.properties.max_rows = 1
-        field.properties.groups = {
-          0: {name: 'Column 1', add_on: 'none'}
-          1: {name: 'Column 2', add_on: 'none'}
-          2: {name: 'Column 3', add_on: 'none'}
-        }
+      when 'twitter'
+        field.field_label = 'Twitter'
+        field.field_hint  = 'Enter twitter username'
+
+      when 'website'
+        field.field_label = 'URL'
     # end of switch
 
     $scope.fields.push( field )
