@@ -111,11 +111,11 @@
       when 'question_group'
         field.field_label = 'Question Group'
         field.properties.max_rows = 1
-        field.properties.groups = {
-          0: {name: 'Column 1', add_on: 'none'}
-          1: {name: 'Column 2', add_on: 'none'}
-          2: {name: 'Column 3', add_on: 'none'}
-        }
+        field.properties.groups = [
+          {name: 'Column 1', add_on: 'none'}
+          {name: 'Column 2', add_on: 'none'}
+          {name: 'Column 3', add_on: 'none'}
+        ]
 
       when 'range'
         field.field_label = 'Range'
@@ -215,23 +215,24 @@
   $scope.checkLimitGroupQuesiton = (field)->
     if field.properties
       if field.properties.groups
-        return Object.keys(field.properties.groups).length < 5
+        return field.properties.groups.length < 5
 
   $scope.removeFieldPropertiesGroup = (field, group, idx)->
-    if group.persisted || (group.persisted == undefined)
+    if (group.persisted == undefined) || group.persisted
       if confirm( I18n.t('form').confirm_remove_field )
-        delete field.properties.groups[idx]
+        field.properties.groups.splice(idx, 1)
     else
-      delete field.properties.groups[idx]
+      field.properties.groups.splice(idx, 1)
+
 
 
   $scope.addFieldPropertiesGroup = (field)->
     if Object.keys(field.properties.groups).length < 5
       obj = {name: 'New Column', add_on: 'none', persisted: false}
-      idx = Object.keys(field.properties.groups).length + 1
-      while field.properties.groups[idx] != undefined
-        idx += 1
-      field.properties.groups[idx] = obj
+      # idx = Object.keys(field.properties.groups).length + 1
+      # while field.properties.groups[idx] != undefined
+      #   idx += 1
+      field.properties.groups.push(obj)
 
 
   $scope.addQuestionGroupRow = (field)->
@@ -292,11 +293,12 @@
 
           when 'question_group'
             field.properties.groups =  $.map(field.properties.groups, (value, index)->
+              value['persisted'] = true
               value
             )
 
 
-      # console.log $scope.fields
+      console.log $scope.fields
       # console.log "---------------------------"
       # console.log $scope.form
       # console.log "---------------------------"

@@ -65,20 +65,8 @@
 
 
 .question-group-table {
-  tbody {
-    tr {
-      td {
-        width: auto;
-
-        .input-group {
-          max-width: 200px;
-
-          input {
-            width: auto;
-          }
-        }
-      }
-    }
+  .group-fields-list-container {
+    clear: both;
   }
 }
 

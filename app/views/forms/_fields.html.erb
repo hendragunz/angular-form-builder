@@ -1,6 +1,6 @@
 <div ui-sortable="sortableOptions" ng-model="fields">
 
-  <div ng-repeat="field in fields" on-last-repeat class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}" ng-class="{fieldsection: (field.field_type == 'section')}">
+  <div ng-repeat="field in fields track by $field_index" on-last-repeat class="panel panel-default form-field {{ field.deleted ? 'hide' : '' }}" id="form-field-{{ field.id }}" ng-class="{fieldsection: (field.field_type == 'section')}">
     <div class="panel-heading" ng-click="toggleFieldConfig(field)">
       <h3 class="panel-title"><abbr title="required" ng-if="(field.required == true) || (field.required == '1')">*</abbr>
         {{ field.field_label }}
@@ -141,15 +141,15 @@
             <div ui-sortable="sortableGroupOptions" ng-model="field.properties.groups" id="group-options-container">
               <div ng-repeat="(group_id, group) in field.properties.groups" class="row">
                 <div class="col-xs-6">
-                  <%= fp.input "groups[{{$index}}]name", as: :string, label: false, input_html: { 'ng-model' => 'group.name', placeholder: 'Column', id: nil } %>
+                  <%= fp.input "groups[{{group_id}}]name", as: :string, label: false, input_html: { 'ng-model' => 'group.name', placeholder: 'Column', id: nil } %>
                 </div>
 
                 <div class="col-xs-2">
-                  <%= fp.input "groups[{{$index}}]add_on", collection: ['none', 'prepend', 'append'], label: false, input_html: { 'ng-model' => 'group.add_on', placeholder: 'Column', id: nil } %>
+                  <%= fp.input "groups[{{group_id}}]add_on", include_blank: false, collection: ['none', 'prepend', 'append'], label: false, input_html: { 'ng-model' => 'group.add_on', placeholder: 'Column', id: nil } %>
                 </div>
 
                 <div class="col-xs-2">
-                  <%= fp.input "groups[{{$index}}]add_on_value", as: :string, label: false, input_html: { 'ng-model' => 'group.add_on_value', placeholder: 'Add On', id: nil } %>
+                  <%= fp.input "groups[{{group_id}}]add_on_value", as: :string, label: false, input_html: { 'ng-model' => 'group.add_on_value', placeholder: 'Add On', id: nil } %>
                 </div>
 
                 <div class="col-xs-1" style='padding-left:0;'>
