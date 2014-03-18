@@ -64,6 +64,13 @@
 }
 
 
+.question-group-table {
+  .group-fields-list-container {
+    clear: both;
+  }
+}
+
+
 .radio {
   .picture-option {
     max-width: 100px;
@@ -71,6 +78,7 @@
     line-height: 20px;
   }
 }
+
 
 .thumbnail.active {
   border: 1px solid #428bca;

@@ -11,6 +11,14 @@
       ), 100
     axis: 'y'
 
+
+  $scope.sortableGroupOptions =
+    update: (e, ui) ->
+      $timeout (->
+        # console.log 'yay !!'
+      ), 100
+    axis: 'y'
+
   # create range array number with min & max & step
   $scope.range = (min, max, step) ->
     step  = ((step == undefined) ? 1 : step)
@@ -70,6 +78,12 @@
           {name: 'Option 3', id: $scope.unique_id() + 3, persisted: false, deleted: false}
         ]
 
+      when 'number'
+        field.field_label = 'Number'
+
+      when 'percentage'
+        field.field_label = 'Percentage'
+
       when 'picture_choice'
         field.field_label = "Picture Choice"
         field.field_options = [
@@ -77,12 +91,6 @@
           {name: 'Caption 2', id: $scope.unique_id() + 2, persisted: false, deleted: false, picture: undefined}
           {name: 'Caption 3', id: $scope.unique_id() + 3, persisted: false, deleted: false, picture: undefined}
         ]
-
-      when 'number'
-        field.field_label = 'Number'
-
-      when 'percentage'
-        field.field_label = 'Percentage'
 
       when 'phone'
         field.field_label = 'Phone'
@@ -99,6 +107,15 @@
         field.properties =
           currency: '$'
           add_on: 'prepend'
+
+      when 'question_group'
+        field.field_label = 'Question Group'
+        field.properties.max_rows = 1
+        field.properties.groups = [
+          {name: 'Column 1', add_on: 'none'}
+          {name: 'Column 2', add_on: 'none'}
+          {name: 'Column 3', add_on: 'none'}
+        ]
 
       when 'range'
         field.field_label = 'Range'
@@ -118,13 +135,6 @@
           description: "Section detail here..."
         }
 
-      when 'twitter'
-        field.field_label = 'Twitter'
-        field.field_hint  = 'Enter twitter username'
-
-      when 'website'
-        field.field_label = 'URL'
-
       when 'statement'
         field.field_label = 'Statement'
         field.properties.max_rows = 0
@@ -139,6 +149,13 @@
           1: {name: 'Column 2'}
           2: {name: 'Column 3'}
         }
+
+      when 'twitter'
+        field.field_label = 'Twitter'
+        field.field_hint  = 'Enter twitter username'
+
+      when 'website'
+        field.field_label = 'URL'
     # end of switch
 
     $scope.fields.push( field )
@@ -188,11 +205,46 @@
 
 
   $scope.removeFieldPropertiesColumn = (field, column, idx)->
-    if column.persisted
+    if column.persisted || (column.persisted == undefined)
       if confirm( I18n.t('form').confirm_remove_field )
         delete field.properties.columns[idx]
     else
       delete field.properties.columns[idx]
+
+
+  $scope.checkLimitGroupQuesiton = (field)->
+    if field.properties
+      if field.properties.groups
+        return field.properties.groups.length < 5
+
+  $scope.removeFieldPropertiesGroup = (field, group, idx)->
+    if (group.persisted == undefined) || group.persisted
+      if confirm( I18n.t('form').confirm_remove_field )
+        field.properties.groups.splice(idx, 1)
+    else
+      field.properties.groups.splice(idx, 1)
+
+
+
+  $scope.addFieldPropertiesGroup = (field)->
+    if Object.keys(field.properties.groups).length < 5
+      obj = {name: 'New Column', add_on: 'none', persisted: false}
+      # idx = Object.keys(field.properties.groups).length + 1
+      # while field.properties.groups[idx] != undefined
+      #   idx += 1
+      field.properties.groups.push(obj)
+
+
+  $scope.addQuestionGroupRow = (field)->
+    field.properties.dummy_group_rows ||= 1
+    field.properties.dummy_group_rows += 1
+
+  $scope.removeQuestionGroupRow = (field)->
+    field.properties.dummy_group_rows ||= 1
+    field.properties.dummy_group_rows -= 1 if (field.properties.dummy_group_rows > 1)
+
+  $scope.isTheLastGroupQuestion = (field)->
+    !(Object.keys(field.properties.groups).length  <= 1)
 
   # will return unique_id
   $scope.unique_id = () ->
@@ -211,6 +263,17 @@
     return ( field_type.options.indexOf(field_needed) >= 0 )
 
 
+  $scope.getGroupColumnWidthClass = (field)->
+    default_class = ''
+    switch  Object.keys(field.properties.groups).length
+      when 1 then "col-xs-10"
+      when 2 then "col-xs-5"
+      when 3 then "col-xs-3"
+      when 4 then "col-xs-2"
+      when 5 then "col-xs-2"
+
+
+
   angular.element(document).ready () ->
     $timeout (->
       $('#form-container').on 'click', '.thumbnail', ()->
@@ -224,8 +287,16 @@
           columns: []
         }
 
-        if field.field_type == 'rating'
-          field.properties.max_rating = parseInt(field.properties.max_rating)
+        switch field.field_type
+          when 'rating'
+            field.properties.max_rating = parseInt(field.properties.max_rating)
+
+          when 'question_group'
+            field.properties.groups =  $.map(field.properties.groups, (value, index)->
+              value['persisted'] = true
+              value
+            )
+
 
       console.log $scope.fields
       # console.log "---------------------------"

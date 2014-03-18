@@ -66,6 +66,12 @@ class FormField < ActiveRecord::Base
   end
 
   def as_json(options = {})
+    # if field_type_question_group? && self.properties['groups'].present?
+    #   properties['groups'].each do |key, value|
+    #     properties['groups'][key].merge!(persisted: true)
+    #   end
+    # end
+
     super(options).merge(persisted: persisted?, field_options: field_options.map{|x| x.as_json})
   end
 

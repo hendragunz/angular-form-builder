@@ -1,0 +1,25 @@
+<!-- question_group -->
+<div class="question-group-table" ng-if="field.field_type == 'question_group'">
+  <div clas="row">
+    <div class="{{ getGroupColumnWidthClass(field) }}" ng-repeat="group in field.properties.groups" style="word-wrap:break-word;">{{ group.name }}</div>
+    <div class="col-xs-1">&nbsp;&nbsp;</div>
+  </div>
+
+  <div class="group-fields-list-container">
+    <div ng-repeat="n in range(1, field.properties.dummy_group_rows || 1)"  class="row">
+      <div ng-repeat="group in field.properties.groups" class="{{ getGroupColumnWidthClass(field) }}" >
+        <div class="{{ ((group.add_on == 'prepend') || (group.add_on == 'append')) ? 'input-group' : 'input' }}" >
+          <span class="input-group-addon" ng-if="group.add_on == 'prepend'">{{ group.add_on_value }}</span>
+          <%= text_field_tag "field", '', class: 'form-control' %>
+          <span class="input-group-addon" ng-if="group.add_on == 'append'">{{ group.add_on_value }}</span>
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <%= link_to 'remove', '', 'ng-click' => "removeQuestionGroupRow(field)", "ng-show" => "n != 1", class: 'link-danger' %>
+      </div>
+    </div> <!-- end row -->
+  </div><!-- end container -->
+
+  <p><%= link_to 'Add row', '', 'ng-click' => "addQuestionGroupRow(field)",  class: 'btn btn-xs btn-primary' %></p>
+</div>
