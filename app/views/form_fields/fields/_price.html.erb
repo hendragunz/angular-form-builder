@@ -3,7 +3,7 @@
     <span class="input-group-addon"><%= question.properties['currency'] || '$' %></span>
   <% end %>
 
-  <%= f.input_field :price, as: :integer, min: 0 %>
+  <%= f.input_field question.id.to_s, as: :integer, min: 0 %>
 
   <% if question.properties['add_on'] == 'append' %>
     <span class="input-group-addon"><%= question.properties['currency'] || '$' %></span>
