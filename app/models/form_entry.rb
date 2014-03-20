@@ -44,17 +44,42 @@ class FormEntry < ActiveRecord::Base
 
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
+
+  # cache the fields in variable
+  def fields
+    @fields ||= form.fields
+  end
+
+
   def validate_answers
-    self.form.fields.each do |field|
-      if field.required and field.field_type == "mcq"
-        mcq_value_exist = 0
-        field .field_options.each do |option|
-          mcq_value_exist = 1 if answers[field.id.to_s+"_"+option.id.to_s] != "0"
+    fields.each do |field|
+      case field.field_type
+      when 'single_line', 'paragraph', 'facebook', 'twitter', 'address', 'phone', 'email', 'website'
+        if field.required && answers[field.id.to_s].blank?
+          errors[:base] << "#{field.field_label} can't be blank"
         end
-        errors.add field.name, "Can't be blank" if mcq_value_exist == 0
-      elsif field.required and answers[field.id.to_s].blank?
-        errors.add field.name, "Can't be blank"
+
+      when 'price'
+        if field.required && answers[field.id.to_s].blank?
+          errors[:base] << "#{field.field_label} can't be blank"
+        end
+
+        if answers[field.id.to_s].present? && answers[field.id.to_s].try(:to_f) < 0
+          errors[:base] << "#{field.field_label} should be greater or equal then 0"
+        end
       end
+
+
+
+      # if field.required and field.field_type == "mcq"
+      #   mcq_value_exist = 0
+      #   field .field_options.each do |option|
+      #     mcq_value_exist = 1 if answers[field.id.to_s+"_"+option.id.to_s] != "0"
+      #   end
+      #   errors.add field.name, "Can't be blank" if mcq_value_exist == 0
+      # elsif field.required and answers[field.id.to_s].blank?
+      #   errors.add field.name, "Can't be blank"
+      # end
     end
   end
 
@@ -66,9 +91,6 @@ class FormEntry < ActiveRecord::Base
     self.platform = user_agent.platform
   end
 
-  def can_be_deleted?
-    false
-  end
 
   def self.to_csv(options = {})
     headers = %w{ID Answers IP Date}

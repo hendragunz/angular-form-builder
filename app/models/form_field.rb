@@ -61,27 +61,17 @@ class FormField < ActiveRecord::Base
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
 
-  def can_be_deleted?
-  	true
-  end
-
   def as_json(options = {})
-    # if field_type_question_group? && self.properties['groups'].present?
-    #   properties['groups'].each do |key, value|
-    #     properties['groups'][key].merge!(persisted: true)
-    #   end
-    # end
-
     super(options).merge(persisted: persisted?, field_options: field_options.map{|x| x.as_json})
   end
 
-  def properties_columns
-    JSON.parse(properties['columns']) rescue []
-  end
+  # def properties_columns
+  #   JSON.parse(properties['columns']) rescue []
+  # end
 
-  def properties_statements
-    JSON.parse(properties['statements']) rescue []
-  end
+  # def properties_statements
+  #   JSON.parse(properties['statements']) rescue []
+  # end
 
   private
 
@@ -90,10 +80,9 @@ class FormField < ActiveRecord::Base
     end
 
     def check_for_entries
-      @entries = FormEntry.find_by_form_id(self.form_id)
-      if @entries
-        @entries.answers = @entries.answers.reject{ |k| k.split('_').first == self.id.to_s }
-        @entries.save
+      form.entries.each do |entry|
+        entry.answers = entries.answers.reject{ |k| k.split('_').first == self.id.to_s }
+        entries.save
       end
     end
 
