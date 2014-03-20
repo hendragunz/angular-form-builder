@@ -1,7 +1,7 @@
 module Enum
   module FormField
     FIELD_TYPE = {
-      options: [:single_line, :boolean, :paragraph, :mcq, :rating, :number, :checkbox, :dropdown, :name, :address, :date, :datetime, :email, :time, :phone, :website, :price, :statement,
+      options: [:single_line, :boolean, :paragraph, :mcq, :rating, :number, :checkbox, :dropdown, :name, :address, :date, :datetime, :email, :phone, :website, :price, :statement,
                 :facebook, :twitter, :file, :picture_choice, :section, :range, :radio, :question_group],
       default: :single_line
     }
