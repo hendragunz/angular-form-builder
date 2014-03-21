@@ -54,7 +54,7 @@ class FormEntry < ActiveRecord::Base
   def validate_answers
     fields.each do |field|
       case field.field_type
-      when 'single_line', 'paragraph', 'facebook', 'twitter', 'address', 'phone', 'email', 'website'
+      when 'single_line', 'paragraph', 'facebook', 'twitter', 'address', 'phone', 'website', 'radio', 'date', 'picture_choice'
         if field.required && answers[field.id.to_s].blank?
           errors[:base] << "#{field.field_label} can't be blank"
         end
@@ -66,6 +66,52 @@ class FormEntry < ActiveRecord::Base
 
         if answers[field.id.to_s].present? && answers[field.id.to_s].try(:to_f) < 0
           errors[:base] << "#{field.field_label} should be greater or equal then 0"
+        end
+
+      when 'number'
+        if field.required && answers[field.id.to_s].blank?
+          errors[:base] << "#{field.field_label} can't be blank"
+        end
+
+        if answers[field.id.to_s].present?
+          value = answers[field.id.to_s].to_f
+
+          from_number = field.properties['from_number'].to_f
+          if (from_number != 0.0) && (value < from_number)
+            errors[:base] << "#{field.field_label} can't be lower than #{ from_number }"
+          end
+
+          to_number   = field.properties['to_number'].to_f
+          if (to_number != 0.0) && (value > to_number)
+            errors[:base] << "#{field.field_label} can't be greather than #{ to_number }"
+          end
+        end
+
+
+      when 'percentage'
+        if field.required && answers[field.id.to_s].blank?
+          errors[:base] << "#{field.field_label} can't be blank"
+        end
+
+        if answers[field.id.to_s].present?
+          value = answers[field.id.to_s].to_f
+
+          if (value < 0.0)
+            errors[:base] << "#{field.field_label} can't be lower than 0.0 %"
+          end
+
+          if (value > 100.0)
+            errors[:base] << "#{field.field_label} can't be greather than 100.0 %"
+          end
+        end
+
+      when 'email'
+        if field.required && answers[field.id.to_s].blank?
+          errors[:base] << "#{field.field_label} can't be blank"
+        end
+
+        if answers[field.id.to_s].present? && answers[field.id.to_s].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
+          errors[:base] << "#{field.field_label} is not valid email format"
         end
       end
 

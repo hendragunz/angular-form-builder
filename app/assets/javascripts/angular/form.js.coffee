@@ -291,6 +291,10 @@
           when 'rating'
             field.properties.max_rating = parseInt(field.properties.max_rating)
 
+          when 'number'
+            field.properties.from_number = parseInt(field.properties.from_number)
+            field.properties.to_number = parseInt(field.properties.to_number)
+
           when 'question_group'
             field.properties.groups =  $.map(field.properties.groups, (value, index)->
               value['persisted'] = true

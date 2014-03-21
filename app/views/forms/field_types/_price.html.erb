@@ -1,6 +1,6 @@
 <!-- price -->
 <div class="input-group price" ng-show="(field.field_type == 'price')">
   <span class="input-group-addon" ng-if="(field.properties.add_on == 'prepend')"> {{ field.properties.currency || '$' }}</span>
-  <input type="text" class="form-control span1" min="0">
+  <input type="number" class="form-control span1" min="0">
   <span class="input-group-addon" ng-if="(field.properties.add_on == 'append')"> {{ field.properties.currency || '$' }}</span>
 </div>

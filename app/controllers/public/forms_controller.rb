@@ -46,6 +46,7 @@ class Public::FormsController < Public::BaseController
     end
 
     def safe_params
+      return {} if params[:form_entry].blank?
       params.require(:form_entry).permit(:form_id, :answers => [
         form.fields.map(&:id).map(&:to_s)
       ])

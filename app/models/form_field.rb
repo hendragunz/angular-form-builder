@@ -65,13 +65,6 @@ class FormField < ActiveRecord::Base
     super(options).merge(persisted: persisted?, field_options: field_options.map{|x| x.as_json})
   end
 
-  # def properties_columns
-  #   JSON.parse(properties['columns']) rescue []
-  # end
-
-  # def properties_statements
-  #   JSON.parse(properties['statements']) rescue []
-  # end
 
   private
 
@@ -80,10 +73,18 @@ class FormField < ActiveRecord::Base
     end
 
     def check_for_entries
-      form.entries.each do |entry|
-        entry.answers = entries.answers.reject{ |k| k.split('_').first == self.id.to_s }
-        entries.save
-      end
+
+      # TO DO
+      # --------------------------
+
+      # form.entries.each do |entry|
+      #   if entry.answers.present?
+      #     entry.answers = entry.answers.reject{ |k| k.split('_').first == self.id.to_s }
+      #     entry.save
+      #   end
+      # end
+
+      # return true
     end
 
 end

@@ -1,5 +1,5 @@
 <!-- percentage -->
 <%= f.input question.id.to_s, label: question.field_label, hint: question.field_hint, required: question.required, wrapper: :prepend do %>
-  <%= f.input_field question.id.to_s, as: :integer, min: question.properties['from_number'], max: question.properties['to_number'] %>
+  <%= f.input_field question.id.to_s, as: :integer, min: 0, max: 100 %>
   <span class="input-group-addon">%</span>
 <% end %>
