@@ -52,11 +52,10 @@ class FieldOption < ActiveRecord::Base
   private
 
     def check_for_entries
-      @entries = FormEntry.find_by_form_id(self.form_field.form_id)
-      if @entries
-        @entries.answers = @entries.answers.reject{ |k| k.split('_').second == self.id.to_s }
-        @entries.save
-      end
+      # form_field.form.entries.each do |entry|
+      #   entry.answers = entryentries.answers.reject{ |k| k.split('_').second == self.id.to_s }
+      #   entry.save
+      # end
     end
 
 end

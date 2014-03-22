@@ -59,6 +59,22 @@ class FormEntry < ActiveRecord::Base
           errors[:base] << "#{field.field_label} can't be blank"
         end
 
+
+      when 'checkbox', 'mcq'
+        if field.required && (answers[field.id.to_s] || []).reject(&:blank?).blank?
+          errors[:base] << "#{field.field_label} can't be blank"
+        end
+
+
+      when 'statement'
+        if field.required
+          field.properties['statements'].each do |key, statement|
+            if answers[field.id.to_s + "_#{key}"].blank?
+              errors[:base] << "Question group for #{statement['name']} can't be blank"
+            end
+          end
+        end
+
       when 'price'
         if field.required && answers[field.id.to_s].blank?
           errors[:base] << "#{field.field_label} can't be blank"
@@ -85,6 +101,11 @@ class FormEntry < ActiveRecord::Base
           if (to_number != 0.0) && (value > to_number)
             errors[:base] << "#{field.field_label} can't be greather than #{ to_number }"
           end
+        end
+
+      when 'website'
+        if field.required && answers[field.id.to_s].blank?
+          errors[:base] << "#{field.field_label} can't be blank"
         end
 
 

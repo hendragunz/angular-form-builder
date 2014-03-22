@@ -13,6 +13,7 @@ class Public::FormsController < Public::BaseController
   #
   def create
     # ap params
+    # ap form_entry_param
     # ap safe_params
 
     @entry = form.entries.new(safe_params)
@@ -60,6 +61,15 @@ class Public::FormsController < Public::BaseController
           if field.field_type_range?
             arr << field.id.to_s + '_from'
             arr << field.id.to_s + '_to'
+
+          elsif field.field_type_checkbox? || field.field_type_mcq?
+            arr << { field.id.to_s => [] }
+
+          elsif field.field_type_statement?
+            field.properties['statements'].each do |key, value|
+              arr << field.id.to_s + "_#{key}"
+            end
+
           else
             arr << field.id.to_s
           end
