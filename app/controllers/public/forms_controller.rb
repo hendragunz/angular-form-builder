@@ -47,9 +47,24 @@ class Public::FormsController < Public::BaseController
 
     def safe_params
       return {} if params[:form_entry].blank?
-      params.require(:form_entry).permit(:form_id, :answers => [
-        form.fields.map(&:id).map(&:to_s)
-      ])
+      params.require(:form_entry).permit(:form_id, :answers => form_entry_param)
+    end
+
+    # Return allowed params for form entry
+    # The returned is Array and the value is depend how much fields and field types in form
+    # -----------------------------------------------------------------------------------------
+    #
+    def form_entry_param
+      Array.new.tap do |arr|
+        form.fields.map do |field|
+          if field.field_type_range?
+            arr << field.id.to_s + '_from'
+            arr << field.id.to_s + '_to'
+          else
+            arr << field.id.to_s
+          end
+        end
+      end
     end
 
 end

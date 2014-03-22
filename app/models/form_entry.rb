@@ -54,7 +54,7 @@ class FormEntry < ActiveRecord::Base
   def validate_answers
     fields.each do |field|
       case field.field_type
-      when 'single_line', 'paragraph', 'facebook', 'twitter', 'address', 'phone', 'website', 'radio', 'date', 'picture_choice'
+      when 'single_line', 'paragraph', 'facebook', 'twitter', 'address', 'phone', 'website', 'radio', 'date', 'picture_choice', 'rating'
         if field.required && answers[field.id.to_s].blank?
           errors[:base] << "#{field.field_label} can't be blank"
         end
@@ -102,6 +102,27 @@ class FormEntry < ActiveRecord::Base
 
           if (value > 100.0)
             errors[:base] << "#{field.field_label} can't be greather than 100.0 %"
+          end
+        end
+
+
+      when 'range'
+        if field.required && (answers[field.id.to_s + '_from'].blank? || answers[field.id.to_s + '_to'].blank?)
+          errors[:base] << "#{field.field_label} can't be blank"
+        end
+
+        if answers[field.id.to_s+'_from'].present? && answers[field.id.to_s+'_to'].present?
+          value1 = answers[field.id.to_s+'_from'].to_f
+          value2 = answers[field.id.to_s+'_to'].to_f
+
+          from_number = field.properties['from_number'].to_f
+          if (from_number != 0.0) && (value1 < from_number)
+            errors[:base] << "#{field.field_label} for from number can't be lower than #{ from_number }"
+          end
+
+          to_number   = field.properties['to_number'].to_f
+          if (to_number != 0.0) && (value2 > to_number)
+            errors[:base] << "#{field.field_label} for to number can't be greather than #{ to_number }"
           end
         end
 

@@ -291,7 +291,7 @@
           when 'rating'
             field.properties.max_rating = parseInt(field.properties.max_rating)
 
-          when 'number'
+          when 'number', 'range'
             field.properties.from_number = parseInt(field.properties.from_number)
             field.properties.to_number = parseInt(field.properties.to_number)
 
