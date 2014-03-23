@@ -62,6 +62,11 @@ class Public::FormsController < Public::BaseController
             arr << field.id.to_s + '_from'
             arr << field.id.to_s + '_to'
 
+          elsif field.field_type_datetime?
+            arr << field.id.to_s
+            arr << field.id.to_s + '_hours'
+            arr << field.id.to_s + '_minutes'
+
           elsif field.field_type_checkbox? || field.field_type_mcq?
             arr << { field.id.to_s => [] }
 

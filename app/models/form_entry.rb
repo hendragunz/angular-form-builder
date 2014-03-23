@@ -155,6 +155,14 @@ class FormEntry < ActiveRecord::Base
         if answers[field.id.to_s].present? && answers[field.id.to_s].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
           errors[:base] << "#{field.field_label} is not valid email format"
         end
+
+      when 'datetime'
+        if field.required
+          if answers[field.id.to_s].blank? || answers[field.id.to_s + '_hours'].blank? || answers[field.id.to_s + '_minutes'].blank?
+            errors[:base] << "#{field.field_label} for date, hours, and minutes can't be blank"
+          end
+        end
+
       end
 
 
