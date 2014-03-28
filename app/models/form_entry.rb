@@ -170,6 +170,15 @@ class FormEntry < ActiveRecord::Base
           end
         end
 
+      when 'question_group'
+        if field.required
+          field.properties['groups'].each do |key, value|
+            if answers[field.id.to_s + "_#{key}"].blank?
+              errors[:base] << "#{field.field_label} Group can't be blank"
+            end
+          end
+        end
+
       end
 
 
