@@ -67,6 +67,19 @@ class Public::FormsController < Public::BaseController
             arr << field.id.to_s + '_hours'
             arr << field.id.to_s + '_minutes'
 
+          elsif field.field_type_address?
+            arr << field.id.to_s
+            arr << field.id.to_s + '_address'
+            arr << field.id.to_s + '_city'
+            arr << field.id.to_s + '_postal_code'
+            arr << field.id.to_s + '_country'
+
+           elsif field.field_type_question_group?
+            field.properties['groups'].each do |name, add_on|
+              arr << field.id.to_s + '_name'
+              arr << field.id.to_s + '_add_on'
+            end
+
           elsif field.field_type_checkbox? || field.field_type_mcq?
             arr << { field.id.to_s => [] }
 
@@ -74,6 +87,8 @@ class Public::FormsController < Public::BaseController
             field.properties['statements'].each do |key, value|
               arr << field.id.to_s + "_#{key}"
             end
+
+
 
           else
             arr << field.id.to_s

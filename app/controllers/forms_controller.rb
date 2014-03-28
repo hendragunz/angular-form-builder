@@ -27,7 +27,6 @@ class FormsController < BaseController
         format.html { redirect_to edit_form_path(@form), notice: 'Form was successfully created.' }
         format.json { render action: 'show', status: :created, location: @form }
       else
-        debugger
         format.html { render action: 'new' }
         format.json { render json: @form.errors, status: :unprocessable_entity }
       end
