@@ -74,10 +74,10 @@ class Public::FormsController < Public::BaseController
             arr << field.id.to_s + '_postal_code'
             arr << field.id.to_s + '_country'
 
-           elsif field.field_type_question_group?
-            field.properties['groups'].each do |name, add_on|
-              arr << field.id.to_s + '_name'
-              arr << field.id.to_s + '_add_on'
+          elsif field.field_type_question_group?
+            field.properties['groups'].each do |key, value|
+              arr << field.id.to_s
+              arr << field.id.to_s + "_#{key}"
             end
 
           elsif field.field_type_checkbox? || field.field_type_mcq?
