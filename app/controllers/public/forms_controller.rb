@@ -68,7 +68,6 @@ class Public::FormsController < Public::BaseController
             arr << field.id.to_s + '_minutes'
 
           elsif field.field_type_address?
-            arr << field.id.to_s
             arr << field.id.to_s + '_address'
             arr << field.id.to_s + '_city'
             arr << field.id.to_s + '_postal_code'
