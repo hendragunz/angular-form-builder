@@ -11,6 +11,7 @@
 tmp/*
 public/assets/
 public/system/
+public/uploads/
 .rvmrc
 /public/cache
 /public/system/*

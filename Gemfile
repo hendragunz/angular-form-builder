@@ -45,6 +45,7 @@ gem 'kaminari-bootstrap'
 gem 'useragent', github: 'josh/useragent'
 gem 'google_visualr'
 gem 'paperclip'
+gem 'carrierwave'
 gem 'angularjs-rails', '~> 1.2.13'
 
 # Bootstrap date time picker

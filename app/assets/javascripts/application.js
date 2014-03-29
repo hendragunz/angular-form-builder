@@ -28,5 +28,6 @@
 //= require angular/modules/sortable
 //= require angular/modules/imageupload
 //= require angular/my_app
-//= require angular/form
+//= require angular/form_builder
+//= require angular/form_entry
 

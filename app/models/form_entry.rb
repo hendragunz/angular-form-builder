@@ -42,6 +42,10 @@ class FormEntry < ActiveRecord::Base
   validate :validate_answers
 
 
+  # CALLBACKS
+  # ------------------------------------------------------------------------------------------------------
+  before_validation :process_answers
+
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
 
@@ -172,10 +176,8 @@ class FormEntry < ActiveRecord::Base
 
       when 'question_group'
         if field.required
-          field.properties['groups'].each do |key, value|
-            if answers[field.id.to_s + "_#{key}"].blank?
-              errors[:base] << "#{field.field_label} Group can't be blank"
-            end
+          if answers[field.id.to_s].blank?
+            errors[:base] << "#{field.field_label} can't be blank"
           end
         end
 
@@ -225,5 +227,35 @@ class FormEntry < ActiveRecord::Base
       end
     end
   end
+
+
+  private
+
+    # This is callback to process the answer entries for all types that need a process
+    #
+    def process_answers
+      fields.each do |field|
+        # remove question group's row that has empty value (row with empty value)
+        if field.field_type_question_group?
+          self.answers[field.id.to_s] = Hash.new.tap do |hash|
+            answers[field.id.to_s].each do |key, value|
+              hash[key] = value if answers[field.id.to_s][key].values.reject(&:blank?).present?
+            end
+          end
+
+        # Process to store attachment file
+        elsif field.field_type_file?
+          data = self.answers[field.id.to_s]
+          if data.present?
+            uploader = AttachmentUploader.new
+            uploader.question_id = field.id.to_s
+            uploader.form_id = form_id
+            uploader.store!(data)
+            self.answers[field.id.to_s] = uploader.url
+          end
+        end
+      end
+    end
+
 
 end

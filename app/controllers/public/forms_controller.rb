@@ -12,25 +12,31 @@ class Public::FormsController < Public::BaseController
   # POST -
   #
   def create
-    # ap params
-    # ap form_entry_param
-    # ap safe_params
+    begin
+      # ap params
+      # Rails.logger.debug form_entry_param
+      # ap safe_params
 
-    @entry = form.entries.new(safe_params)
-    @entry.track_user(request)
+      @entry = form.entries.new(safe_params)
+      @entry.track_user(request)
 
-    respond_to do |format|
-      if @entry.save
-        format.html { redirect_to completed_public_form_path(form) }
-        format.json { render action: 'completed', status: :created, location: @entry }
-        FormEntryMailer.notify_recipient(@entry).deliver if @entry.form.persons_to_notify.present?
-      else
-        format.html {
-          flash.now[:alert] = @entry.errors.full_messages.join("<br />").html_safe
-          render action: 'show'
-        }
-        format.json { render json: @entry.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @entry.save
+          format.html { redirect_to completed_public_form_path(form) }
+          format.json { render action: 'completed', status: :created, location: @entry }
+          FormEntryMailer.notify_recipient(@entry).deliver if @entry.form.persons_to_notify.present?
+        else
+          format.html {
+            flash.now[:alert] = @entry.errors.full_messages.join("<br />").html_safe
+            render action: 'show'
+          }
+          format.json { render json: @entry.errors, status: :unprocessable_entity }
+        end
       end
+
+    rescue CarrierWave::IntegrityError => e
+      flash[:alert] = e.message
+      render action: 'show'
     end
   end
 
@@ -48,7 +54,12 @@ class Public::FormsController < Public::BaseController
 
     def safe_params
       return {} if params[:form_entry].blank?
-      params.require(:form_entry).permit(:form_id, :answers => form_entry_param)
+      #
+      # Stucked with form question_group, the strong parameter not working well with multi level nested attributes into more than 2 levels
+      #
+      # params.require(:form_entry).permit(:form_id, :answers => form_entry_param)
+      #
+      params.require(:form_entry).permit!
     end
 
     # Return allowed params for form entry
@@ -74,10 +85,7 @@ class Public::FormsController < Public::BaseController
             arr << field.id.to_s + '_country'
 
           elsif field.field_type_question_group?
-            field.properties['groups'].each do |key, value|
-              arr << field.id.to_s
-              arr << field.id.to_s + "_#{key}"
-            end
+            arr << { 'field.id' => [ 'row_10' ] }
 
           elsif field.field_type_checkbox? || field.field_type_mcq?
             arr << { field.id.to_s => [] }
@@ -87,6 +95,8 @@ class Public::FormsController < Public::BaseController
               arr << field.id.to_s + "_#{key}"
             end
 
+          elsif field.field_type_file?
+            arr << field.id.to_s
 
 
           else
