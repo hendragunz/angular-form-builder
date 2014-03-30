@@ -8,7 +8,7 @@
   <% end %>
 
   <div class="row">
-    <%= f.input question.id.to_s + "_from", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'From', min: question.properties['from_number'] } %>
-    <%= f.input question.id.to_s + "_to", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'To', max: question.properties['to_number'] } %>
+    <%= f.input question.id.to_s + "_from", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'From', min: question.properties['from_number'], max: question.properties['to_number']  } %>
+    <%= f.input question.id.to_s + "_to", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'To', min: question.properties['from_number'], max: question.properties['to_number'] } %>
   </div>
 </div>

@@ -70,6 +70,11 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-nc (0.1.0)
       terminal-notifier (~> 1.4.2)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -257,6 +262,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 2.1.30)
   capistrano (~> 2.15.0)
   capistrano-nc
+  carrierwave
   coffee-rails (~> 4.0.0)
   country-select
   debugger

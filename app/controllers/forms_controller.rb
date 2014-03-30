@@ -27,7 +27,6 @@ class FormsController < BaseController
         format.html { redirect_to edit_form_path(@form), notice: 'Form was successfully created.' }
         format.json { render action: 'show', status: :created, location: @form }
       else
-        debugger
         format.html { render action: 'new' }
         format.json { render json: @form.errors, status: :unprocessable_entity }
       end
@@ -35,8 +34,6 @@ class FormsController < BaseController
   end
 
   def update
-    ap params
-
     respond_to do |format|
       if @form.update(safe_params)
         format.html { redirect_to form_path(@form), notice: 'Form was successfully updated.' }

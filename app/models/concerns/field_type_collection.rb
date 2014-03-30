@@ -3,7 +3,7 @@ module FieldTypeCollection
 
   FieldConfig = {
     address:        {type: 'text',      options: ['label', 'hint', 'required']},
-    percentage:     {type: 'number',    options: ['label', 'hint', 'required', 'range']},
+    percentage:     {type: 'number',    options: ['label', 'hint', 'required']},
     boolean:        {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
     checkbox:       {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     date:           {type: 'date',      options: ['label', 'hint', 'required']},
@@ -14,7 +14,6 @@ module FieldTypeCollection
     file:           {type: 'file',      options: ['label', 'hint', 'required']},
     mcq:            {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
     radio:          {type: 'radio',     options: ['label', 'hint', 'required', 'field_options']},
-    name:           {type: 'text',      options: ['label', 'hint', 'required']},
     number:         {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     paragraph:      {type: 'textarea',  options: ['label', 'hint', 'required']},
     phone:          {type: 'tel',       options: ['label', 'hint', 'required']},
