@@ -46,6 +46,7 @@ class FormEntry < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   before_validation :process_answers
 
+
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
 
@@ -228,7 +229,6 @@ class FormEntry < ActiveRecord::Base
     end
   end
 
-
   private
 
     # This is callback to process the answer entries for all types that need a process
@@ -256,6 +256,5 @@ class FormEntry < ActiveRecord::Base
         end
       end
     end
-
 
 end
