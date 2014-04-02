@@ -14,7 +14,7 @@ class Public::FormsController < Public::BaseController
   def create
     begin
       # ap params
-      # Rails.logger.debug form_entry_param
+      # ap form_entry_param
       # ap safe_params
 
       @entry = form.entries.new(safe_params)

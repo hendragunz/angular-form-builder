@@ -58,9 +58,9 @@ class FormEntry < ActiveRecord::Base
   def validate_answers
     fields.each do |field|
       case field.field_type
-      when 'single_line', 'paragraph', 'facebook', 'twitter', 'phone', 'website', 'radio', 'date', 'picture_choice', 'rating'
+      when 'single_line', 'paragraph', 'facebook', 'twitter', 'phone', 'website', 'radio', 'date', 'picture_choice', 'rating', 'boolean'
         if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{field.field_label} can't be blank"
+          errors[:base] << "#{field.id})  #{field.field_label} can't be blank"
         end
 
 
