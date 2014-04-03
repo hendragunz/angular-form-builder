@@ -60,37 +60,35 @@ class FormEntry < ActiveRecord::Base
       case field.field_type
       when 'single_line', 'paragraph', 'facebook', 'twitter', 'phone', 'website', 'radio', 'date', 'picture_choice', 'dropdown', 'rating', 'boolean'
         if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{idx+1})  #{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
-
 
       when 'checkbox', 'mcq'
         if field.required && (answers[field.id.to_s] || []).reject(&:blank?).blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
-
 
       when 'statement'
         if field.required
           field.properties['statements'].each do |key, statement|
             if answers[field.id.to_s + "_#{key}"].blank?
-              errors[:base] << "#{idx+1}) Question group for #{statement['name']} can't be blank"
+              errors[:base] << "#{idx+1}) Question group for #{statement['name']} #{I18n.t 'errors.cant_be_blank'}"
             end
           end
         end
 
       when 'price'
         if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
 
         if answers[field.id.to_s].present? && answers[field.id.to_s].try(:to_f) < 0
-          errors[:base] << "#{idx+1}) #{field.field_label} should be greater or equal then 0"
+          errors[:base] << "#{idx+1}) #{field.field_label} should be greater or equal than 0"
         end
 
       when 'number'
         if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
 
         if answers[field.id.to_s].present?
@@ -109,31 +107,29 @@ class FormEntry < ActiveRecord::Base
 
       when 'website'
         if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
-
 
       when 'percentage'
         if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
 
         if answers[field.id.to_s].present?
           value = answers[field.id.to_s].to_f
 
           if (value < 0.0)
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be lower than 0.0 %"
+            errors[:base] << "#{idx+1}) #{field.field_label} can't be lower than 0.0%"
           end
 
           if (value > 100.0)
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be greather than 100.0 %"
+            errors[:base] << "#{idx+1}) #{field.field_label} can't be greater than 100.0%"
           end
         end
 
-
       when 'range'
         if field.required && (answers[field.id.to_s + '_from'].blank? || answers[field.id.to_s + '_to'].blank?)
-          errors[:base] << "#{idx+1}) #{field.id}#{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
 
         if answers[field.id.to_s+'_from'].present? && answers[field.id.to_s+'_to'].present?
@@ -154,36 +150,34 @@ class FormEntry < ActiveRecord::Base
 
       when 'email'
         if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
+          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
 
         if answers[field.id.to_s].present? && answers[field.id.to_s].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} is not valid email format"
+          errors[:base] << "#{idx+1}) #{field.field_label} is not a valid email format"
         end
 
       when 'datetime'
         if field.required
           if answers[field.id.to_s].blank? || answers[field.id.to_s + '_hours'].blank? || answers[field.id.to_s + '_minutes'].blank?
-            errors[:base] << "#{idx+1}) #{field.field_label} for date, hours, and minutes can't be blank"
+            errors[:base] << "#{idx+1}) #{field.field_label} for date, hours, and minutes #{I18n.t 'errors.cant_be_blank'}"
           end
         end
 
       when 'address'
         if field.required
           if answers[field.id.to_s + '_address'].blank? || answers[field.id.to_s + '_city'].blank?
-            errors[:base] << "#{idx+1}) #{field.field_label} address can't be blank"
+            errors[:base] << "#{idx+1}) #{field.field_label} address #{I18n.t 'errors.cant_be_blank'}"
           end
         end
 
       when 'question_group'
         if field.required
           if answers[field.id.to_s].blank?
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
+            errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
           end
         end
-
       end
-
 
 
       # if field.required and field.field_type == "mcq"
@@ -191,9 +185,9 @@ class FormEntry < ActiveRecord::Base
       #   field .field_options.each do |option|
       #     mcq_value_exist = 1 if answers[field.id.to_s+"_"+option.id.to_s] != "0"
       #   end
-      #   errors.add field.name, "Can't be blank" if mcq_value_exist == 0
+      #   errors.add field.name, "#{I18n.t 'errors.cant_be_blank'}" if mcq_value_exist == 0
       # elsif field.required and answers[field.id.to_s].blank?
-      #   errors.add field.name, "Can't be blank"
+      #   errors.add field.name, "#{I18n.t 'errors.cant_be_blank'}"
       # end
     end
   end
@@ -232,7 +226,7 @@ class FormEntry < ActiveRecord::Base
 
   private
 
-    # This is callback to process the answer entries for all types that need a process
+    # Callback to process answer entries for all types that need a process
     #
     def process_answers
       if self.answers.present?
@@ -267,6 +261,5 @@ class FormEntry < ActiveRecord::Base
         end
       end
     end
-
 
 end
