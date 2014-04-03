@@ -243,6 +243,14 @@ class FormEntry < ActiveRecord::Base
             end
           end
 
+        # remove nil values
+        elsif field.field_type_mcq? || field.field_type_checkbox?
+          self.answers[field.id.to_s] =  if self.answers[field.id.to_s].is_a?(String)
+                                           JSON.parse(self.answers[field.id.to_s]).reject(&:blank?).uniq
+                                         elsif self.answers[field.id.to_s].is_a?(Array)
+                                           self.answers[field.id.to_s].reject(&:blank?).uniq
+                                         end
+
         # Process to store attachment file
         elsif field.field_type_file?
           data = self.answers[field.id.to_s]
