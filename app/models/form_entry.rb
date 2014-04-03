@@ -234,32 +234,34 @@ class FormEntry < ActiveRecord::Base
     # This is callback to process the answer entries for all types that need a process
     #
     def process_answers
-      fields.each do |field|
-        # remove question group's row that has empty value (row with empty value)
-        if field.field_type_question_group?
-          self.answers[field.id.to_s] = Hash.new.tap do |hash|
-            answers[field.id.to_s].each do |key, value|
-              hash[key] = value if answers[field.id.to_s][key].values.reject(&:blank?).present?
+      if self.answers.present?
+        fields.each do |field|
+          # remove question group's row that has empty value (row with empty value)
+          if field.field_type_question_group?
+            self.answers[field.id.to_s] = Hash.new.tap do |hash|
+              answers[field.id.to_s].each do |key, value|
+                hash[key] = value if answers[field.id.to_s][key].values.reject(&:blank?).present?
+              end
             end
-          end
 
-        # remove nil values
-        elsif field.field_type_mcq? || field.field_type_checkbox?
-          self.answers[field.id.to_s] =  if self.answers[field.id.to_s].is_a?(String)
-                                           JSON.parse(self.answers[field.id.to_s]).reject(&:blank?).uniq
-                                         elsif self.answers[field.id.to_s].is_a?(Array)
-                                           self.answers[field.id.to_s].reject(&:blank?).uniq
-                                         end
+          # remove nil values
+          elsif field.field_type_mcq? || field.field_type_checkbox?
+            self.answers[field.id.to_s] =  if self.answers[field.id.to_s].is_a?(String)
+                                             JSON.parse(self.answers[field.id.to_s]).reject(&:blank?).uniq
+                                           elsif self.answers[field.id.to_s].is_a?(Array)
+                                             self.answers[field.id.to_s].reject(&:blank?).uniq
+                                           end
 
-        # Process to store attachment file
-        elsif field.field_type_file?
-          data = self.answers[field.id.to_s]
-          if data.present?
-            uploader = AttachmentUploader.new
-            uploader.question_id = field.id.to_s
-            uploader.form_id = form_id
-            uploader.store!(data)
-            self.answers[field.id.to_s] = uploader.url
+          # Process to store attachment file
+          elsif field.field_type_file?
+            data = self.answers[field.id.to_s]
+            if data.present?
+              uploader = AttachmentUploader.new
+              uploader.question_id = field.id.to_s
+              uploader.form_id = form_id
+              uploader.store!(data)
+              self.answers[field.id.to_s] = uploader.url
+            end
           end
         end
       end
