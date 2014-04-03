@@ -141,13 +141,14 @@ class FormEntry < ActiveRecord::Base
           value2 = answers[field.id.to_s+'_to'].to_f
 
           from_number = field.properties['from_number'].to_f
-          if (from_number != 0.0) && (value1 < from_number)
-            errors[:base] << "#{idx+1}) #{field.field_label} for from number can't be lower than #{ from_number }"
+          to_number   = field.properties['to_number'].to_f
+
+          if (from_number != 0.0) && ((value1 <= from_number) || (value1 >= to_number))
+            errors[:base] << "#{idx+1}) #{field.field_label} for from_number can't be lower than #{ from_number.to_i } and can't be greater than #{ to_number.to_i }"
           end
 
-          to_number   = field.properties['to_number'].to_f
-          if (to_number != 0.0) && (value2 > to_number)
-            errors[:base] << "#{idx+1}) #{field.field_label} for to number can't be greather than #{ to_number }"
+          if (to_number != 0.0) && ((value2 >= to_number) || (value2 <= from_number))
+            errors[:base] << "#{idx+1}) #{field.field_label} for to_number can't be greather than #{ to_number.to_i } and can't be lower than #{ from_number.to_i }"
           end
         end
 
