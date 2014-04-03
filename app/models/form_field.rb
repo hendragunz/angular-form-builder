@@ -73,18 +73,14 @@ class FormField < ActiveRecord::Base
     end
 
     def check_for_entries
+      form.entries.each do |entry|
+        if entry.answers.present?
+          entry.answers.delete(self.id.to_s)
+          entry.save
+        end
+      end
 
-      # TO DO
-      # --------------------------
-
-      # form.entries.each do |entry|
-      #   if entry.answers.present?
-      #     entry.answers = entry.answers.reject{ |k| k.split('_').first == self.id.to_s }
-      #     entry.save
-      #   end
-      # end
-
-      # return true
+      return true
     end
 
 end
