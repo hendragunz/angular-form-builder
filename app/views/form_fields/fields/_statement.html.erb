@@ -1,50 +1,57 @@
-<!-- statement -->
-<div class="input string <%= question.required %>">
-  <%= f.label question.id.to_s, class: 'control-label' do %>
-    <% if question.required %>
-      <abbr title="required">*</abbr>
+<%= f.fields_for question.id.to_s do |f_statement| %>
+  <!-- statement -->
+  <div class="input string <%= question.required %>">
+
+    <!-- label -->
+    <%= f.label question.id.to_s, class: 'control-label' do %>
+      <% if question.required %>
+        <abbr title="required">*</abbr>
+      <% end %>
+      <%= question.field_label %>
     <% end %>
-    <%= question.field_label %>
-  <% end %>
 
-  <div class="row">
-    <div class="col-xs-12">
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th></th>
-            <% question.properties['columns'].each do |key, column| %>
-              <th class="center"><%= column['name'] %></th>
-            <% end %>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% question.properties['statements'].each do |key, statement| %>
-            <tr>
-              <td class="tright"><%= statement['name'] %></td>
-              <% question.properties['columns'].each do |key2, column| %>
-                <td class="center">
-                  <label>
-                    <%= f.radio_button "#{question.id}_#{key}", [statement['name'], column['name']].join(' - ') %>
-                  </label>
-                </td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-
-      </table>
-
-    </div>
-  </div>
-
-  <% if question.field_hint.present? %>
     <div class="row">
       <div class="col-xs-12">
-        <p class="help-block"> <%= question.field_hint %> </p>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <% question.properties['columns'].each do |key, column| %>
+                <th class="center"><%= column['name'] %></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% question.properties['statements'].each do |key, statement| %>
+              <tr>
+                <td class="tright"><%= statement['name'] %></td>
+                <% question.properties['columns'].each do |key2, column| %>
+                  <td class="center">
+                    <label>
+                      <%= f_statement.radio_button statement['name'], column['name'] %>
+                    </label>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+
+        </table>
+
       </div>
     </div>
-  <% end %>
-</div>
+
+
+    <!-- hint -->
+    <% if question.field_hint.present? %>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="help-block"> <%= question.field_hint %> </p>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+<% end %>

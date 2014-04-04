@@ -132,13 +132,13 @@ class FormEntry < ActiveRecord::Base
 
 
       when 'range'
-        if field.required && (answers[field.id.to_s + '_from'].blank? || answers[field.id.to_s + '_to'].blank?)
-          errors[:base] << "#{idx+1}) #{field.id}#{field.field_label} can't be blank"
+        if field.required && (answers[field.id.to_s]['from'].blank? || answers[field.id.to_s]['to'].blank?)
+          errors[:base] << "#{idx+1}) #{field.field_label} can't be blank"
         end
 
-        if answers[field.id.to_s+'_from'].present? && answers[field.id.to_s+'_to'].present?
-          value1 = answers[field.id.to_s+'_from'].to_f
-          value2 = answers[field.id.to_s+'_to'].to_f
+        if answers[field.id.to_s]['from'].present? && answers[field.id.to_s]['to'].present?
+          value1 = answers[field.id.to_s]['from'].to_f
+          value2 = answers[field.id.to_s]['to'].to_f
 
           from_number = field.properties['from_number'].to_f
           to_number   = field.properties['to_number'].to_f
@@ -163,7 +163,7 @@ class FormEntry < ActiveRecord::Base
 
       when 'datetime'
         if field.required
-          if answers[field.id.to_s].blank? || answers[field.id.to_s + '_hours'].blank? || answers[field.id.to_s + '_minutes'].blank?
+          if answers[field.id.to_s]['date'].blank? || answers[field.id.to_s]['hours'].blank? || answers[field.id.to_s]['minutes'].blank?
             errors[:base] << "#{idx+1}) #{field.field_label} for date, hours, and minutes can't be blank"
           end
         end
