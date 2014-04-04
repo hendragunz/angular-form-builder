@@ -18,6 +18,8 @@ en:
   are_you_sure: Are you sure?
   account:
     members: Account members
+  errors:
+    cant_be_blank: "can't be blank"
   passwords:
     forgot: Forgot password?
     submit: Send instructions
