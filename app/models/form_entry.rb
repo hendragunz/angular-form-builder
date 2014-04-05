@@ -46,6 +46,7 @@ class FormEntry < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   before_validation :process_answers
 
+
 	# INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
 
@@ -222,7 +223,6 @@ class FormEntry < ActiveRecord::Base
       end
     end
   end
-
 
   private
 
