@@ -73,7 +73,7 @@ class FormEntry < ActiveRecord::Base
         if field.required
           field.properties['statements'].each do |key, statement|
             if answers[field.id.to_s + "_#{key}"].blank?
-              errors[:base] << "#{idx+1}) Question group for #{statement['name']} #{I18n.t 'errors.cant_be_blank'}"
+              errors[:base] << "#{idx+1}) #{statement['name']} #{I18n.t 'errors.cant_be_blank'}"
             end
           end
         end
