@@ -1,25 +1,25 @@
-<!-- datetime -->
-<div class="datetime-field">
-  <div class="row">
-    <div class="col-xs-6">
-      <%= f.input question.id.to_s, label: question.field_label, hint: question.field_hint, required: question.required, wrapper: :prepend do %>
-        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-        <%= f.input_field question.id.to_s, as: :string, class: 'datepicker' %>
-      <% end %>
-    </div>
-
-    <div class="col-xs-4">
-      <div class="input-group hour-field pull-left">
-        <label class="select control-label" for="form_entry_answers_minutes">Hour</label>
-        <%= f.input_field question.id.to_s + '_hours', collection: ((0..23).to_a.map{|x| '%02d' % x }), include_blank: false, class: "form-control" %>
+<%= f.fields_for question.id.to_s do |f_datetime| %>
+  <!-- datetime -->
+  <div class="datetime-field">
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f_datetime.input 'date', label: question.field_label, hint: question.field_hint, required: question.required, wrapper: :prepend do %>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+          <%= f_datetime.input_field 'date', as: :string, class: 'datepicker' %>
+        <% end %>
       </div>
-      <div class="input-group separator-field pull-left"><span>:</span></div>
-      <div class="input-group minute-field pull-left">
-        <label class="select control-label" for="form_entry_answers_minutes">Minute</label>
-        <%= f.input_field question.id.to_s + '_minutes', collection: ((0..45).step(15).to_a.map{|x| '%02d' % x}), include_blank: false, class: "form-control" %>
+
+      <div class="col-xs-4">
+        <div class="input-group hour-field pull-left">
+          <label class="select control-label" for="form_entry_answers_minutes">Hour</label>
+          <%= f_datetime.input_field 'hours', collection: ((0..23).to_a.map{|x| '%02d' % x }), include_blank: false, class: "form-control" %>
+        </div>
+        <div class="input-group separator-field pull-left"><span>:</span></div>
+        <div class="input-group minute-field pull-left">
+          <label class="select control-label" for="form_entry_answers_minutes">Minute</label>
+          <%= f_datetime.input_field 'minutes', collection: ((0..45).step(15).to_a.map{|x| '%02d' % x}), include_blank: false, class: "form-control" %>
+        </div>
       </div>
     </div>
   </div>
-
-</div>
-
+<% end %>

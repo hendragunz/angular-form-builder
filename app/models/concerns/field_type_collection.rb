@@ -3,7 +3,7 @@ module FieldTypeCollection
 
   FieldConfig = {
     address:        {type: 'text',      options: ['label', 'hint', 'required']},
-    percentage:     {type: 'number',    options: ['label', 'hint', 'required']},
+    percentage:     {type: 'number',    options: ['label', 'hint', 'required', 'range']},
     boolean:        {type: 'radio',     options: ['label', 'hint', 'required', 'boolean_label']},
     checkbox:       {type: 'checkbox',  options: ['label', 'hint', 'required', 'field_options']},
     date:           {type: 'date',      options: ['label', 'hint', 'required']},

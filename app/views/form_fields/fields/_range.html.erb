@@ -1,14 +1,19 @@
-<!-- range -->
-<div class="input string <%= question.required %>">
-  <%= f.label :range, class: 'control-label' do %>
-    <% if question.required %>
-      <abbr title="required">*</abbr>
-    <% end %>
-    <%= question.field_label %>
-  <% end %>
+<% @entry.answers ||= {} %>
+<% hash = @entry.answers[question.id.to_s] %>
 
-  <div class="row">
-    <%= f.input question.id.to_s + "_from", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'From', min: question.properties['from_number'], max: question.properties['to_number']  } %>
-    <%= f.input question.id.to_s + "_to", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'To', min: question.properties['from_number'], max: question.properties['to_number'] } %>
+<%= f.fields_for question.id.to_s, OpenStruct.new(hash) do |f_range| %>
+  <!-- range -->
+  <div class="input string <%= question.required %>">
+    <%= f_range.label :range, class: 'control-label' do %>
+      <% if question.required %>
+        <abbr title="required">*</abbr>
+      <% end %>
+      <%= question.field_label %>
+    <% end %>
+
+    <div class="row">
+      <%= f_range.input "from", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'From', min: question.properties['from_number'], max: question.properties['to_number']  } %>
+      <%= f_range.input "to", as: :integer, label: false, hint: question.field_hint, wrapper_html: { class: 'col-xs-6', style: "margin-bottom:0;" }, input_html: { placeholder: 'To', min: question.properties['from_number'], max: question.properties['to_number'] } %>
+    </div>
   </div>
-</div>
+<% end %>

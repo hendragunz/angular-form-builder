@@ -1,4 +1,4 @@
-<%= f.input question.id.to_s, label: question.field_label, required: question.required, wrapper: :prepend do %>
+<%= f.input question.id.to_s, label: question.field_label, hint: question.field_hint, required: question.required, wrapper: :prepend do %>
   <% if question.properties['add_on'] == 'prepend' %>
     <span class="input-group-addon"><%= question.properties['currency'] || '$' %></span>
   <% end %>

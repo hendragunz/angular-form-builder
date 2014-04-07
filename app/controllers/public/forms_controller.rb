@@ -13,8 +13,8 @@ class Public::FormsController < Public::BaseController
   #
   def create
     begin
-      # ap params
-      # Rails.logger.debug form_entry_param
+      ap params
+      # ap form_entry_param
       # ap safe_params
 
       @entry = form.entries.new(safe_params)
@@ -70,34 +70,29 @@ class Public::FormsController < Public::BaseController
       Array.new.tap do |arr|
         form.fields.map do |field|
           if field.field_type_range?
-            arr << field.id.to_s + '_from'
-            arr << field.id.to_s + '_to'
+            arr << { field.id.to_s => [:from, :to] }
 
           elsif field.field_type_datetime?
-            arr << field.id.to_s
-            arr << field.id.to_s + '_hours'
-            arr << field.id.to_s + '_minutes'
+            arr << { field.id.to_s => [:date, :hours, :minutes] }
 
           elsif field.field_type_address?
-            arr << field.id.to_s + '_address'
-            arr << field.id.to_s + '_city'
-            arr << field.id.to_s + '_postal_code'
-            arr << field.id.to_s + '_country'
+            arr << { field.id.to_s => [:address, :city, :postal_code, :country] }
 
           elsif field.field_type_question_group?
+            # TO DO
             arr << { 'field.id' => [ 'row_10' ] }
 
           elsif field.field_type_checkbox? || field.field_type_mcq?
             arr << { field.id.to_s => [] }
 
           elsif field.field_type_statement?
+            # TO DO
             field.properties['statements'].each do |key, value|
               arr << field.id.to_s + "_#{key}"
             end
 
           elsif field.field_type_file?
             arr << field.id.to_s
-
 
           else
             arr << field.id.to_s

@@ -41,7 +41,7 @@ puts "creating forms and fields..."
       name: "field_#{count}",
       field_label: Faker::Lorem.paragraph,
       field_hint: Faker::Lorem.paragraph,
-      field_type: ['mcq', 'boolean', 'single_line', 'paragraph', 'rating', 'number', 'checkbox', 'dropdown', 'name', 'address', 'date', 'email', 'time', 'phone', 'website', 'price', 'statement', 'facebook', 'twitter', 'website'].sample
+      field_type: ['mcq', 'boolean', 'single_line', 'paragraph', 'rating', 'number', 'checkbox', 'dropdown', 'address', 'date', 'email', 'datetime', 'phone', 'website', 'price', 'statement', 'facebook', 'twitter', 'website'].sample
   )
     field.properties = {data:"{option1: 'a', option2: 'b'}"} if field.field_type == 'mcq'
     field.properties = {data:"{format: 'words', min: '0', max: '50'}"} if field.field_type == 'single_line'
