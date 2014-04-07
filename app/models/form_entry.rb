@@ -156,6 +156,15 @@ class FormEntry < ActiveRecord::Base
           if answers[field.id.to_s].blank?
             errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
           end
+
+          if answers[field.id.to_s].present?
+            answers[field.id.to_s].each do |key, row|
+              if row.values.include?("")
+                errors[:base] << "#{idx+1}) #{field.field_label}'s rows #{I18n.t 'errors.cant_be_blank'}"
+                return
+              end
+            end
+          end
         end
       end
 
