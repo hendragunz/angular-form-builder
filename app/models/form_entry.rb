@@ -87,44 +87,27 @@ class FormEntry < ActiveRecord::Base
           errors[:base] << "#{idx+1}) #{field.field_label} should be greater or equal than 0"
         end
 
-      when 'number'
-        if field.required && answers[field.id.to_s].blank?
-          errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
-        end
-
-        if answers[field.id.to_s].present?
-          value = answers[field.id.to_s].to_f
-
-          from_number = field.properties['from_number'].to_f
-          if (from_number != 0.0) && (value < from_number)
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be lower than #{ from_number }"
-          end
-
-          to_number   = field.properties['to_number'].to_f
-          if (to_number != 0.0) && (value > to_number)
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be greather than #{ to_number }"
-          end
-        end
-
       when 'website'
         if field.required && answers[field.id.to_s].blank?
           errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
 
-      when 'percentage'
+      when 'percentage', 'number'
         if field.required && answers[field.id.to_s].blank?
           errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
 
-        if answers[field.id.to_s].present?
-          value = answers[field.id.to_s].to_f
+        if answers[field.id.to_s].present? && field.properties['from_number'].present? && field.properties['to_number'].present?
+          value       = answers[field.id.to_s].to_f
+          from_number = field.properties['from_number'].to_f
+          to_number   = field.properties['to_number'].to_f
 
-          if (value < 0.0)
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be lower than 0.0%"
+          if (value < from_number)
+            errors[:base] << "#{idx+1}) #{field.field_label} can't be lower than #{ from_number }"
           end
 
-          if (value > 100.0)
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be greater than 100.0%"
+          if (value > to_number)
+            errors[:base] << "#{idx+1}) #{field.field_label} can't be greather than #{ to_number }"
           end
         end
 
