@@ -1,4 +1,7 @@
-<%= f.fields_for question.id.to_s do |f_range| %>
+<% @entry.answers ||= {} %>
+<% hash = @entry.answers[question.id.to_s] %>
+
+<%= f.fields_for question.id.to_s, OpenStruct.new(hash) do |f_range| %>
   <!-- range -->
   <div class="input string <%= question.required %>">
     <%= f_range.label :range, class: 'control-label' do %>

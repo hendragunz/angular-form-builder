@@ -140,12 +140,8 @@ class FormEntry < ActiveRecord::Base
           from_number = field.properties['from_number'].to_f
           to_number   = field.properties['to_number'].to_f
 
-          if (from_number != 0.0) && ((value1 <= from_number) || (value1 >= to_number))
-            errors[:base] << "#{idx+1}) #{field.field_label} for from_number can't be lower than #{ from_number.to_i } and can't be greater than #{ to_number.to_i }"
-          end
-
-          if (to_number != 0.0) && ((value2 >= to_number) || (value2 <= from_number))
-            errors[:base] << "#{idx+1}) #{field.field_label} for to_number can't be greather than #{ to_number.to_i } and can't be lower than #{ from_number.to_i }"
+          if ((from_number != 0.0) && ((value1 <= from_number) || (value1 >= to_number))) || ((to_number != 0.0) && ((value2 >= to_number) || (value2 <= from_number)))
+            errors[:base] << "#{idx+1}) #{field.field_label} values should be between #{ from_number.to_i } and #{ to_number.to_i }"
           end
         end
 
