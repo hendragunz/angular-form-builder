@@ -6,15 +6,10 @@
 	.container {
 	  margin-bottom: 40px;
 
-	  .img-thumbnail {
-	  	opacity: 0.5;
-	  }
-
 	  .img-thumbnail:hover,
 	  .img-thumbnail:active,
 	  .img-thumbnail.active {
       border: 1px solid #428bca;
-      opacity: 1;
     }
 	}
 
