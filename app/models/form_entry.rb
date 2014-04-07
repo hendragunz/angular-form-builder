@@ -107,7 +107,7 @@ class FormEntry < ActiveRecord::Base
           end
 
           if (value > to_number)
-            errors[:base] << "#{idx+1}) #{field.field_label} can't be greather than #{ to_number }"
+            errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_greater_than'} #{ to_number }"
           end
         end
 
