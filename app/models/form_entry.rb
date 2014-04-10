@@ -59,7 +59,7 @@ class FormEntry < ActiveRecord::Base
   def validate_answers
     fields.each_with_index do |field, idx|
       case field.field_type
-      when 'single_line', 'paragraph', 'facebook', 'twitter', 'phone', 'website', 'radio', 'date', 'picture_choice', 'dropdown', 'rating', 'boolean'
+      when 'single_line', 'paragraph', 'facebook', 'twitter', 'phone', 'website', 'radio', 'date', 'picture_choice', 'dropdown', 'rating', 'boolean', 'file'
         if field.required && answers[field.id.to_s].blank?
           errors[:base] << "#{idx+1}) #{field.field_label} #{I18n.t 'errors.cant_be_blank'}"
         end
@@ -167,17 +167,6 @@ class FormEntry < ActiveRecord::Base
           end
         end
       end
-
-
-      # if field.required and field.field_type == "mcq"
-      #   mcq_value_exist = 0
-      #   field .field_options.each do |option|
-      #     mcq_value_exist = 1 if answers[field.id.to_s+"_"+option.id.to_s] != "0"
-      #   end
-      #   errors.add field.name, "#{I18n.t 'errors.cant_be_blank'}" if mcq_value_exist == 0
-      # elsif field.required and answers[field.id.to_s].blank?
-      #   errors.add field.name, "#{I18n.t 'errors.cant_be_blank'}"
-      # end
     end
   end
 
