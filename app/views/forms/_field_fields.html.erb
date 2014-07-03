@@ -4,8 +4,8 @@
   <%= ff.input :field_label, as: :string %>
   <%= ff.input :field_hint, as: :string %>
   <div class="form-group">
-		 <div class="checkbox">
-	    <label><%= ff.check_box :required %> Required</label>
+    <div class="checkbox">
+      <label><%= ff.check_box :required %> Required</label>
 	  </div>
 	</div>
 	<%= ff.input :field_type, collection: FormField::FieldType.options_with_label, include_blank: false, html_input: {class: 'qtype'} %>

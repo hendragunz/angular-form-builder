@@ -29,7 +29,7 @@
         <%= ff.hidden_field :position, value: "{{ field.position }}" %>
         <%= ff.hidden_field :name, value: "{{ field.name }}" %>
         <%= ff.input :field_label, label: 'Label', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'label')" }, input_html: { 'ng-model' => "field.field_label" } %>
-        <%= ff.input :field_hint, label: 'Hint', as: :string, wrapper_html: { 'ng-if' => "needField(field, 'hint')" }, input_html: { 'ng-model' => "field.field_hint" } %>
+        <%= ff.input :field_hint, label: 'Hint', as: :string, required: false, wrapper_html: { 'ng-if' => "needField(field, 'hint')" }, input_html: { 'ng-model' => "field.field_hint" } %>
         <div class="checkbox" ng-if="needField(field, 'required')">
           <label><%= ff.check_box :required, { 'ng-model' => "field.required" } %> Required</label>
         </div>

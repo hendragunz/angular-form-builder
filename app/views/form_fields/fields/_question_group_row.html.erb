@@ -20,7 +20,7 @@
 
       <!-- no need remove link for the first row -->
       <% if unique_id != '0' %>
-        <div class="col-xs-2"><%= link_to 'remove', 'javascript:;', class: 'link-danger', 'onclick' => "$(this).closest('.row').remove()" %></div>
+        <div class="col-xs-2"><%= link_to 'remove', 'javascript:;', class: 'btn btn-danger', 'onclick' => "$(this).closest('.row').remove()" %></div>
       <% end %>
     </div>
   <% end %>

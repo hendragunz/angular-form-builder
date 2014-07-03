@@ -100,7 +100,7 @@
         field.properties =
           symbol: 'number'
           max_rating: 5
-          format: 'inline'
+          # format: 'inline'
 
       when 'price'
         field.field_label = 'Price'
@@ -122,13 +122,6 @@
         field.properties =
           from_number: 0
           to_number: 0
-
-      when 'rating'
-        field.field_label = 'Rating'
-        field.properties =
-          symbol: 'number'
-          max_rating: 5
-          format: 'inline'
 
       when 'section'
         field.properties = {
@@ -175,7 +168,7 @@
         Holder.run()
     )
 
-  $scope.removeFieldOption = (field, field_option)->
+  $scope.removeFieldOption = (field, field_option) ->
     if field_option.persisted
       if confirm( I18n.t('form').confirm_remove_field )
         field_option.deleted = true

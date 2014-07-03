@@ -1,9 +1,9 @@
 @FormEntryCtrl = ["$scope", "$timeout", ($scope, $timeout) ->
 
   # Add row question group
-  $scope.addRowQuestionGroup = ()->
+  $scope.addRowQuestionGroup = (a) ->
     partial = row_question_group.replace(/UNIQUE_ID/g, $scope.unique_id())
-    $('.question-group-rows').append( partial )
+    $('.question-group-rows', $scope).append partial
     return
 
 

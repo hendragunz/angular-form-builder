@@ -1,34 +1,25 @@
 <div class="sidebar-nav">
 	<ul class="nav nav-tabs">
-	  <li class="active"><a href="#form-fields" data-toggle="tab">Fields</a></li>
-	  <li><a href="#form-settings" data-toggle="tab">Settings</a></li>
-	  <li><a href="#form-style" data-toggle="tab">Style</a></li>
+    <li class="active"><a href="#form-settings" data-toggle="tab">Settings</a></li>
+	  <li><a href="#form-fields" data-toggle="tab">Fields</a></li>
+	  <!-- <li><a href="#form-style" data-toggle="tab">Style</a></li> -->
 	</ul>
 
 	<!-- Tab panes -->
 	<div id="form-sidebar" class="tab-content">
-	  <div class="tab-pane active" id="form-fields">
-      <h5>ADD A FIELD</h5>
-      <p style="color:red;">WORKING FIELDS</p>
-      <ul>
-        <% Enum::FormField::FIELD_TYPE[:options].each do |f_type| %>
-          <li><%= link_to t("enumerize.form_field.field_type.#{f_type.to_s}"), '', 'ng-click' => "addField('#{f_type.to_s}')" %></li>
-        <% end %>
-      </ul>
-	  </div>
-
-	  <div class="tab-pane" id="form-settings">
+    <div class="tab-pane active" id="form-settings">
       <h5>FORM SETTINGS</h5>
-      <%= f.input :introduction, input_html: {"ng-model"=>"form.introduction"} %>
-      <%= f.input :confirmation_message %>
-      <hr>
       <%= f.input :name, input_html: {"ng-model"=>"form.name"} %>
       <hr>
-      <%= f.input :max_entries_allowed %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
+      <%= f.input :introduction, label: 'Form Description', input_html: {"ng-model"=>"form.introduction"} %>
+      <%#= f.input :confirmation_message %>
+
       <hr>
-      <div class="form-group">
+      <%#= f.input :max_entries_allowed %>
+      <%#= f.input :start_date %>
+      <%#= f.input :end_date %>
+      <!-- <hr> -->
+      <!-- <div class="form-group">
          <div class="checkbox">
           <label><%= f.check_box :unique_ip_only %> Allow Only One Entry Per IP</label>
         </div>
@@ -42,8 +33,18 @@
         <div class="checkbox">
           <label><%= f.check_box :show_questions_one_by_one %> Show questions one by one</label>
         </div>
-      </div>
+      </div> -->
     </div>
+
+	  <div class="tab-pane" id="form-fields">
+      <h5>ADD A FIELD</h5>
+      <p style="color:red;">WORKING FIELDS</p>
+      <ul>
+        <% Enum::FormField::FIELD_TYPE[:options].each do |f_type| %>
+          <li><%= link_to t("enumerize.form_field.field_type.#{f_type.to_s}"), '', 'ng-click' => "addField('#{f_type.to_s}')" %></li>
+        <% end %>
+      </ul>
+	  </div>
 
 	  <div class="tab-pane" id="form-style" ng-controller="FormStyleCtrl">
 	  	<h5>STANDARD THEMES</h5>
