@@ -32,6 +32,10 @@ gem 'country-select'
 gem 'tabs_on_rails',      "~> 2.1.1"
 gem 'six'
 
+
+# error nofier
+gem 'exception_notification'
+
 group :development, :test do
   gem 'faker', '1.0.1'
   gem 'hirb'
@@ -51,9 +55,4 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
   gem 'spring',       '~> 1.1.2'
-end
-
-group :production do
-  gem 'exception_notification'
-  gem 'unicorn'
 end
