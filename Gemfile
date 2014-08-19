@@ -21,6 +21,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
 
 # for handling attachment
 gem 'carrierwave'
+gem 'paperclip'
 
 # Tools
 gem 'enumerize'
@@ -29,6 +30,7 @@ gem 'nested-hstore'
 gem 'simple_form'
 gem 'country-select'
 gem 'tabs_on_rails',      "~> 2.1.1"
+gem 'six'
 
 group :development, :test do
   gem 'faker', '1.0.1'
