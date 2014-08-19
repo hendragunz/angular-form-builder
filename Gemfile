@@ -37,7 +37,6 @@ gem 'six'
 gem 'exception_notification'
 
 group :development, :test do
-  gem 'faker', '1.0.1'
   gem 'hirb'
   gem 'debugger'
   gem 'letter_opener'
@@ -61,3 +60,6 @@ group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
+
+# for generate dummy data
+gem 'faker', '1.0.1'
